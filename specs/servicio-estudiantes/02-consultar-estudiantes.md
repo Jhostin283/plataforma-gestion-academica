@@ -1,4 +1,4 @@
-# EST-EST-02: Consultar estudiantes
+# EST-02: Consultar estudiantes
 
 ## Objetivo
 Consultar estudiantes para la plataforma de gestión académica.
@@ -31,10 +31,18 @@ Consultar estudiantes para la plataforma de gestión académica.
 - El contrato OpenAPI documenta filtros, paginación, respuestas y errores.
 
 ## Trazabilidad
-- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
-- Requisito: EST-EST-02
+- Requisito: EST-02
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, filtros y casos vacíos.
-- Issue: pendiente.
+- Issue: [7](https://github.com/Jhostin283/plataforma-gestion-academica/issues/7).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+
+- **PR-EST-02-01:** Buscar por nombres, apellidos y documento.
+- **PR-EST-02-02:** Buscar sin coincidencias.
+- **PR-EST-02-03:** Consultar detalle existente, inexistente y UUID inválido.
+- **PR-EST-02-04:** Probar paginación válida e inválida.

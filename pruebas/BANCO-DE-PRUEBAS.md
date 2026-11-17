@@ -12,44 +12,44 @@
 
 Convenciones HTTP, paginación y errores: [convenciones API](../specs/convenciones-api.md). Todos los resultados esperados están sujetos a los specs y sus contratos. Los casos de infraestructura se verifican en sus propios specs; no forman parte de esta medición de cobertura de aplicación.
 
-## CUR-CUR-01 — Registrar curso
+## CUR-01 — Registrar curso
 
 | ID | Tipo | Preparación y acción | Resultado esperado |
 | --- | --- | --- | --- |
-| PR-CUR-CUR-01-01 | Integración | Enviar un curso válido a `POST /api/v1/cursos`. | `201`, ID y `Location`; curso activo persistido. |
-| PR-CUR-CUR-01-02 | Integración | Enviar código ya registrado. | `409`; no se crea otro curso. |
-| PR-CUR-CUR-01-03 | API | Omitir campo obligatorio o usar duración/capacidad no positivas. | `422` con detalles; sin escritura. |
-| PR-CUR-CUR-01-04 | API | Enviar JSON malformado. | `400` sin detalles internos. |
-| PR-CUR-CUR-01-05 | Integración | Enviar dos registros concurrentes con igual código. | Como máximo un registro creado; el otro recibe conflicto. |
+| PR-CUR-01-01 | Integración | Enviar un curso válido a `POST /api/v1/cursos`. | `201`, ID y `Location`; curso activo persistido. |
+| PR-CUR-01-02 | Integración | Enviar código ya registrado. | `409`; no se crea otro curso. |
+| PR-CUR-01-03 | API | Omitir campo obligatorio o usar duración/capacidad no positivas. | `422` con detalles; sin escritura. |
+| PR-CUR-01-04 | API | Enviar JSON malformado. | `400` sin detalles internos. |
+| PR-CUR-01-05 | Integración | Enviar dos registros concurrentes con igual código. | Como máximo un registro creado; el otro recibe conflicto. |
 
-## CUR-CUR-02 — Consultar cursos
-
-| ID | Tipo | Preparación y acción | Resultado esperado |
-| --- | --- | --- | --- |
-| PR-CUR-CUR-02-01 | Integración | Crear cursos y buscar por nombre y código. | `200`; resultados y total corresponden al filtro. |
-| PR-CUR-CUR-02-02 | API | Buscar texto sin coincidencias. | `200`, `items` vacío y total cero. |
-| PR-CUR-CUR-02-03 | API | Consultar detalle con ID existente e inexistente. | `200` con capacidad y plazas para el existente; `404` para el inexistente. |
-| PR-CUR-CUR-02-04 | API | Usar UUID o parámetros de paginación inválidos. | `400` con error documentado. |
-| PR-CUR-CUR-02-05 | Integración | Consultar detalle tras reservar y liberar una plaza. | Disponibilidad actualizada y nunca negativa. |
-
-## CUR-CUR-03 — Actualizar curso
+## CUR-02 — Consultar cursos
 
 | ID | Tipo | Preparación y acción | Resultado esperado |
 | --- | --- | --- | --- |
-| PR-CUR-CUR-03-01 | Integración | Actualizar campos de un curso existente con datos válidos. | `200`; cambios persistidos. |
-| PR-CUR-CUR-03-02 | Integración | Usar código de otro curso o datos inválidos. | `409` por duplicado o `422` por validación; datos previos intactos. |
-| PR-CUR-CUR-03-03 | Integración | Reducir capacidad por debajo de reservas vigentes. | `409`; capacidad y reservas sin cambios. |
-| PR-CUR-CUR-03-04 | Integración | Ejecutar simultáneamente una reserva y una reducción de capacidad. | Ningún resultado final deja reservas por encima de capacidad. |
-| PR-CUR-CUR-03-05 | API | Actualizar UUID inexistente o inválido. | `404` o `400`, respectivamente. |
+| PR-CUR-02-01 | Integración | Crear cursos y buscar por nombre y código. | `200`; resultados y total corresponden al filtro. |
+| PR-CUR-02-02 | API | Buscar texto sin coincidencias. | `200`, `items` vacío y total cero. |
+| PR-CUR-02-03 | API | Consultar detalle con ID existente e inexistente. | `200` con capacidad y plazas para el existente; `404` para el inexistente. |
+| PR-CUR-02-04 | API | Usar UUID o parámetros de paginación inválidos. | `400` con error documentado. |
+| PR-CUR-02-05 | Integración | Consultar detalle tras reservar y liberar una plaza. | Disponibilidad actualizada y nunca negativa. |
 
-## CUR-CUR-04 — Cambiar estado del curso
+## CUR-03 — Actualizar curso
 
 | ID | Tipo | Preparación y acción | Resultado esperado |
 | --- | --- | --- | --- |
-| PR-CUR-CUR-04-01 | Integración | Desactivar y volver a activar un curso. | `200` en cada cambio; estado persistido. |
-| PR-CUR-CUR-04-02 | Integración | Desactivar curso con reserva y solicitar otra. | Nueva reserva `409`; la anterior sigue consultable y liberable. |
-| PR-CUR-CUR-04-03 | API | Repetir estado o enviar estado no permitido. | Repetición segura; estado inválido `422`. |
-| PR-CUR-CUR-04-04 | API | Usar ID inexistente o malformado. | `404` o `400`, respectivamente. |
+| PR-CUR-03-01 | Integración | Actualizar campos de un curso existente con datos válidos. | `200`; cambios persistidos. |
+| PR-CUR-03-02 | Integración | Usar código de otro curso o datos inválidos. | `409` por duplicado o `422` por validación; datos previos intactos. |
+| PR-CUR-03-03 | Integración | Reducir capacidad por debajo de reservas vigentes. | `409`; capacidad y reservas sin cambios. |
+| PR-CUR-03-04 | Integración | Ejecutar simultáneamente una reserva y una reducción de capacidad. | Ningún resultado final deja reservas por encima de capacidad. |
+| PR-CUR-03-05 | API | Actualizar UUID inexistente o inválido. | `404` o `400`, respectivamente. |
+
+## CUR-04 — Cambiar estado del curso
+
+| ID | Tipo | Preparación y acción | Resultado esperado |
+| --- | --- | --- | --- |
+| PR-CUR-04-01 | Integración | Desactivar y volver a activar un curso. | `200` en cada cambio; estado persistido. |
+| PR-CUR-04-02 | Integración | Desactivar curso con reserva y solicitar otra. | Nueva reserva `409`; la anterior sigue consultable y liberable. |
+| PR-CUR-04-03 | API | Repetir estado o enviar estado no permitido. | Repetición segura; estado inválido `422`. |
+| PR-CUR-04-04 | API | Usar ID inexistente o malformado. | `404` o `400`, respectivamente. |
 
 ## CUR-PLZ-01 — Reservar y liberar plazas
 
@@ -64,42 +64,42 @@ Convenciones HTTP, paginación y errores: [convenciones API](../specs/convencion
 | PR-CUR-PLZ-01-07 | Integración | Simular pérdida de respuesta y reintentar con igual clave. | Se recupera la reserva original sin duplicación. |
 | PR-CUR-PLZ-01-08 | API | Usar clave, UUID o reserva inexistente inválidos. | `400` para formato inválido; `404` para reserva inexistente. |
 
-## EST-EST-01 — Registrar estudiante
+## EST-01 — Registrar estudiante
 
 | ID | Tipo | Preparación y acción | Resultado esperado |
 | --- | --- | --- | --- |
-| PR-EST-EST-01-01 | Integración | Registrar estudiante válido. | `201`, ID y `Location`; estado activo persistido. |
-| PR-EST-EST-01-02 | API | Omitir datos o enviar correo inválido. | `422` con detalles; sin registro parcial. |
-| PR-EST-EST-01-03 | Integración | Registrar documento existente o dos solicitudes concurrentes con igual documento. | Solo un registro; las solicitudes duplicadas reciben `409`. |
-| PR-EST-EST-01-04 | API | Enviar JSON malformado. | `400` sin datos internos. |
+| PR-EST-01-01 | Integración | Registrar estudiante válido. | `201`, ID y `Location`; estado activo persistido. |
+| PR-EST-01-02 | API | Omitir datos o enviar correo inválido. | `422` con detalles; sin registro parcial. |
+| PR-EST-01-03 | Integración | Registrar documento existente o dos solicitudes concurrentes con igual documento. | Solo un registro; las solicitudes duplicadas reciben `409`. |
+| PR-EST-01-04 | API | Enviar JSON malformado. | `400` sin datos internos. |
 
-## EST-EST-02 — Consultar estudiantes
-
-| ID | Tipo | Preparación y acción | Resultado esperado |
-| --- | --- | --- | --- |
-| PR-EST-EST-02-01 | Integración | Buscar por nombres, apellidos y documento. | `200`; resultados y total coherentes. |
-| PR-EST-EST-02-02 | API | Buscar sin coincidencias. | `200`, lista vacía y total cero. |
-| PR-EST-EST-02-03 | API | Consultar detalle existente, inexistente y UUID inválido. | `200`, `404` y `400`, respectivamente. |
-| PR-EST-EST-02-04 | API | Probar paginación válida e inválida. | Página correcta o `400`; no se exponen campos internos. |
-
-## EST-EST-03 — Actualizar estudiante
+## EST-02 — Consultar estudiantes
 
 | ID | Tipo | Preparación y acción | Resultado esperado |
 | --- | --- | --- | --- |
-| PR-EST-EST-03-01 | Integración | Actualizar datos válidos de un estudiante. | `200` y valores persistidos. |
-| PR-EST-EST-03-02 | Integración | Usar documento de otro estudiante. | `409`; registro anterior intacto. |
-| PR-EST-EST-03-03 | API | Enviar correo inválido o cuerpo incompleto. | `422`; no hay cambio parcial. |
-| PR-EST-EST-03-04 | API | Actualizar ID inexistente o inválido. | `404` o `400`, respectivamente. |
-| PR-EST-EST-03-05 | Concurrencia | Actualizar dos estudiantes al mismo documento. | La restricción impide duplicados. |
+| PR-EST-02-01 | Integración | Buscar por nombres, apellidos y documento. | `200`; resultados y total coherentes. |
+| PR-EST-02-02 | API | Buscar sin coincidencias. | `200`, lista vacía y total cero. |
+| PR-EST-02-03 | API | Consultar detalle existente, inexistente y UUID inválido. | `200`, `404` y `400`, respectivamente. |
+| PR-EST-02-04 | API | Probar paginación válida e inválida. | Página correcta o `400`; no se exponen campos internos. |
 
-## EST-EST-04 — Cambiar estado del estudiante
+## EST-03 — Actualizar estudiante
 
 | ID | Tipo | Preparación y acción | Resultado esperado |
 | --- | --- | --- | --- |
-| PR-EST-EST-04-01 | Integración | Desactivar y activar un estudiante. | `200`; cambios persistidos e historial conservado. |
-| PR-EST-EST-04-02 | Integración | Intentar matricular estudiante inactivo. | `409`; no se genera matrícula ni reserva. |
-| PR-EST-EST-04-03 | API | Repetir estado o enviar valor no permitido. | Repetición segura; valor inválido `422`. |
-| PR-EST-EST-04-04 | API | Usar ID inexistente o inválido. | `404` o `400`, respectivamente. |
+| PR-EST-03-01 | Integración | Actualizar datos válidos de un estudiante. | `200` y valores persistidos. |
+| PR-EST-03-02 | Integración | Usar documento de otro estudiante. | `409`; registro anterior intacto. |
+| PR-EST-03-03 | API | Enviar correo inválido o cuerpo incompleto. | `422`; no hay cambio parcial. |
+| PR-EST-03-04 | API | Actualizar ID inexistente o inválido. | `404` o `400`, respectivamente. |
+| PR-EST-03-05 | Concurrencia | Actualizar dos estudiantes al mismo documento. | La restricción impide duplicados. |
+
+## EST-04 — Cambiar estado del estudiante
+
+| ID | Tipo | Preparación y acción | Resultado esperado |
+| --- | --- | --- | --- |
+| PR-EST-04-01 | Integración | Desactivar y activar un estudiante. | `200`; cambios persistidos e historial conservado. |
+| PR-EST-04-02 | Integración | Intentar matricular estudiante inactivo. | `409`; no se genera matrícula ni reserva. |
+| PR-EST-04-03 | API | Repetir estado o enviar valor no permitido. | Repetición segura; valor inválido `422`. |
+| PR-EST-04-04 | API | Usar ID inexistente o inválido. | `404` o `400`, respectivamente. |
 
 ## EST-MAT-01 — Crear matrícula
 

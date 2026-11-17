@@ -27,7 +27,7 @@ def main():
         if not isinstance(item, dict):
             continue
         ident = item.get("id")
-        if not isinstance(ident, str) or not re.fullmatch(r"[A-Z]+-[A-Z0-9]+-\d+", ident):
+        if not isinstance(ident, str) or not re.fullmatch(r"[A-Z]+-(?:[A-Z0-9]+-)?\d+", ident):
             errors.append(f"ID inválido: {ident}")
             continue
         spec = item.get("spec")

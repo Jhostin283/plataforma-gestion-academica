@@ -21,10 +21,19 @@ Gestionar matrículas desde el frontend para la plataforma de gestión académic
 - El flujo funciona con teclado y en móvil.
 
 ## Trazabilidad
-- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: WEB-MAT-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Interfaz, integración y accesibilidad.
-- Issue: pendiente.
+- Issue: [16](https://github.com/Jhostin283/plataforma-gestion-academica/issues/16).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+
+- **PR-WEB-MAT-01-01:** Seleccionar estudiante y curso con plazas; enviar matrícula.
+- **PR-WEB-MAT-01-02:** Recibir `202` y después consultar el estado.
+- **PR-WEB-MAT-01-03:** Recibir duplicado, curso lleno o fallo de API.
+- **PR-WEB-MAT-01-04:** Consultar historial y cancelar una matrícula.
+- **PR-WEB-MAT-01-05:** Completar el flujo en móvil y mediante teclado.

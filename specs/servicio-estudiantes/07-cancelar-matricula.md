@@ -35,10 +35,18 @@ Cancelar matrícula para la plataforma de gestión académica.
 - La prueba verifica fallos antes y después de la liberación y el resultado final tras reintentar.
 
 ## Trazabilidad
-- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: EST-MAT-03
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: Integración, idempotencia y recuperación.
-- Issue: pendiente.
+- Issue: [12](https://github.com/Jhostin283/plataforma-gestion-academica/issues/12).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+
+- **PR-EST-MAT-03-01:** Cancelar una matrícula activa con reserva.
+- **PR-EST-MAT-03-02:** Repetir cancelación finalizada.
+- **PR-EST-MAT-03-03:** Cancelar matrícula inexistente, UUID inválido o estado incompatible.
+- **PR-EST-MAT-03-04:** Perder respuesta o fallar al liberar la reserva.

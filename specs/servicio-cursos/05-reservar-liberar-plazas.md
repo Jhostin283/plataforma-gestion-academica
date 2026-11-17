@@ -36,10 +36,22 @@ Reservar y liberar plazas para la plataforma de gestión académica.
 - La base garantiza la operación atómica; errores no exponen datos internos. Las rutas internas se documentan en OpenAPI y en el contrato compartido.
 
 ## Trazabilidad
-- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: CUR-PLZ-01
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: PostgreSQL, concurrencia, contrato e idempotencia.
-- Issue: pendiente.
+- Issue: [5](https://github.com/Jhostin283/plataforma-gestion-academica/issues/5).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+
+- **PR-CUR-PLZ-01-01:** Reservar en curso activo con disponibilidad.
+- **PR-CUR-PLZ-01-02:** Repetir la reserva con igual clave y datos.
+- **PR-CUR-PLZ-01-03:** Reutilizar clave para otro curso.
+- **PR-CUR-PLZ-01-04:** Enviar dos claves distintas por la última plaza.
+- **PR-CUR-PLZ-01-05:** Reservar en curso inexistente, inactivo o lleno.
+- **PR-CUR-PLZ-01-06:** Consultar reserva y liberarla dos veces.
+- **PR-CUR-PLZ-01-07:** Simular pérdida de respuesta y reintentar con igual clave.
+- **PR-CUR-PLZ-01-08:** Usar clave, UUID o reserva inexistente inválidos.

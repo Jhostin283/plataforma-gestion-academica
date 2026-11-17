@@ -50,6 +50,11 @@
 - Los casos están planificados: no hay pruebas de aplicación ejecutadas ni reportes de cobertura todavía.
 - Pendiente: implementar las pruebas junto con cada funcionalidad y registrar sus resultados y evidencia en el PR y la matriz.
 
+## 2026-11-17 — Identificadores y pruebas por spec
+
+- Se simplificaron los identificadores redundantes de cursos y estudiantes a `CUR-01` y `EST-01` (y sus secuencias).
+- Cada spec de aplicación enumera los IDs de sus pruebas planificadas y enlaza el banco; aún no se han ejecutado.
+
 ## Formato para próximas sesiones
 
 ```text

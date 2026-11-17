@@ -1,4 +1,4 @@
-# CUR-CUR-03: Actualizar curso
+# CUR-03: Actualizar curso
 
 ## Objetivo
 Actualizar curso para la plataforma de gestión académica.
@@ -34,10 +34,19 @@ Actualizar curso para la plataforma de gestión académica.
 - La respuesta exitosa refleja los valores persistidos; OpenAPI documenta entradas y errores.
 
 ## Trazabilidad
-- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
-- Requisito: CUR-CUR-03
+- Requisito: CUR-03
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, persistencia y reglas de capacidad.
-- Issue: pendiente.
+- Issue: [3](https://github.com/Jhostin283/plataforma-gestion-academica/issues/3).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+
+- **PR-CUR-03-01:** Actualizar campos de un curso existente con datos válidos.
+- **PR-CUR-03-02:** Usar código de otro curso o datos inválidos.
+- **PR-CUR-03-03:** Reducir capacidad por debajo de reservas vigentes.
+- **PR-CUR-03-04:** Ejecutar simultáneamente una reserva y una reducción de capacidad.
+- **PR-CUR-03-05:** Actualizar UUID inexistente o inválido.

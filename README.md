@@ -128,9 +128,9 @@ Cada servicio debe alcanzar una **cobertura de líneas superior al 80 %** de su 
 
 | ID de ejemplo | Requisito | Evidencia esperada | Estado |
 | --- | --- | --- | --- |
-| CUR-CUR-01 | Registrar cursos | Pruebas de API y persistencia | Pendiente |
+| CUR-01 | Registrar cursos | Pruebas de API y persistencia | Pendiente |
 | CUR-PLZ-01 | Reservar y liberar plazas | Pruebas de concurrencia e idempotencia | Pendiente |
-| EST-EST-01 | Registrar estudiantes | Pruebas de API y persistencia | Pendiente |
+| EST-01 | Registrar estudiantes | Pruebas de API y persistencia | Pendiente |
 | EST-MAT-01 | Crear matrículas | Pruebas de integración, fallos y compensación | Pendiente |
 | INF-CI-01 | Automatizar CI y publicar en ECR | Pruebas, cobertura y publicación | Pendiente |
 
