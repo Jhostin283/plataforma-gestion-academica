@@ -35,6 +35,7 @@ Parte de los criterios de aceptación y contratos de los specs pertinentes; regi
 ## Buenas prácticas
 
 - **Trazabilidad:** vincula cada prueba con el requisito o criterio de aceptación que verifica.
+- **Banco de pruebas:** consulta `pruebas/BANCO-DE-PRUEBAS.md` por ID de funcionalidad. Implementa los casos relevantes y registra por ID el resultado real, comando y evidencia; amplía el banco cuando falten escenarios.
 - **Claridad:** organiza cada prueba en preparación, ejecución y verificación. Usa nombres que describan el comportamiento esperado.
 - **Independencia:** utiliza datos aislados. Las pruebas deben poder ejecutarse en cualquier orden sin depender de resultados anteriores.
 - **Casos relevantes:** cubre operaciones exitosas, validaciones, límites y errores. Prioriza los riesgos de matrículas y plazas.

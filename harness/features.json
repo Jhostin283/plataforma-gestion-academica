@@ -2,51 +2,51 @@
   "version": 1,
   "features": [
     {
-      "id": "CUR-CUR-01",
+      "id": "CUR-01",
       "title": "Registrar curso",
       "spec": "specs/servicio-cursos/01-registrar-curso.md",
       "depends_on": [],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/1",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
     },
     {
-      "id": "CUR-CUR-02",
+      "id": "CUR-02",
       "title": "Consultar cursos",
       "spec": "specs/servicio-cursos/02-consultar-cursos.md",
       "depends_on": [
-        "CUR-CUR-01"
+        "CUR-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/2",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
     },
     {
-      "id": "CUR-CUR-03",
+      "id": "CUR-03",
       "title": "Actualizar curso",
       "spec": "specs/servicio-cursos/03-actualizar-curso.md",
       "depends_on": [
-        "CUR-CUR-01"
+        "CUR-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/3",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
     },
     {
-      "id": "CUR-CUR-04",
+      "id": "CUR-04",
       "title": "Cambiar estado del curso",
       "spec": "specs/servicio-cursos/04-cambiar-estado.md",
       "depends_on": [
-        "CUR-CUR-01"
+        "CUR-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/4",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -56,60 +56,60 @@
       "title": "Reservar y liberar plazas",
       "spec": "specs/servicio-cursos/05-reservar-liberar-plazas.md",
       "depends_on": [
-        "CUR-CUR-01"
+        "CUR-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/5",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
     },
     {
-      "id": "EST-EST-01",
+      "id": "EST-01",
       "title": "Registrar estudiante",
       "spec": "specs/servicio-estudiantes/01-registrar-estudiante.md",
       "depends_on": [],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/6",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
     },
     {
-      "id": "EST-EST-02",
+      "id": "EST-02",
       "title": "Consultar estudiantes",
       "spec": "specs/servicio-estudiantes/02-consultar-estudiantes.md",
       "depends_on": [
-        "EST-EST-01"
+        "EST-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/7",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
     },
     {
-      "id": "EST-EST-03",
+      "id": "EST-03",
       "title": "Actualizar estudiante",
       "spec": "specs/servicio-estudiantes/03-actualizar-estudiante.md",
       "depends_on": [
-        "EST-EST-01"
+        "EST-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/8",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
     },
     {
-      "id": "EST-EST-04",
+      "id": "EST-04",
       "title": "Cambiar estado del estudiante",
       "spec": "specs/servicio-estudiantes/04-cambiar-estado.md",
       "depends_on": [
-        "EST-EST-01"
+        "EST-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/9",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -119,11 +119,11 @@
       "title": "Crear matrícula",
       "spec": "specs/servicio-estudiantes/05-crear-matricula.md",
       "depends_on": [
-        "EST-EST-01",
+        "EST-01",
         "CUR-PLZ-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/10",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -136,7 +136,7 @@
         "EST-MAT-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/11",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -149,7 +149,7 @@
         "EST-MAT-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/12",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -159,12 +159,12 @@
       "title": "Consultar panel principal",
       "spec": "specs/frontend/01-panel.md",
       "depends_on": [
-        "CUR-CUR-02",
-        "EST-EST-02",
+        "CUR-02",
+        "EST-02",
         "EST-MAT-02"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/13",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -174,12 +174,12 @@
       "title": "Gestionar cursos desde el frontend",
       "spec": "specs/frontend/02-cursos.md",
       "depends_on": [
-        "CUR-CUR-02",
-        "CUR-CUR-03",
-        "CUR-CUR-04"
+        "CUR-02",
+        "CUR-03",
+        "CUR-04"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/14",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -189,12 +189,12 @@
       "title": "Gestionar estudiantes desde el frontend",
       "spec": "specs/frontend/03-estudiantes.md",
       "depends_on": [
-        "EST-EST-02",
-        "EST-EST-03",
-        "EST-EST-04"
+        "EST-02",
+        "EST-03",
+        "EST-04"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/15",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -209,7 +209,7 @@
         "CUR-PLZ-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/16",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -219,11 +219,11 @@
       "title": "Preparar contenedores y ejecución local",
       "spec": "specs/infraestructura/01-contenedores.md",
       "depends_on": [
-        "CUR-CUR-01",
-        "EST-EST-01"
+        "CUR-01",
+        "EST-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/17",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -236,7 +236,7 @@
         "INF-LOC-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/18",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -249,7 +249,7 @@
         "INF-LOC-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/19",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -264,7 +264,7 @@
         "WEB-MAT-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/20",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
