@@ -102,7 +102,7 @@
 
 ## 2026-11-17 — WEB-PAN-01 en progreso
 
-- Issue #13 y spec `specs/frontend/01-panel.md`: se preparó una aplicación React y un panel con indicadores de cursos, estudiantes y matrículas activos, estados de carga, vacío y error, y reintento por sección.
+- Issue #13, PR #36 en borrador y spec `specs/frontend/01-panel.md`: se preparó una aplicación React y un panel con indicadores de cursos, estudiantes y matrículas activos, estados de carga, vacío y error, y reintento por sección.
 - Se prepararon casos unitarios sin ejecutarlos por indicación del usuario. Compilación, revisión visual, accesibilidad e integración siguen pendientes. Las pantallas y accesos funcionales de gestión aún no existen; el conteo paginado puede variar ante cambios simultáneos.
 - La rama parte provisionalmente de la cadena de estudiantes y matrículas; sus dependencias y las ramas de cursos siguen en borrador y no están integradas en `devops`.
 
