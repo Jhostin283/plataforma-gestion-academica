@@ -20,4 +20,5 @@ class CursoEntity {
         id = curso.id(); codigo = curso.codigo(); nombre = curso.nombre(); descripcion = curso.descripcion();
         duracionHoras = curso.duracionHoras(); capacidad = curso.capacidad(); estado = curso.estado();
     }
+    Curso aDominio() { return new Curso(id, codigo, nombre, descripcion, duracionHoras, capacidad, estado); }
 }

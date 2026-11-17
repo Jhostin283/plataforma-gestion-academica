@@ -11,7 +11,8 @@
       "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/22",
       "evidence": [
         "mvn clean verify: 7 pruebas con H2 y PostgreSQL 16; cobertura 28/30 líneas (93,33 %).",
-        "Reinicio PostgreSQL temporal: 2 registros antes y después. Pendiente detalle CUR-02 y reinicio completo del servicio."
+        "Reinicio PostgreSQL temporal: 2 registros antes y después. Pendiente detalle CUR-02 y reinicio completo del servicio.",
+        "Versión con consulta por ID: 7 pruebas H2 aprobadas, 2 PostgreSQL omitidas; 38/40 líneas. Pendiente ejecutar PostgreSQL y script de reinicio."
       ],
       "blocked_reason": null
     },

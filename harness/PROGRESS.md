@@ -69,6 +69,13 @@
 - Al reiniciar el contenedor PostgreSQL, los dos registros de prueba permanecieron. Esto comprueba la persistencia de la base tras su reinicio, no el reinicio completo del servicio.
 - Pendiente para CUR-01: consulta de detalle, prevista en CUR-02, y comprobación de reinicio completo de la aplicación. Estado `in_progress`.
 
+## 2026-11-17 — CUR-01: consulta y verificación de reinicio
+
+- Se agregó consulta básica por ID para verificar el curso registrado, con respuestas `200`, `400` y `404`; el listado y la disponibilidad siguen en CUR-02 y CUR-PLZ-01.
+- `mvn -o clean verify`: siete pruebas H2 pasaron; dos pruebas PostgreSQL se omitieron porque el usuario ejecutará esa verificación. JaCoCo indicó 38/40 líneas (95 %) para esta ejecución local.
+- Se preparó `servicios/cursos/scripts/verificar-reinicio.ps1` y se verificó su sintaxis, pero no se ejecutó: requiere la base de pruebas iniciada por el usuario.
+- CUR-01 permanece `in_progress` hasta recibir evidencia de la suite PostgreSQL y del script de reinicio en la versión actual.
+
 ## Formato para próximas sesiones
 
 ```text

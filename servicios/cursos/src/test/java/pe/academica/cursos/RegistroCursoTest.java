@@ -59,4 +59,20 @@ class RegistroCursoTest {
         mvc.perform(get("/v3/api-docs")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.paths['/api/v1/cursos'].post").exists());
     }
+
+    @Test void cursoCreadoSeConsultaUsandoLocation() throws Exception {
+        String codigo = UUID.randomUUID().toString();
+        var created = mvc.perform(post("/api/v1/cursos").contentType(MediaType.APPLICATION_JSON).content(curso(codigo)))
+                .andExpect(status().isCreated()).andReturn();
+        mvc.perform(get(created.getResponse().getHeader("Location")))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.codigo").value(codigo))
+                .andExpect(jsonPath("$.nombre").value("Java"));
+    }
+
+    @Test void detalleInexistenteEIdInvalidoRetornanErroresDocumentados() throws Exception {
+        mvc.perform(get("/api/v1/cursos/" + UUID.randomUUID()))
+                .andExpect(status().isNotFound()).andExpect(jsonPath("$.codigo").value("CURSO_NO_ENCONTRADO"));
+        mvc.perform(get("/api/v1/cursos/no-es-uuid"))
+                .andExpect(status().isBadRequest()).andExpect(jsonPath("$.codigo").value("PARAMETRO_INVALIDO"));
+    }
 }
