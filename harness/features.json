@@ -7,7 +7,7 @@
       "spec": "specs/servicio-cursos/01-registrar-curso.md",
       "depends_on": [],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/1",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -20,7 +20,7 @@
         "CUR-CUR-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/2",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -33,7 +33,7 @@
         "CUR-CUR-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/3",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -46,7 +46,7 @@
         "CUR-CUR-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/4",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -59,7 +59,7 @@
         "CUR-CUR-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/5",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -70,7 +70,7 @@
       "spec": "specs/servicio-estudiantes/01-registrar-estudiante.md",
       "depends_on": [],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/6",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -83,7 +83,7 @@
         "EST-EST-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/7",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -96,7 +96,7 @@
         "EST-EST-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/8",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -109,7 +109,7 @@
         "EST-EST-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/9",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -123,7 +123,7 @@
         "CUR-PLZ-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/10",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -136,7 +136,7 @@
         "EST-MAT-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/11",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -149,7 +149,7 @@
         "EST-MAT-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/12",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -164,7 +164,7 @@
         "EST-MAT-02"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/13",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -179,7 +179,7 @@
         "CUR-CUR-04"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/14",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -194,7 +194,7 @@
         "EST-EST-04"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/15",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -209,7 +209,7 @@
         "CUR-PLZ-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/16",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -223,7 +223,7 @@
         "EST-EST-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/17",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -236,7 +236,7 @@
         "INF-LOC-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/18",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -249,7 +249,7 @@
         "INF-LOC-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/19",
       "pr": null,
       "evidence": [],
       "blocked_reason": null
@@ -264,7 +264,7 @@
         "WEB-MAT-01"
       ],
       "status": "pending",
-      "issue": null,
+      "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/20",
       "pr": null,
       "evidence": [],
       "blocked_reason": null

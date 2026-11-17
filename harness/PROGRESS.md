@@ -39,6 +39,11 @@
 - Se preparó la rama `main` y el commit inicial con la estructura, los specs y el harness.
 - Pendiente: configurar el remoto y autenticar GitHub para subirlo; después crear el primer issue.
 
+## 2026-11-17 — Issues y rama de integración
+
+- Se publicó la rama `devops` y se crearon los 20 issues enlazados desde el catálogo y la matriz.
+- Las funcionalidades siguen pendientes; no se ha creado ninguna etiqueta de versión.
+
 ## Formato para próximas sesiones
 
 ```text
