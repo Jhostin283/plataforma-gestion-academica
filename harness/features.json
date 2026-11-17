@@ -69,9 +69,9 @@
       "title": "Registrar estudiante",
       "spec": "specs/servicio-estudiantes/01-registrar-estudiante.md",
       "depends_on": [],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/6",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/29",
       "evidence": [],
       "blocked_reason": null
     },
