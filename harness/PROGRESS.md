@@ -83,7 +83,8 @@
 - Issue #10, PR #33 en borrador y spec `specs/servicio-estudiantes/05-crear-matricula.md`: se preparó el puerto y cliente HTTP de reservas, con clave de operación, timeout y distinción entre rechazo y resultado incierto.
 - Se prepararon casos para el adaptador, sin ejecutarlos por indicación del usuario. El cliente aún no está conectado al caso de uso ni constituye una matrícula operativa.
 - Se prepararon modelo, migración y repositorio de operaciones durables, con restricciones de clave y matrícula vigente y bloqueo del estudiante. No están conectados al caso de uso ni se han probado.
-- Pendiente: conectar la operación, definir transiciones seguras ante concurrencia, endpoint, recuperación, compensación y reconciliación; la dependencia CUR-PLZ-01 sigue en borrador en el PR #28. No se han verificado criterios de aceptación.
+- Se conectaron el caso de uso y endpoints de creación y detalle: la operación incierta queda pendiente y admite reintento con la misma clave. Se prepararon casos unitarios, sin ejecutarlos.
+- Pendiente: verificar transiciones ante concurrencia y persistencia reales, compensación automática y reconciliación independiente; la dependencia CUR-PLZ-01 sigue en borrador en el PR #28. No se han verificado criterios de aceptación.
 
 ## Formato para próximas sesiones
 

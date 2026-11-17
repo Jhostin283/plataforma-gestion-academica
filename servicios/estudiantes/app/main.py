@@ -4,10 +4,13 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from sqlalchemy.exc import SQLAlchemyError
 from app.adapters.in_web.routes import router
-from app.application.exception.errores import DocumentoDuplicado, EstudianteNoEncontrado
+from app.adapters.in_web.matriculas_routes import router as matriculas_router
+from app.application.exception.errores import (DocumentoDuplicado, EstudianteNoEncontrado,
+                                               ConflictoMatricula, CursoNoEncontrado, MatriculaNoEncontrada)
 
 app = FastAPI(title="Servicio de estudiantes", version="1.0.0")
 app.include_router(router)
+app.include_router(matriculas_router)
 
 
 def respuesta_error(status: int, codigo: str, mensaje: str, detalles=None):
@@ -20,8 +23,10 @@ async def validacion(_request: Request, exc: RequestValidationError):
     errores = exc.errors()
     if any(error["type"] == "json_invalid" for error in errores):
         return respuesta_error(400, "JSON_INVALIDO", "El cuerpo no es válido")
-    if any(error["loc"] and error["loc"][0] in ("path", "query") for error in errores):
+    if any(error["loc"] and error["loc"][0] in ("path", "query", "header") for error in errores):
         return respuesta_error(400, "PARAMETRO_INVALIDO", "El parámetro no es válido")
+    if any(error['type'] == 'uuid_parsing' for error in errores):
+        return respuesta_error(400, 'PARAMETRO_INVALIDO', 'El identificador no es válido')
     detalles = {".".join(map(str, error["loc"])): error["msg"] for error in errores}
     return respuesta_error(422, "DATOS_INVALIDOS", "Los datos no son válidos", detalles)
 
@@ -39,6 +44,17 @@ async def no_encontrado(_request: Request, _exc: EstudianteNoEncontrado):
 @app.exception_handler(SQLAlchemyError)
 async def persistencia(_request: Request, _exc: SQLAlchemyError):
     return respuesta_error(503, "PERSISTENCIA_NO_DISPONIBLE", "No se pudo procesar la solicitud")
+
+
+@app.exception_handler(ConflictoMatricula)
+async def conflicto_matricula(_request: Request, _exc: ConflictoMatricula):
+    return respuesta_error(409, 'CONFLICTO_MATRICULA', 'No se puede crear la matrícula')
+
+
+@app.exception_handler(CursoNoEncontrado)
+@app.exception_handler(MatriculaNoEncontrada)
+async def recurso_no_encontrado(_request: Request, _exc: Exception):
+    return respuesta_error(404, 'RECURSO_NO_ENCONTRADO', 'El recurso no existe')
 
 
 @app.get("/health", tags=["salud"])

@@ -8,3 +8,11 @@ class EstudianteNoEncontrado(Exception):
 
 class ConflictoMatricula(Exception):
     pass
+
+
+class CursoNoEncontrado(Exception):
+    pass
+
+
+class MatriculaNoEncontrada(Exception):
+    pass
