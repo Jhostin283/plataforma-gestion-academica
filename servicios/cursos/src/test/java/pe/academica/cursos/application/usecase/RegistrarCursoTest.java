@@ -1,5 +1,7 @@
-package pe.academica.cursos.application;
+package pe.academica.cursos.application.usecase;
 
+import pe.academica.cursos.application.exception.CursoDuplicadoException;
+import pe.academica.cursos.application.exception.CursoNoEncontradoException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
@@ -9,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import pe.academica.cursos.application.port.out.CursoRepository;
-import pe.academica.cursos.domain.Curso;
+import pe.academica.cursos.domain.entity.Curso;
 
 class RegistrarCursoTest {
     private final CursoRepository repository = mock(CursoRepository.class);

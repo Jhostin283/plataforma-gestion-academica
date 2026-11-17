@@ -1,11 +1,11 @@
-package pe.academica.cursos.application;
+package pe.academica.cursos.application.usecase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import pe.academica.cursos.application.port.out.CursoRepository;
-import pe.academica.cursos.domain.Curso;
+import pe.academica.cursos.domain.entity.Curso;
 
 class CambiarEstadoCursoTest {
     @Test void desactivaCursoMediantePuerto() {

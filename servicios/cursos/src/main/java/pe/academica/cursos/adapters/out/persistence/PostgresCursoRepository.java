@@ -2,24 +2,29 @@ package pe.academica.cursos.adapters.out.persistence;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
-import pe.academica.cursos.application.CursoDuplicadoException;
+import pe.academica.cursos.application.exception.CursoDuplicadoException;
 import pe.academica.cursos.application.port.out.CursoRepository;
-import pe.academica.cursos.domain.Curso;
+import pe.academica.cursos.domain.entity.Curso;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import pe.academica.cursos.domain.PaginaCursos;
+import pe.academica.cursos.application.model.PaginaCursos;
 import org.springframework.transaction.annotation.Transactional;
-import pe.academica.cursos.application.CursoNoEncontradoException;
+import pe.academica.cursos.application.exception.CursoNoEncontradoException;
+import pe.academica.cursos.application.exception.ConflictoReservaException;
 
 @Repository
 class PostgresCursoRepository implements CursoRepository {
     private final SpringCursoRepository repository;
-    PostgresCursoRepository(SpringCursoRepository repository) { this.repository = repository; }
+    private final SpringReservaRepository reservas;
+    PostgresCursoRepository(SpringCursoRepository repository, SpringReservaRepository reservas) {
+        this.repository = repository; this.reservas = reservas;
+    }
     @Override public Optional<Curso> buscarPorId(UUID id) {
         return repository.findById(id).map(CursoEntity::aDominio);
     }
+    @Override public long contarReservasActivas(UUID id) { return reservas.countByCursoIdAndEstado(id, "RESERVADA"); }
     @Override public PaginaCursos listar(String buscar, int page, int size) {
         var resultado = repository.buscar(buscar, PageRequest.of(page, size, Sort.by("codigo").ascending()));
         return new PaginaCursos(resultado.getContent().stream().map(CursoEntity::aDominio).toList(),
@@ -28,7 +33,8 @@ class PostgresCursoRepository implements CursoRepository {
     @Override @Transactional
     public Curso actualizar(UUID id, String codigo, String nombre, String descripcion, int duracionHoras, int capacidad) {
         CursoEntity actual = repository.buscarParaActualizar(id).orElseThrow(CursoNoEncontradoException::new);
-        // El control de reservas vigentes se incorpora junto con CUR-PLZ-01.
+        if (reservas.countByCursoIdAndEstado(id, "RESERVADA") > capacidad)
+            throw new ConflictoReservaException("La capacidad es menor que las reservas vigentes");
         actual.codigo = codigo; actual.nombre = nombre; actual.descripcion = descripcion;
         actual.duracionHoras = duracionHoras; actual.capacidad = capacidad;
         try { return repository.saveAndFlush(actual).aDominio(); }

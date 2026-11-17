@@ -1,12 +1,13 @@
-package pe.academica.cursos.application;
+package pe.academica.cursos.application.usecase;
 
+import pe.academica.cursos.application.exception.ParametrosConsultaInvalidosException;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import pe.academica.cursos.application.port.out.CursoRepository;
-import pe.academica.cursos.domain.PaginaCursos;
+import pe.academica.cursos.application.model.PaginaCursos;
 
 class ListarCursosTest {
     private final CursoRepository repository = mock(CursoRepository.class);

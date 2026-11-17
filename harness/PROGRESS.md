@@ -72,6 +72,16 @@
 - Se implementó el cambio de estado del curso y casos unitarios asociados.
 - La restricción de reservas de cursos inactivos depende de CUR-PLZ-01.
 
+## 2026-11-17 — CUR-PLZ-01 en progreso
+
+- Se preparó la reserva, consulta y liberación de plazas; la capacidad se controla mediante bloqueo del curso y registro de reservas.
+- Se incorporaron casos unitarios para las reglas de reserva y actualización de capacidad.
+
+## 2026-11-17 — Organización de arquitectura hexagonal
+
+- Se organizaron las entidades de dominio, los casos de uso, modelos y excepciones en paquetes explícitos; los adaptadores de entrada y salida permanecen separados.
+- Se actualizaron las referencias del código y la documentación de arquitectura.
+
 ## Formato para próximas sesiones
 
 ```text

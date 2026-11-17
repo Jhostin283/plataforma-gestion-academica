@@ -16,15 +16,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import java.util.UUID;
-import pe.academica.cursos.application.CursoDuplicadoException;
-import pe.academica.cursos.application.CursoNoEncontradoException;
-import pe.academica.cursos.domain.Curso;
+import pe.academica.cursos.application.exception.CursoDuplicadoException;
+import pe.academica.cursos.application.exception.CursoNoEncontradoException;
+import pe.academica.cursos.domain.entity.Curso;
 import pe.academica.cursos.application.port.in.ConsultarCursoUseCase;
 import pe.academica.cursos.application.port.in.RegistrarCursoUseCase;
 import pe.academica.cursos.application.port.in.ListarCursosUseCase;
 import pe.academica.cursos.application.port.in.ActualizarCursoUseCase;
 import pe.academica.cursos.application.port.in.CambiarEstadoCursoUseCase;
-import pe.academica.cursos.domain.PaginaCursos;
+import pe.academica.cursos.application.model.PaginaCursos;
 import java.util.List;
 
 class CursoControllerErrorTest {
