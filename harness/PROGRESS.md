@@ -55,6 +55,13 @@
 - Se simplificaron los identificadores redundantes de cursos y estudiantes a `CUR-01` y `EST-01` (y sus secuencias).
 - Cada spec de aplicación enumera los IDs de sus pruebas planificadas y enlaza el banco; aún no se han ejecutado.
 
+## 2026-11-17 — CUR-01 en progreso
+
+- Se inició el servicio Java de cursos y se organizó en dominio, aplicación, puertos y adaptadores de entrada y salida. Se actualizó el diagrama de arquitectura.
+- `mvn verify`: cinco pruebas pasaron usando H2 en memoria; incluyen creación, duplicado secuencial, validación, JSON inválido y presencia del endpoint en OpenAPI. H2 no verifica el comportamiento de PostgreSQL ni la migración real.
+- Pendiente: verificar migración y persistencia con PostgreSQL, duplicados concurrentes y comportamiento tras reinicio; completar la consulta de detalle de CUR-02. Docker no respondió durante la verificación.
+- Estado: `in_progress`. No se cierran el issue ni el PR hasta reunir las evidencias pendientes.
+
 ## Formato para próximas sesiones
 
 ```text

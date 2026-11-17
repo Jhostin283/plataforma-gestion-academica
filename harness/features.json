@@ -6,10 +6,12 @@
       "title": "Registrar curso",
       "spec": "specs/servicio-cursos/01-registrar-curso.md",
       "depends_on": [],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/1",
       "pr": null,
-      "evidence": [],
+      "evidence": [
+        "mvn verify: 5 pruebas con H2; PostgreSQL y concurrencia pendientes."
+      ],
       "blocked_reason": null
     },
     {
