@@ -78,6 +78,12 @@
 - Las pruebas no se ejecutaron por indicación del usuario; persistencia, conservación del historial y cobertura siguen pendientes. La regla de rechazo de matrícula para estudiantes inactivos depende de EST-MAT-01, aún pendiente.
 - PR #32 en borrador hacia `devops`; la rama parte provisionalmente de EST-03 y sus dependencias. La integración se posterga hasta la validación final.
 
+## 2026-11-17 — EST-MAT-01 en progreso
+
+- Issue #10 y spec `specs/servicio-estudiantes/05-crear-matricula.md`: se preparó el puerto y cliente HTTP de reservas, con clave de operación, timeout y distinción entre rechazo y resultado incierto.
+- Se prepararon casos para el adaptador, sin ejecutarlos por indicación del usuario. El cliente aún no está conectado al caso de uso ni constituye una matrícula operativa.
+- Pendiente: operación durable, unicidad e idempotencia, validación del estudiante, endpoint, recuperación y compensación; la dependencia CUR-PLZ-01 sigue en borrador en el PR #28. No se han verificado criterios de aceptación.
+
 ## Formato para próximas sesiones
 
 ```text

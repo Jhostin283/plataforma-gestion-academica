@@ -49,7 +49,7 @@ Crear matrícula para la plataforma de gestión académica.
 - Pruebas: Integración, concurrencia, idempotencia y compensación.
 - Issue: [10](https://github.com/Jhostin283/plataforma-gestion-academica/issues/10).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; cliente de reservas preparado, operación de matrícula y validación pendientes.
 
 ## Pruebas relacionadas
 
