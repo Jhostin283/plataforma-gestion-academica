@@ -1,5 +1,6 @@
 from uuid import UUID
 
+from app.application.exception.errores import ResultadoPersistenciaIncierto
 from app.application.port.out.matricula_repository import MatriculaRepository
 from app.application.port.out.reservas_cursos import ReservasCursos, ReservaRechazada, ResultadoReservaIncierto
 
@@ -18,7 +19,13 @@ class CrearMatricula:
         except ResultadoReservaIncierto:
             return matricula
         except ReservaRechazada as exc:
-            return self.matriculas.cambiar_estado(matricula.id, 'FALLIDA', exc.status)
+            try:
+                return self.matriculas.cambiar_estado(matricula.id, 'FALLIDA', exc.status)
+            except ResultadoPersistenciaIncierto:
+                return matricula
         if reserva.estado != 'RESERVADA':
             return matricula
-        return self.matriculas.cambiar_estado(matricula.id, 'ACTIVA')
+        try:
+            return self.matriculas.cambiar_estado(matricula.id, 'ACTIVA')
+        except ResultadoPersistenciaIncierto:
+            return matricula

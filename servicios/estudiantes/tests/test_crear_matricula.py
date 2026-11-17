@@ -1,6 +1,7 @@
 from unittest.mock import Mock
 from uuid import uuid4
 
+from app.application.exception.errores import ResultadoPersistenciaIncierto
 from app.application.port.out.reservas_cursos import Reserva, ReservaRechazada, ResultadoReservaIncierto
 from app.application.usecase.crear_matricula import CrearMatricula
 from app.domain.entity.matricula import Matricula
@@ -33,3 +34,10 @@ def test_rechazo_se_registra():
     reservas.reservar.side_effect = ReservaRechazada(409)
     CrearMatricula(repositorio, reservas).ejecutar(clave, estudiante, curso)
     repositorio.cambiar_estado.assert_called_once_with(pendiente.id, 'FALLIDA', 409)
+
+
+def test_fallo_persistencia_tras_reserva_conserva_operacion_pendiente():
+    estudiante, curso, clave, pendiente, repositorio, reservas = preparar()
+    reservas.reservar.return_value = Reserva(clave, curso, 'RESERVADA')
+    repositorio.cambiar_estado.side_effect = ResultadoPersistenciaIncierto()
+    assert CrearMatricula(repositorio, reservas).ejecutar(clave, estudiante, curso) == pendiente

@@ -84,7 +84,8 @@
 - Se prepararon casos para el adaptador, sin ejecutarlos por indicación del usuario. El cliente aún no está conectado al caso de uso ni constituye una matrícula operativa.
 - Se prepararon modelo, migración y repositorio de operaciones durables, con restricciones de clave y matrícula vigente y bloqueo del estudiante. No están conectados al caso de uso ni se han probado.
 - Se conectaron el caso de uso y endpoints de creación y detalle: la operación incierta queda pendiente y admite reintento con la misma clave. Se prepararon casos unitarios, sin ejecutarlos.
-- Pendiente: verificar transiciones ante concurrencia y persistencia reales, compensación automática y reconciliación independiente; la dependencia CUR-PLZ-01 sigue en borrador en el PR #28. No se han verificado criterios de aceptación.
+- Se preparó un proceso ejecutable para reintentar operaciones pendientes con la clave original y conservar el estado pendiente ante un resultado incierto al actualizar. No se ejecutó ni validó.
+- Pendiente: compensación automática segura, programar el proceso de reconciliación y verificar las transiciones, concurrencia y persistencia reales; la dependencia CUR-PLZ-01 sigue en borrador en el PR #28. No se han verificado criterios de aceptación.
 
 ## Formato para próximas sesiones
 

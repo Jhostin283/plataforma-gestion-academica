@@ -1,11 +1,11 @@
 from uuid import UUID, uuid4
 
 from sqlalchemy import select, update
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.adapters.out.persistence.modelos import EstudianteModel, MatriculaModel
-from app.application.exception.errores import ConflictoMatricula, EstudianteNoEncontrado
+from app.application.exception.errores import ConflictoMatricula, EstudianteNoEncontrado, ResultadoPersistenciaIncierto
 from app.domain.entity.matricula import Matricula
 
 
@@ -64,16 +64,29 @@ class SqlAlchemyMatriculaRepository:
         self.session.rollback()
         return resultado
 
+    def pendientes(self, limite: int = 100, despues_de: UUID | None = None) -> list[Matricula]:
+        consulta = select(MatriculaModel).where(MatriculaModel.estado == 'PENDIENTE')
+        if despues_de is not None:
+            consulta = consulta.where(MatriculaModel.id > despues_de)
+        modelos = self.session.scalars(consulta.order_by(MatriculaModel.id).limit(limite)).all()
+        resultado = [_dominio(modelo) for modelo in modelos]
+        self.session.rollback()
+        return resultado
+
     def cambiar_estado(self, matricula_id: UUID, estado: str, codigo_rechazo: int | None = None) -> Matricula:
         sentencia = (update(MatriculaModel).where(MatriculaModel.id == matricula_id,
                                                   MatriculaModel.estado == 'PENDIENTE')
                      .values(estado=estado, codigo_rechazo=codigo_rechazo).returning(MatriculaModel))
-        modelo = self.session.execute(sentencia).scalar_one_or_none()
-        if modelo is None:
-            modelo = self.session.get(MatriculaModel, matricula_id)
-        if modelo is None:
+        try:
+            modelo = self.session.execute(sentencia).scalar_one_or_none()
+            if modelo is None:
+                modelo = self.session.get(MatriculaModel, matricula_id)
+            if modelo is None:
+                self.session.rollback()
+                raise LookupError('Matrícula no encontrada')
+            resultado = _dominio(modelo)
+            self.session.commit()
+            return resultado
+        except SQLAlchemyError as exc:
             self.session.rollback()
-            raise LookupError('Matrícula no encontrada')
-        resultado = _dominio(modelo)
-        self.session.commit()
-        return resultado
+            raise ResultadoPersistenciaIncierto() from exc

@@ -16,3 +16,7 @@ class CursoNoEncontrado(Exception):
 
 class MatriculaNoEncontrada(Exception):
     pass
+
+
+class ResultadoPersistenciaIncierto(Exception):
+    pass
