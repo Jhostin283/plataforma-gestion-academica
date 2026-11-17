@@ -1,4 +1,4 @@
-# CUR-04: Cambiar estado del curso
+# CUR-CUR-04: Cambiar estado del curso
 
 ## Objetivo
 Cambiar estado del curso para la plataforma de gestión académica.
@@ -30,18 +30,9 @@ Cambiar estado del curso para la plataforma de gestión académica.
 - Al desactivar un curso, las reservas nuevas se rechazan con `409`; las existentes permanecen consultables y liberables.
 
 ## Trazabilidad
-- Requisito: CUR-04
+- Requisito: CUR-CUR-04
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, persistencia y reserva de curso inactivo.
-- Issue: [4](https://github.com/Jhostin283/plataforma-gestion-academica/issues/4).
+- Issue: pendiente.
 - Pull request: pendiente.
 - Estado: pendiente.
-
-## Pruebas relacionadas
-
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
-
-- **PR-CUR-04-01:** Desactivar y volver a activar un curso.
-- **PR-CUR-04-02:** Desactivar curso con reserva y solicitar otra.
-- **PR-CUR-04-03:** Repetir estado o enviar estado no permitido.
-- **PR-CUR-04-04:** Usar ID inexistente o malformado.

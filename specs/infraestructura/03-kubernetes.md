@@ -24,6 +24,6 @@ Definir recursos Kubernetes para la plataforma de gestión académica.
 - Requisito: INF-K8S-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Validación de manifiestos, salud y enrutamiento.
-- Issue: [19](https://github.com/Jhostin283/plataforma-gestion-academica/issues/19).
+- Issue: pendiente.
 - Pull request: pendiente.
 - Estado: pendiente.

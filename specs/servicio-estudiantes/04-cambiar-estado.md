@@ -1,4 +1,4 @@
-# EST-04: Cambiar estado del estudiante
+# EST-EST-04: Cambiar estado del estudiante
 
 ## Objetivo
 Cambiar estado del estudiante para la plataforma de gestión académica.
@@ -29,18 +29,9 @@ Cambiar estado del estudiante para la plataforma de gestión académica.
 - Un estudiante inactivo recibe `409` al intentar crear una matrícula; las matrículas existentes se conservan.
 
 ## Trazabilidad
-- Requisito: EST-04
+- Requisito: EST-EST-04
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, persistencia y regla de matrícula.
-- Issue: [9](https://github.com/Jhostin283/plataforma-gestion-academica/issues/9).
+- Issue: pendiente.
 - Pull request: pendiente.
 - Estado: pendiente.
-
-## Pruebas relacionadas
-
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
-
-- **PR-EST-04-01:** Desactivar y activar un estudiante.
-- **PR-EST-04-02:** Intentar matricular estudiante inactivo.
-- **PR-EST-04-03:** Repetir estado o enviar valor no permitido.
-- **PR-EST-04-04:** Usar ID inexistente o inválido.

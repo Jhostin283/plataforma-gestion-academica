@@ -24,6 +24,6 @@ Preparar contenedores y ejecución local para la plataforma de gestión académi
 - Requisito: INF-LOC-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Construcción, salud y persistencia.
-- Issue: [17](https://github.com/Jhostin283/plataforma-gestion-academica/issues/17).
+- Issue: pendiente.
 - Pull request: pendiente.
 - Estado: pendiente.

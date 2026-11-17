@@ -31,7 +31,6 @@ Lee el README y examina el harness existente antes de modificarlo. Si no está d
 - **Claridad:** escribe cada requisito con un objetivo concreto y criterios que puedan verificarse.
 - **Separación:** guarda las funcionalidades de cursos y estudiantes en sus propios specs. Documenta aparte el contrato que comparten.
 - **Identificadores:** asigna un ID estable a cada requisito y tarea para relacionarlos sin ambigüedad.
-- **Pruebas por spec:** enumera los IDs de casos relacionados en cada spec de aplicación y enlaza el banco. Mantén coherentes los IDs entre specs, catálogo, matriz, banco e issues.
 - **Fuente única:** mantén cada regla en un lugar identificable y enlázala desde los documentos relacionados.
 - **Tareas pequeñas:** divide el trabajo en unidades que puedan implementarse y verificarse de forma independiente.
 - **Evidencia:** relaciona cada tarea con la implementación, las pruebas y sus resultados reales.

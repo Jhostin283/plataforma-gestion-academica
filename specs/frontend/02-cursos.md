@@ -24,15 +24,6 @@ Gestionar cursos desde el frontend para la plataforma de gestión académica.
 - Requisito: WEB-CUR-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Interfaz, API y accesibilidad.
-- Issue: [14](https://github.com/Jhostin283/plataforma-gestion-academica/issues/14).
+- Issue: pendiente.
 - Pull request: pendiente.
 - Estado: pendiente.
-
-## Pruebas relacionadas
-
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
-
-- **PR-WEB-CUR-01-01:** Registrar, buscar, editar y cambiar estado con API simulada.
-- **PR-WEB-CUR-01-02:** Enviar campo inválido o recibir conflicto por duplicado.
-- **PR-WEB-CUR-01-03:** Simular carga, lista vacía y fallo de API.
-- **PR-WEB-CUR-01-04:** Usar listado y formulario en móvil y con teclado.

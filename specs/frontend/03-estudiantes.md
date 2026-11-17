@@ -24,15 +24,6 @@ Gestionar estudiantes desde el frontend para la plataforma de gestión académic
 - Requisito: WEB-EST-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Interfaz, API y accesibilidad.
-- Issue: [15](https://github.com/Jhostin283/plataforma-gestion-academica/issues/15).
+- Issue: pendiente.
 - Pull request: pendiente.
 - Estado: pendiente.
-
-## Pruebas relacionadas
-
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
-
-- **PR-WEB-EST-01-01:** Registrar, buscar, editar y cambiar estado de un estudiante.
-- **PR-WEB-EST-01-02:** Enviar correo inválido o recibir documento duplicado.
-- **PR-WEB-EST-01-03:** Simular carga, vacío y fallo de servicio.
-- **PR-WEB-EST-01-04:** Completar formulario con teclado y en pantalla móvil.

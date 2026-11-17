@@ -24,6 +24,6 @@ Desplegar en EKS con Argo CD para la plataforma de gestión académica.
 - Requisito: INF-CD-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Sincronización, flujo completo y reversión.
-- Issue: [20](https://github.com/Jhostin283/plataforma-gestion-academica/issues/20).
+- Issue: pendiente.
 - Pull request: pendiente.
 - Estado: pendiente.
