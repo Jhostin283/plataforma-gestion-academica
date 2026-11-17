@@ -22,7 +22,7 @@ Consultar panel principal para la plataforma de gestión académica.
 ## Trazabilidad
 - Requisito: WEB-PAN-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
-- Pruebas: Interfaz, integración y accesibilidad.
+- Pruebas: componentes de interfaz, estados y accesibilidad.
 - Issue: [13](https://github.com/Jhostin283/plataforma-gestion-academica/issues/13).
 - Pull request: pendiente.
 - Estado: pendiente.

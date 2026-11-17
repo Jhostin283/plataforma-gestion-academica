@@ -6,10 +6,12 @@
       "title": "Registrar curso",
       "spec": "specs/servicio-cursos/01-registrar-curso.md",
       "depends_on": [],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/1",
-      "pr": null,
-      "evidence": [],
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/24",
+      "evidence": [
+        "12 pruebas unitarias aprobadas; se verificaron los 7 casos del banco vinculados a CUR-01."
+      ],
       "blocked_reason": null
     },
     {
