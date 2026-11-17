@@ -4,3 +4,7 @@ class DocumentoDuplicado(Exception):
 
 class EstudianteNoEncontrado(Exception):
     pass
+
+
+class ConflictoMatricula(Exception):
+    pass
