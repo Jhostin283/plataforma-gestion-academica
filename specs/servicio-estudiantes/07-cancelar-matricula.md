@@ -35,6 +35,7 @@ Cancelar matrícula para la plataforma de gestión académica.
 - La prueba verifica fallos antes y después de la liberación y el resultado final tras reintentar.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: EST-MAT-03
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: Integración, idempotencia y recuperación.

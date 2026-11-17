@@ -8,6 +8,8 @@ El seguimiento inicial está disponible en [harness/WORKFLOW.md](harness/WORKFLO
 
 La [arquitectura propuesta](specs/arquitectura.md) describe los componentes, la comunicación entre servicios, el flujo de matrícula y el despliegue. El [índice de specs](specs/INDICE.md) relaciona cada funcionalidad con su tarea del harness.
 
+El [banco de pruebas](pruebas/BANCO-DE-PRUEBAS.md) relaciona casos identificados con cada funcionalidad de backend y frontend. Los casos están planificados y se registrarán como ejecutados únicamente con evidencia.
+
 Con Python 3 instalado, ejecuta `python harness/init.py` para verificar el harness sin instalar dependencias ni crear infraestructura. El workflow `harness.yml` valida el catálogo en GitHub Actions mediante ejecución manual (`workflow_dispatch`); aún no implementa el CI de las aplicaciones ni publica imágenes. Crea cada issue a partir de una tarea y vincúlalo a su pull request siguiendo el flujo del harness.
 
 ## Problemática

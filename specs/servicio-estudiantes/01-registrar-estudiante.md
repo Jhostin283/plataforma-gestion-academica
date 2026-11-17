@@ -32,6 +32,7 @@ Registrar estudiante para la plataforma de gestión académica.
 - Un rechazo no registra datos parciales; los errores siguen las [convenciones](../convenciones-api.md).
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: EST-EST-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, validación y PostgreSQL.

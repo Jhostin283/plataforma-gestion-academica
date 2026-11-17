@@ -30,6 +30,7 @@ Cambiar estado del curso para la plataforma de gestión académica.
 - Al desactivar un curso, las reservas nuevas se rechazan con `409`; las existentes permanecen consultables y liberables.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: CUR-CUR-04
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, persistencia y reserva de curso inactivo.

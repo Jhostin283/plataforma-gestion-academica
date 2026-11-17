@@ -32,6 +32,7 @@ Actualizar estudiante para la plataforma de gestión académica.
 - El contrato y las pruebas cubren cada respuesta; los errores no muestran trazas internas.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: EST-EST-03
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, unicidad y persistencia.

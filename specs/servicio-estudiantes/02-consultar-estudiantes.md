@@ -31,6 +31,7 @@ Consultar estudiantes para la plataforma de gestión académica.
 - El contrato OpenAPI documenta filtros, paginación, respuestas y errores.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: EST-EST-02
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, filtros y casos vacíos.

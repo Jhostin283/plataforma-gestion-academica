@@ -21,6 +21,7 @@ Gestionar estudiantes desde el frontend para la plataforma de gestión académic
 - La interfaz es adaptable y accesible.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: WEB-EST-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Interfaz, API y accesibilidad.

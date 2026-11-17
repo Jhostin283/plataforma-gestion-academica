@@ -29,6 +29,7 @@ Cambiar estado del estudiante para la plataforma de gestión académica.
 - Un estudiante inactivo recibe `409` al intentar crear una matrícula; las matrículas existentes se conservan.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: EST-EST-04
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, persistencia y regla de matrícula.

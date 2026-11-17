@@ -21,6 +21,7 @@ Gestionar matrículas desde el frontend para la plataforma de gestión académic
 - El flujo funciona con teclado y en móvil.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: WEB-MAT-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Interfaz, integración y accesibilidad.

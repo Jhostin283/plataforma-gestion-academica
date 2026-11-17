@@ -44,6 +44,7 @@ Crear matrícula para la plataforma de gestión académica.
 - Las pruebas comprueban respuestas, persistencia de estados y recuperación; OpenAPI describe todos los casos.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: EST-MAT-01
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: Integración, concurrencia, idempotencia y compensación.

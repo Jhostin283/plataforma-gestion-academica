@@ -36,6 +36,7 @@ Reservar y liberar plazas para la plataforma de gestión académica.
 - La base garantiza la operación atómica; errores no exponen datos internos. Las rutas internas se documentan en OpenAPI y en el contrato compartido.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: CUR-PLZ-01
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: PostgreSQL, concurrencia, contrato e idempotencia.

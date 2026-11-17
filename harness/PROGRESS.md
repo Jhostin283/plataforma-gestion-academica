@@ -44,6 +44,12 @@
 - Se publicó la rama `devops` y se crearon los 20 issues enlazados desde el catálogo y la matriz.
 - Las funcionalidades siguen pendientes; no se ha creado ninguna etiqueta de versión.
 
+## 2026-11-17 — Banco de pruebas
+
+- Se documentaron casos identificados para las funcionalidades de los dos backends y del frontend; infraestructura se verifica según sus propios specs.
+- Los casos están planificados: no hay pruebas de aplicación ejecutadas ni reportes de cobertura todavía.
+- Pendiente: implementar las pruebas junto con cada funcionalidad y registrar sus resultados y evidencia en el PR y la matriz.
+
 ## Formato para próximas sesiones
 
 ```text

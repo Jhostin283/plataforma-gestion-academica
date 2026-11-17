@@ -34,6 +34,7 @@ Registrar curso para la plataforma de gestión académica.
 - La documentación OpenAPI incluye ejemplo de cuerpo, respuestas y errores.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: CUR-CUR-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, validación y persistencia PostgreSQL.

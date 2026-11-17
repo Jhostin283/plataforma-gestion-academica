@@ -20,6 +20,7 @@ Consultar panel principal para la plataforma de gestión académica.
 - El panel es usable en móvil y con teclado.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: WEB-PAN-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Interfaz, integración y accesibilidad.

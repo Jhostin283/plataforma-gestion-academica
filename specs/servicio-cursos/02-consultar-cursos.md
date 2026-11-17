@@ -32,6 +32,7 @@ Consultar cursos para la plataforma de gestión académica.
 - Los filtros, paginación y campos de respuesta están descritos en OpenAPI y cubiertos por pruebas.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: CUR-CUR-02
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, filtros y resultados vacíos.

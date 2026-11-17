@@ -34,6 +34,7 @@ Actualizar curso para la plataforma de gestión académica.
 - La respuesta exitosa refleja los valores persistidos; OpenAPI documenta entradas y errores.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: CUR-CUR-03
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, persistencia y reglas de capacidad.

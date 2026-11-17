@@ -32,6 +32,7 @@ Consultar matrículas para la plataforma de gestión académica.
 - La consulta del detalle permite verificar el resultado posterior de una operación aceptada con `202`.
 
 ## Trazabilidad
+- Casos planificados: [Banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md).
 - Requisito: EST-MAT-02
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, filtros e historial.
