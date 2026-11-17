@@ -83,7 +83,7 @@ class SqlAlchemyMatriculaRepository:
         return resultado, total
 
     def pendientes(self, limite: int = 100, despues_de: UUID | None = None) -> list[Matricula]:
-        consulta = select(MatriculaModel).where(MatriculaModel.estado.in_(['PENDIENTE', 'COMPENSACION_PENDIENTE']))
+        consulta = select(MatriculaModel).where(MatriculaModel.estado.in_(['PENDIENTE', 'COMPENSACION_PENDIENTE', 'CANCELACION_PENDIENTE']))
         if despues_de is not None:
             consulta = consulta.where(MatriculaModel.id > despues_de)
         modelos = self.session.scalars(consulta.order_by(MatriculaModel.id).limit(limite)).all()

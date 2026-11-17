@@ -11,6 +11,7 @@ from app.adapters.out.persistence.matricula_repository import SqlAlchemyMatricul
 from app.adapters.out.reservas_cursos_http import ReservasCursosHttp
 from app.application.exception.errores import MatriculaNoEncontrada
 from app.application.usecase.crear_matricula import CrearMatricula
+from app.application.usecase.cancelar_matricula import CancelarMatricula
 from app.application.usecase.listar_matriculas import ListarMatriculas
 
 router = APIRouter(prefix='/api/v1/matriculas', tags=['matrículas'])
@@ -88,4 +89,15 @@ def consultar(matricula_id: UUID, repo=Depends(repositorio)):
     matricula = repo.obtener(matricula_id)
     if matricula is None:
         raise MatriculaNoEncontrada()
+    return respuesta(matricula)
+
+
+@router.post('/{matricula_id}/cancelacion', response_model=MatriculaRespuesta,
+             responses={202: {'description': 'Cancelación pendiente'}, 400: {'description': 'UUID inválido'},
+                        404: {'description': 'Matrícula inexistente'}, 409: {'description': 'Estado incompatible'},
+                        503: {'description': 'Persistencia no disponible'}})
+def cancelar(matricula_id: UUID, response: Response, repo=Depends(repositorio), cliente=Depends(reservas)):
+    matricula = CancelarMatricula(repo, cliente).ejecutar(matricula_id)
+    response.status_code = 200 if matricula.estado == 'CANCELADA' else 202
+    response.headers['Location'] = f'/api/v1/matriculas/{matricula.id}'
     return respuesta(matricula)
