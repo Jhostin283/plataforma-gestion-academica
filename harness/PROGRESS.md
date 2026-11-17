@@ -82,6 +82,11 @@
 - Se agregó manejo de fallos de persistencia con `503` y se documentó la comparación del código en OpenAPI. La prueba local del controlador pasó; en esa ejecución las dos pruebas PostgreSQL se omitieron.
 - `mvn clean verify` no pudo limpiar el JAR por un proceso Java que lo mantiene abierto. Se ajustó la espera de cierre del script. Pendiente volver a ejecutar la suite completa con PostgreSQL para la versión final.
 
+## 2026-11-17 — Portabilidad de pruebas
+
+- Se adaptó el script de reinicio para evitar el uso de `WindowStyle` en Linux y se documentó su ejecución con `pwsh`; su validación en GitHub Actions está pendiente.
+- La ejecución de reinicio se informa por separado de JaCoCo, ya que inicia procesos Java independientes sin instrumentación. El workflow y la política de cobertura corresponden a INF-CI-01.
+
 ## Formato para próximas sesiones
 
 ```text

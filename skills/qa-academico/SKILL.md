@@ -13,6 +13,7 @@ description: Diseñar y ejecutar pruebas de calidad, contratos y cobertura para 
 - **Contratos:** OpenAPI para comprobar solicitudes, respuestas y compatibilidad entre servicios; la biblioteca de pruebas de contrato está pendiente de selección.
 - **Frontend:** pruebas de componentes y de navegador con herramientas por seleccionar según el stack React implementado.
 - **Automatización:** GitHub Actions ejecutará pruebas y conservará reportes. La cobertura de líneas debe superar el 80 % por separado en cada backend.
+- **Portabilidad:** toda prueba de aplicación debe poder ejecutarse en GitHub Actions de forma reproducible. Evita dependencias exclusivas de Windows o pasos manuales dentro de la suite de CI; documenta cualquier requisito de base de datos y configura la automatización en su issue correspondiente.
 
 Las herramientas propuestas aún no están instaladas ni fijadas a una versión; documenta la elección al implementarlas.
 
@@ -47,3 +48,4 @@ Parte de los criterios de aceptación y contratos de los specs pertinentes; regi
 - No reduzcas el umbral, excluyas código sin justificar ni combines coberturas de ambos servicios para superar artificialmente el objetivo. Documenta cualquier exclusión justificada.
 - No dependas de credenciales reales ni modifiques datos productivos para probar. Usa datos sintéticos y entornos aislados.
 - No ocultes pruebas fallidas ni marques como aprobadas verificaciones que no se ejecutaron. Los dobles no reemplazan las pruebas reales de integración y concurrencia cuando estas son necesarias.
+- No contabilices como cobertura JaCoCo la ejecución de procesos externos que no estén instrumentados; informa esos resultados por separado.

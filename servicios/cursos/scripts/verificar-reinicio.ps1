@@ -17,7 +17,13 @@ $base = "http://127.0.0.1:$port"
 $process = $null
 
 function Start-Cursos {
-    $p = Start-Process -FilePath $javaCommand.Source -ArgumentList @('-jar', "`"$jar`"", "--server.port=$port") -PassThru -WindowStyle Hidden
+    $startArguments = @{
+        FilePath = $javaCommand.Source
+        ArgumentList = @('-jar', "`"$jar`"", "--server.port=$port")
+        PassThru = $true
+    }
+    if ($env:OS -eq 'Windows_NT') { $startArguments.WindowStyle = 'Hidden' }
+    $p = Start-Process @startArguments
     try {
         for ($i = 0; $i -lt 60; $i++) {
             if ($p.HasExited) { throw "El servicio terminó antes de iniciar (código $($p.ExitCode))." }
