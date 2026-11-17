@@ -45,13 +45,9 @@ Reservar y liberar plazas para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-CUR-PLZ-01-01:** Reservar en curso activo con disponibilidad.
-- **PR-CUR-PLZ-01-02:** Repetir la reserva con igual clave y datos.
-- **PR-CUR-PLZ-01-03:** Reutilizar clave para otro curso.
-- **PR-CUR-PLZ-01-04:** Enviar dos claves distintas por la última plaza.
 - **PR-CUR-PLZ-01-05:** Reservar en curso inexistente, inactivo o lleno.
-- **PR-CUR-PLZ-01-06:** Consultar reserva y liberarla dos veces.
-- **PR-CUR-PLZ-01-07:** Simular pérdida de respuesta y reintentar con igual clave.
 - **PR-CUR-PLZ-01-08:** Usar clave, UUID o reserva inexistente inválidos.
+- **PR-CUR-PLZ-01-09:** Simular curso lleno y solicitar reserva.
+- **PR-CUR-PLZ-01-10:** Simular reserva existente para la misma clave.

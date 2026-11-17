@@ -29,7 +29,7 @@ Lee el README y los specs y contratos pertinentes antes de implementar. Si aún 
 - Expón APIs HTTP/REST y contratos OpenAPI por servicio; usa springdoc-openapi para cursos y la generación integrada de FastAPI para estudiantes. Verifica compatibilidad cuando cambie un contrato.
 - Usa el prefijo `/api/v1/` en las rutas públicas e internas según `specs/convenciones-api.md`. Planifica una nueva versión mayor ante cambios incompatibles.
 - Implementa reserva de plazas atómica y operaciones idempotentes. Para matrículas y cancelaciones contempla fallos entre servicios, reintentos, compensación y reconciliación; no presupongas una transacción entre bases.
-- Valida reglas de negocio y errores en el límite de la API. Añade las pruebas relevantes, incluidas integración y concurrencia cuando corresponda.
+- Valida reglas de negocio y errores en el límite de la API. Añade pruebas unitarias con dependencias simuladas y documenta los criterios que no se puedan comprobar así.
 - Conserva la trazabilidad entre requisito, código, prueba y evidencia. Cada servicio debe superar el 80 % de cobertura de líneas por separado; informa el resultado real.
 
 ## Diseño

@@ -43,10 +43,8 @@ Actualizar curso para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-CUR-03-01:** Actualizar campos de un curso existente con datos válidos.
-- **PR-CUR-03-02:** Usar código de otro curso o datos inválidos.
-- **PR-CUR-03-03:** Reducir capacidad por debajo de reservas vigentes.
-- **PR-CUR-03-04:** Ejecutar simultáneamente una reserva y una reducción de capacidad.
 - **PR-CUR-03-05:** Actualizar UUID inexistente o inválido.
+- **PR-CUR-03-06:** Simular repositorio y actualizar un curso con datos válidos.
+- **PR-CUR-03-07:** Simular reservas mayores que la capacidad solicitada.

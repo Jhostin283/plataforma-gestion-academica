@@ -29,8 +29,7 @@ Consultar panel principal para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
 - **PR-WEB-PAN-01-01:** Abrir panel con datos conocidos en las API.
 - **PR-WEB-PAN-01-02:** Simular API caída o sin registros.
-- **PR-WEB-PAN-01-03:** Revisar panel en móvil y recorrerlo con teclado.

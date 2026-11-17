@@ -41,9 +41,9 @@ Registrar estudiante para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-EST-01-01:** Registrar estudiante válido.
 - **PR-EST-01-02:** Omitir datos o enviar correo inválido.
-- **PR-EST-01-03:** Registrar documento existente o dos solicitudes concurrentes con igual documento.
 - **PR-EST-01-04:** Enviar JSON malformado.
+- **PR-EST-01-05:** Registrar estudiante válido con repositorio simulado.
+- **PR-EST-01-06:** Simular conflicto de documento en el repositorio.

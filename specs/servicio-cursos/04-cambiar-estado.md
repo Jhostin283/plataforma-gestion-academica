@@ -39,9 +39,8 @@ Cambiar estado del curso para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-CUR-04-01:** Desactivar y volver a activar un curso.
-- **PR-CUR-04-02:** Desactivar curso con reserva y solicitar otra.
 - **PR-CUR-04-03:** Repetir estado o enviar estado no permitido.
 - **PR-CUR-04-04:** Usar ID inexistente o malformado.
+- **PR-CUR-04-05:** Desactivar un curso activo mediante repositorio simulado.

@@ -44,9 +44,8 @@ Cancelar matrícula para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-EST-MAT-03-01:** Cancelar una matrícula activa con reserva.
-- **PR-EST-MAT-03-02:** Repetir cancelación finalizada.
 - **PR-EST-MAT-03-03:** Cancelar matrícula inexistente, UUID inválido o estado incompatible.
-- **PR-EST-MAT-03-04:** Perder respuesta o fallar al liberar la reserva.
+- **PR-EST-MAT-03-05:** Cancelar con reserva confirmada usando puertos simulados.
+- **PR-EST-MAT-03-06:** Simular fallo al liberar una reserva.

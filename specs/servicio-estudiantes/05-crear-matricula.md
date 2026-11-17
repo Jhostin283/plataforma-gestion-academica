@@ -53,14 +53,9 @@ Crear matrícula para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-EST-MAT-01-01:** Matricular estudiante activo en curso activo con plazas.
-- **PR-EST-MAT-01-02:** Intentar duplicado activo o estudiante inactivo.
-- **PR-EST-MAT-01-03:** Solicitar curso inexistente, inactivo o lleno.
 - **PR-EST-MAT-01-04:** Enviar JSON, UUID o clave inválidos, o campos ausentes.
-- **PR-EST-MAT-01-05:** Repetir clave con igual cuerpo y luego con cuerpo diferente.
-- **PR-EST-MAT-01-06:** Crear simultáneamente la misma matrícula con claves distintas.
-- **PR-EST-MAT-01-07:** Perder la respuesta tras reservar exitosamente.
-- **PR-EST-MAT-01-08:** Fallar al registrar matrícula tras reserva y luego fallar la liberación.
-- **PR-EST-MAT-01-09:** Fallar antes de aceptar o iniciar reserva.
+- **PR-EST-MAT-01-10:** Simular estudiante inactivo o matrícula duplicada.
+- **PR-EST-MAT-01-11:** Simular reserva confirmada y persistencia exitosa.
+- **PR-EST-MAT-01-12:** Simular fallo de registro tras reservar.

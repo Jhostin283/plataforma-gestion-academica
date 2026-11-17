@@ -43,11 +43,12 @@ Registrar curso para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos del [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md): la versión anterior se probó con PostgreSQL y concurrencia; la versión actual incorpora la consulta básica y se probó con H2. Falta volver a verificar PostgreSQL y ejecutar el script de reinicio con la versión actual.
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-CUR-01-01:** Enviar un curso válido a `POST /api/v1/cursos`.
-- **PR-CUR-01-02:** Enviar código ya registrado.
+- **PR-CUR-01-01:** Enviar un curso válido al controlador con el caso de uso simulado.
+- **PR-CUR-01-02:** Simular conflicto de código duplicado en el caso de uso.
 - **PR-CUR-01-03:** Omitir campo obligatorio o usar duración/capacidad no positivas.
 - **PR-CUR-01-04:** Enviar JSON malformado.
-- **PR-CUR-01-05:** Enviar dos registros concurrentes con igual código.
-- **PR-CUR-01-06:** Simular fallo de persistencia y verificar una respuesta `503` sin detalles internos.
+- **PR-CUR-01-06:** Simular fallo de persistencia al registrar el curso.
+- **PR-CUR-01-07:** Registrar un curso con repositorio simulado y espacios en código y nombre.
+- **PR-CUR-01-08:** Simular que el repositorio informa un código duplicado.

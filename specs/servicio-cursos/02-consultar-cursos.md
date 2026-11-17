@@ -41,10 +41,8 @@ Consultar cursos para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-CUR-02-01:** Crear cursos y buscar por nombre y código.
 - **PR-CUR-02-02:** Buscar texto sin coincidencias.
 - **PR-CUR-02-03:** Consultar detalle con ID existente e inexistente.
 - **PR-CUR-02-04:** Usar UUID o parámetros de paginación inválidos.
-- **PR-CUR-02-05:** Consultar detalle tras reservar y liberar una plaza.

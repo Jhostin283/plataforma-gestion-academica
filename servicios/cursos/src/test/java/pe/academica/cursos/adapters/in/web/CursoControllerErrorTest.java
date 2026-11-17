@@ -2,24 +2,75 @@ package pe.academica.cursos.adapters.in.web;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import java.util.UUID;
+import pe.academica.cursos.application.CursoDuplicadoException;
+import pe.academica.cursos.application.CursoNoEncontradoException;
+import pe.academica.cursos.domain.Curso;
 import pe.academica.cursos.application.port.in.ConsultarCursoUseCase;
 import pe.academica.cursos.application.port.in.RegistrarCursoUseCase;
 
-@WebMvcTest(CursoController.class)
 class CursoControllerErrorTest {
-    @Autowired MockMvc mvc;
-    @MockBean RegistrarCursoUseCase registrar;
-    @MockBean ConsultarCursoUseCase consultar;
+    MockMvc mvc;
+    RegistrarCursoUseCase registrar;
+    ConsultarCursoUseCase consultar;
+
+    @BeforeEach void configurar() {
+        registrar = mock(RegistrarCursoUseCase.class);
+        consultar = mock(ConsultarCursoUseCase.class);
+        var validator = new LocalValidatorFactoryBean();
+        validator.afterPropertiesSet();
+        mvc = MockMvcBuilders.standaloneSetup(new CursoController(registrar, consultar))
+                .setControllerAdvice(new ApiExceptionHandler()).setValidator(validator).build();
+    }
+
+    private final String body = "{\"codigo\":\"C1\",\"nombre\":\"Java\",\"descripcion\":\"Curso\",\"duracionHoras\":20,\"capacidad\":15}";
+
+    @Test void registroExitosoDevuelveLocationYEstado() throws Exception {
+        UUID id = UUID.randomUUID();
+        when(registrar.ejecutar(anyString(), anyString(), anyString(), anyInt(), anyInt()))
+                .thenReturn(new Curso(id, "C1", "Java", "Curso", 20, 15, "ACTIVO"));
+        mvc.perform(post("/api/v1/cursos").contentType(MediaType.APPLICATION_JSON).content(body))
+                .andExpect(status().isCreated()).andExpect(header().string("Location", "/api/v1/cursos/" + id))
+                .andExpect(jsonPath("$.estado").value("ACTIVO"));
+    }
+
+    @Test void codigoDuplicadoDevuelveConflicto() throws Exception {
+        when(registrar.ejecutar(anyString(), anyString(), anyString(), anyInt(), anyInt()))
+                .thenThrow(new CursoDuplicadoException());
+        mvc.perform(post("/api/v1/cursos").contentType(MediaType.APPLICATION_JSON).content(body))
+                .andExpect(status().isConflict()).andExpect(jsonPath("$.codigo").value("CURSO_DUPLICADO"));
+    }
+
+    @Test void entradasInvalidasYJsonMalformado() throws Exception {
+        mvc.perform(post("/api/v1/cursos").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"codigo\":\"\",\"nombre\":\"\",\"descripcion\":\"\",\"duracionHoras\":0,\"capacidad\":-1}"))
+                .andExpect(status().isUnprocessableEntity()).andExpect(jsonPath("$.detalles.codigo").exists())
+                .andExpect(jsonPath("$.detalles.capacidad").exists());
+        mvc.perform(post("/api/v1/cursos").contentType(MediaType.APPLICATION_JSON).content("{"))
+                .andExpect(status().isBadRequest()).andExpect(jsonPath("$.codigo").value("JSON_INVALIDO"));
+    }
+
+    @Test void consultaCursoYErroresDeId() throws Exception {
+        UUID id = UUID.randomUUID();
+        UUID desconocido = UUID.randomUUID();
+        when(consultar.ejecutar(id)).thenReturn(new Curso(id, "C1", "Java", "Curso", 20, 15, "ACTIVO"));
+        when(consultar.ejecutar(desconocido)).thenThrow(new CursoNoEncontradoException());
+        mvc.perform(get("/api/v1/cursos/" + id)).andExpect(status().isOk()).andExpect(jsonPath("$.codigo").value("C1"));
+        mvc.perform(get("/api/v1/cursos/" + desconocido)).andExpect(status().isNotFound());
+        mvc.perform(get("/api/v1/cursos/no-es-uuid")).andExpect(status().isBadRequest());
+    }
 
     @Test void falloDePersistenciaProduceErrorClaroSinExponerDetalles() throws Exception {
         when(registrar.ejecutar(anyString(), anyString(), anyString(), anyInt(), anyInt()))

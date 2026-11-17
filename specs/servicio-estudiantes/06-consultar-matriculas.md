@@ -41,9 +41,8 @@ Consultar matrículas para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-EST-MAT-02-01:** Filtrar matrículas por estudiante, curso y estado.
 - **PR-EST-MAT-02-02:** Consultar sin coincidencias o con paginación inválida.
 - **PR-EST-MAT-02-03:** Consultar detalle existente, inexistente y UUID inválido.
-- **PR-EST-MAT-02-04:** Consultar una operación previamente aceptada con `202`.
+- **PR-EST-MAT-02-05:** Consultar matrículas con puerto de repositorio simulado.

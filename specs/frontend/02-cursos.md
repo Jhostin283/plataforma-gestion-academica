@@ -30,9 +30,8 @@ Gestionar cursos desde el frontend para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
 - **PR-WEB-CUR-01-01:** Registrar, buscar, editar y cambiar estado con API simulada.
 - **PR-WEB-CUR-01-02:** Enviar campo inválido o recibir conflicto por duplicado.
 - **PR-WEB-CUR-01-03:** Simular carga, lista vacía y fallo de API.
-- **PR-WEB-CUR-01-04:** Usar listado y formulario en móvil y con teclado.

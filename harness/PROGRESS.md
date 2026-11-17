@@ -87,6 +87,12 @@
 - Se adaptó el script de reinicio para evitar el uso de `WindowStyle` en Linux y se documentó su ejecución con `pwsh`; su validación en GitHub Actions está pendiente.
 - La ejecución de reinicio se informa por separado de JaCoCo, ya que inicia procesos Java independientes sin instrumentación. El workflow y la política de cobertura corresponden a INF-CI-01.
 
+## 2026-11-17 — Estrategia de pruebas unitarias
+
+- Por solicitud del usuario, la suite se limita a pruebas unitarias con dependencias simuladas; se retiraron los casos de integración de la suite y del banco actual. Los criterios funcionales de los specs se conservan.
+- Para CUR-01 se ejecutaron 12 pruebas unitarias sin PostgreSQL ni contenedores: 39 de 42 líneas cubiertas (92,86 %).
+- Las pruebas unitarias no demuestran persistencia ni concurrencia reales. La evidencia anterior se conserva como historial y CUR-01 sigue en progreso hasta revisar todos los criterios.
+
 ## Formato para próximas sesiones
 
 ```text

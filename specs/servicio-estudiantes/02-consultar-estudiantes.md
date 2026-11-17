@@ -40,9 +40,8 @@ Consultar estudiantes para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-EST-02-01:** Buscar por nombres, apellidos y documento.
 - **PR-EST-02-02:** Buscar sin coincidencias.
 - **PR-EST-02-03:** Consultar detalle existente, inexistente y UUID inválido.
 - **PR-EST-02-04:** Probar paginación válida e inválida.

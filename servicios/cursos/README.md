@@ -1,6 +1,6 @@
 # Servicio de cursos
 
-Implementación inicial de `CUR-01` con Java 21, Spring Boot, PostgreSQL y arquitectura hexagonal. Estado: **en progreso**; falta comprobar el reinicio completo de la aplicación con PostgreSQL.
+Implementación inicial de `CUR-01` con Java 21, Spring Boot, PostgreSQL y arquitectura hexagonal. Estado: **en progreso**; la suite actual contiene únicamente pruebas unitarias con dependencias simuladas.
 
 ## Configuración
 
@@ -13,10 +13,7 @@ mvn verify
 mvn spring-boot:run
 ```
 
-Las pruebas predeterminadas usan H2 en memoria y no sustituyen la verificación con PostgreSQL. JaCoCo genera su reporte en `target/site/jacoco/`. Están implementados `POST /api/v1/cursos` y la consulta básica `GET /api/v1/cursos/{id}`; Springdoc publica el contrato en `/v3/api-docs`. El listado, filtros y disponibilidad de plazas siguen pendientes en `CUR-02` y `CUR-PLZ-01`.
+Las pruebas predeterminadas ejercitan casos de uso y controladores con dependencias simuladas, sin base de datos. La suite no utiliza bases de datos. JaCoCo genera su reporte en `target/site/jacoco/`. Están implementados `POST /api/v1/cursos` y la consulta básica `GET /api/v1/cursos/{id}`; Springdoc publica el contrato en `/v3/api-docs`. El listado, filtros y disponibilidad de plazas siguen pendientes en `CUR-02` y `CUR-PLZ-01`.
 
-Para incluir `PostgresRegistroCursoTest`, usa una base PostgreSQL aislada para pruebas, configura `CURSOS_DB_URL`, `CURSOS_DB_USER`, `CURSOS_DB_PASSWORD` y `CURSOS_TEST_POSTGRES=true`, y ejecuta `mvn verify`. Las pruebas crean datos; no las ejecutes contra una base compartida o de producción.
 
-Para comprobar la persistencia tras reiniciar la aplicación, con la misma base de pruebas y tras ejecutar `mvn clean verify`, ejecuta desde `servicios/cursos`: `pwsh -File scripts/verificar-reinicio.ps1` (en Windows también puede usarse `powershell -ExecutionPolicy Bypass -File scripts/verificar-reinicio.ps1`). El script está preparado para PowerShell en Windows y para `pwsh` en Linux: inicia y detiene sus propios procesos del servicio, registra un curso y lo consulta después del reinicio. Deja ese registro en la base de pruebas. Su ejecución en Linux/GitHub Actions aún está pendiente de verificación.
-
-Esta comprobación inicia procesos Java independientes y **no se incluye en la cobertura JaCoCo** de las pruebas Maven. El futuro workflow debe ejecutar tanto la suite Maven con PostgreSQL como la comprobación de reinicio; no debe confundir sus resultados.
+Las pruebas unitarias no comprueban migraciones, concurrencia ni persistencia reales. Las comprobaciones realizadas antes del cambio permanecen como evidencia histórica en el registro de progreso.

@@ -30,9 +30,8 @@ Gestionar estudiantes desde el frontend para la plataforma de gestión académic
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
 - **PR-WEB-EST-01-01:** Registrar, buscar, editar y cambiar estado de un estudiante.
 - **PR-WEB-EST-01-02:** Enviar correo inválido o recibir documento duplicado.
 - **PR-WEB-EST-01-03:** Simular carga, vacío y fallo de servicio.
-- **PR-WEB-EST-01-04:** Completar formulario con teclado y en pantalla móvil.

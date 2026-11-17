@@ -38,9 +38,8 @@ Cambiar estado del estudiante para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-EST-04-01:** Desactivar y activar un estudiante.
-- **PR-EST-04-02:** Intentar matricular estudiante inactivo.
 - **PR-EST-04-03:** Repetir estado o enviar valor no permitido.
 - **PR-EST-04-04:** Usar ID inexistente o inválido.
+- **PR-EST-04-05:** Desactivar un estudiante mediante repositorio simulado.

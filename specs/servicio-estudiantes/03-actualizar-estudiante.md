@@ -41,10 +41,8 @@ Actualizar estudiante para la plataforma de gestión académica.
 
 ## Pruebas relacionadas
 
-Casos planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md); aún no ejecutados:
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
 
-- **PR-EST-03-01:** Actualizar datos válidos de un estudiante.
-- **PR-EST-03-02:** Usar documento de otro estudiante.
 - **PR-EST-03-03:** Enviar correo inválido o cuerpo incompleto.
 - **PR-EST-03-04:** Actualizar ID inexistente o inválido.
-- **PR-EST-03-05:** Actualizar dos estudiantes al mismo documento.
+- **PR-EST-03-06:** Actualizar un estudiante con repositorio simulado.

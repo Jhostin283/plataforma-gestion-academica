@@ -13,7 +13,8 @@
         "mvn clean verify: 7 pruebas con H2 y PostgreSQL 16; cobertura 28/30 líneas (93,33 %).",
         "Reinicio PostgreSQL temporal: 2 registros antes y después. Pendiente detalle CUR-02 y reinicio completo del servicio.",
         "Versión con consulta por ID: 7 pruebas H2 aprobadas, 2 PostgreSQL omitidas; 38/40 líneas. Pendiente ejecutar PostgreSQL y script de reinicio.",
-        "Usuario confirmó consulta tras reinicio; reportes de versión anterior: 9 pruebas sin omisiones y 95 %. Nueva prueba local de error de persistencia aprobada; pendiente suite PostgreSQL final."
+        "Usuario confirmó consulta tras reinicio; reportes de versión anterior: 9 pruebas sin omisiones y 95 %. Nueva prueba local de error de persistencia aprobada; pendiente suite PostgreSQL final.",
+        "12 pruebas unitarias aprobadas sin PostgreSQL; 39/42 líneas (92,86 %). La concurrencia y la persistencia reales no quedan demostradas por la suite actual."
       ],
       "blocked_reason": null
     },
