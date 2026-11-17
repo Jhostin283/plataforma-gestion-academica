@@ -1,6 +1,6 @@
 from uuid import UUID, uuid4
 
-from sqlalchemy import select, update
+from sqlalchemy import func, select, update
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -63,6 +63,24 @@ class SqlAlchemyMatriculaRepository:
         resultado = _dominio(modelo) if modelo else None
         self.session.rollback()
         return resultado
+
+    def listar(self, estudiante_id: UUID | None, curso_id: UUID | None, estado: str | None,
+               page: int, size: int) -> tuple[list[Matricula], int]:
+        filtros = []
+        if estudiante_id is not None:
+            filtros.append(MatriculaModel.estudiante_id == estudiante_id)
+        if curso_id is not None:
+            filtros.append(MatriculaModel.curso_id == curso_id)
+        if estado == 'PENDIENTE':
+            filtros.append(MatriculaModel.estado.in_(['PENDIENTE', 'COMPENSACION_PENDIENTE']))
+        elif estado is not None:
+            filtros.append(MatriculaModel.estado == estado)
+        total = self.session.scalar(select(func.count()).select_from(MatriculaModel).where(*filtros))
+        modelos = self.session.scalars(select(MatriculaModel).where(*filtros)
+                                       .order_by(MatriculaModel.id).offset(page * size).limit(size)).all()
+        resultado = [_dominio(modelo) for modelo in modelos]
+        self.session.rollback()
+        return resultado, total
 
     def pendientes(self, limite: int = 100, despues_de: UUID | None = None) -> list[Matricula]:
         consulta = select(MatriculaModel).where(MatriculaModel.estado.in_(['PENDIENTE', 'COMPENSACION_PENDIENTE']))

@@ -135,7 +135,7 @@
       "depends_on": [
         "EST-MAT-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/11",
       "pr": null,
       "evidence": [],
