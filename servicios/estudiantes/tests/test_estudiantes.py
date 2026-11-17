@@ -1,7 +1,8 @@
 from uuid import uuid4
+from dataclasses import replace
 from fastapi.testclient import TestClient
 from app.adapters.in_web.routes import repository
-from app.application.exception.errores import DocumentoDuplicado
+from app.application.exception.errores import DocumentoDuplicado, EstudianteNoEncontrado
 from app.application.usecase.registrar_estudiante import RegistrarEstudiante
 from app.main import app
 
@@ -23,6 +24,14 @@ class RepositorioSimulado:
         if any(x.documento == estudiante.documento and x.id != estudiante.id for x in self.estudiantes.values()):
             raise DocumentoDuplicado()
         self.estudiantes[estudiante.id] = estudiante
+        return estudiante
+
+    def cambiar_estado(self, estudiante_id, estado):
+        estudiante = self.estudiantes.get(estudiante_id)
+        if estudiante is None:
+            raise EstudianteNoEncontrado()
+        estudiante = replace(estudiante, estado=estado)
+        self.estudiantes[estudiante_id] = estudiante
         return estudiante
 
     def listar(self, buscar, page, size):
@@ -110,5 +119,23 @@ def test_est_03_actualizacion_y_rechazos():
         assert client.get(ubicacion).json()["nombres"] == "María"
         assert client.put(f"/api/v1/estudiantes/{uuid4()}", json=nuevos).status_code == 404
         assert client.put("/api/v1/estudiantes/invalido", json=nuevos).status_code == 400
+    finally:
+        app.dependency_overrides.clear()
+
+
+def test_est_04_cambiar_estado_y_rechazos():
+    client, _ = cliente()
+    try:
+        datos = {"documento": "123", "nombres": "Ana", "apellidos": "Pérez", "correo": "ana@example.com"}
+        ubicacion = client.post("/api/v1/estudiantes", json=datos).headers["location"]
+        for estado in ("INACTIVO", "INACTIVO", "ACTIVO"):
+            respuesta = client.patch(f"{ubicacion}/estado", json={"estado": estado})
+            assert respuesta.status_code == 200
+            assert respuesta.json()["estado"] == estado
+            assert respuesta.json()["documento"] == "123"
+            assert client.get(ubicacion).json()["estado"] == estado
+        assert client.patch(f"{ubicacion}/estado", json={"estado": "OTRO"}).status_code == 422
+        assert client.patch(f"/api/v1/estudiantes/{uuid4()}/estado", json={"estado": "ACTIVO"}).status_code == 404
+        assert client.patch("/api/v1/estudiantes/invalido/estado", json={"estado": "ACTIVO"}).status_code == 400
     finally:
         app.dependency_overrides.clear()

@@ -34,7 +34,7 @@ Cambiar estado del estudiante para la plataforma de gestión académica.
 - Pruebas: API, persistencia y regla de matrícula.
 - Issue: [9](https://github.com/Jhostin283/plataforma-gestion-academica/issues/9).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; cambio de estado preparado, validación y regla de matrícula pendientes.
 
 ## Pruebas relacionadas
 
