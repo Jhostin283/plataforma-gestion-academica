@@ -50,3 +50,4 @@ Casos del [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md): la versión ant
 - **PR-CUR-01-03:** Omitir campo obligatorio o usar duración/capacidad no positivas.
 - **PR-CUR-01-04:** Enviar JSON malformado.
 - **PR-CUR-01-05:** Enviar dos registros concurrentes con igual código.
+- **PR-CUR-01-06:** Simular fallo de persistencia y verificar una respuesta `503` sin detalles internos.

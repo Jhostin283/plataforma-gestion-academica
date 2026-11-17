@@ -49,5 +49,8 @@ try {
     }
     Write-Output "OK: curso $($created.id) consultado después de reiniciar el servicio."
 } finally {
-    if ($process -and -not $process.HasExited) { Stop-Process -Id $process.Id -Force }
+    if ($process -and -not $process.HasExited) {
+        Stop-Process -Id $process.Id -Force
+        $process.WaitForExit(10000) | Out-Null
+    }
 }

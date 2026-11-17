@@ -76,6 +76,12 @@
 - Se preparó `servicios/cursos/scripts/verificar-reinicio.ps1` y se verificó su sintaxis, pero no se ejecutó: requiere la base de pruebas iniciada por el usuario.
 - CUR-01 permanece `in_progress` hasta recibir evidencia de la suite PostgreSQL y del script de reinicio en la versión actual.
 
+## 2026-11-17 — Evidencia de reinicio y error de persistencia
+
+- El usuario ejecutó el script de reinicio y confirmó la consulta del curso `2fc30ee2-6b7e-47cd-959e-5fdb9abfb47d` tras reiniciar. Se verificaron reportes locales: 9 pruebas aprobadas, sin omisiones, con 95 % de cobertura para la versión anterior.
+- Se agregó manejo de fallos de persistencia con `503` y se documentó la comparación del código en OpenAPI. La prueba local del controlador pasó; en esa ejecución las dos pruebas PostgreSQL se omitieron.
+- `mvn clean verify` no pudo limpiar el JAR por un proceso Java que lo mantiene abierto. Se ajustó la espera de cierre del script. Pendiente volver a ejecutar la suite completa con PostgreSQL para la versión final.
+
 ## Formato para próximas sesiones
 
 ```text

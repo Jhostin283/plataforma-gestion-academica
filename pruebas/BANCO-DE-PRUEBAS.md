@@ -21,6 +21,7 @@ Convenciones HTTP, paginación y errores: [convenciones API](../specs/convencion
 | PR-CUR-01-03 | API | Omitir campo obligatorio o usar duración/capacidad no positivas. | `422` con detalles; sin escritura. |
 | PR-CUR-01-04 | API | Enviar JSON malformado. | `400` sin detalles internos. |
 | PR-CUR-01-05 | Integración | Enviar dos registros concurrentes con igual código. | Como máximo un registro creado; el otro recibe conflicto. |
+| PR-CUR-01-06 | API | Simular fallo de persistencia al registrar el curso. | `503` con error claro y sin exponer detalles internos. |
 
 ## CUR-02 — Consultar cursos
 

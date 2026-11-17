@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.academica.cursos.application.CursoDuplicadoException;
 import pe.academica.cursos.application.CursoNoEncontradoException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.dao.DataAccessException;
 
 @RestControllerAdvice
 class ApiExceptionHandler {
@@ -31,4 +32,8 @@ class ApiExceptionHandler {
     ResponseEntity<ErrorApi> noEncontrado() { return error(HttpStatus.NOT_FOUND, "CURSO_NO_ENCONTRADO", "El curso no existe", Map.of()); }
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     ResponseEntity<ErrorApi> tipoInvalido() { return error(HttpStatus.BAD_REQUEST, "PARAMETRO_INVALIDO", "El parámetro no es válido", Map.of()); }
+    @ExceptionHandler(DataAccessException.class)
+    ResponseEntity<ErrorApi> persistencia() {
+        return error(HttpStatus.SERVICE_UNAVAILABLE, "PERSISTENCIA_NO_DISPONIBLE", "No se pudo guardar o consultar el curso", Map.of());
+    }
 }

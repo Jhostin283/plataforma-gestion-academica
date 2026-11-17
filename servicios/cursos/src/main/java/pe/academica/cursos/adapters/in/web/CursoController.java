@@ -28,11 +28,12 @@ class CursoController {
                       @NotNull @Positive Integer capacidad) { }
 
     @PostMapping
-    @Operation(summary = "Registrar un curso", responses = {
+    @Operation(summary = "Registrar un curso", description = "El código distingue mayúsculas y minúsculas; se eliminan espacios al inicio y al final antes de guardarlo.", responses = {
         @ApiResponse(responseCode="201", description="Curso creado"),
         @ApiResponse(responseCode="400", description="JSON malformado"),
         @ApiResponse(responseCode="409", description="Código duplicado"),
-        @ApiResponse(responseCode="422", description="Campos inválidos")})
+        @ApiResponse(responseCode="422", description="Campos inválidos"),
+        @ApiResponse(responseCode="503", description="Persistencia no disponible")})
     ResponseEntity<Curso> crear(@Valid @RequestBody CrearCurso request) {
         Curso curso = registrar.ejecutar(request.codigo(), request.nombre(), request.descripcion(),
                 request.duracionHoras(), request.capacidad());
