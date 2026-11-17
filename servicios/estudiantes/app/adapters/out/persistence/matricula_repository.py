@@ -65,7 +65,7 @@ class SqlAlchemyMatriculaRepository:
         return resultado
 
     def pendientes(self, limite: int = 100, despues_de: UUID | None = None) -> list[Matricula]:
-        consulta = select(MatriculaModel).where(MatriculaModel.estado == 'PENDIENTE')
+        consulta = select(MatriculaModel).where(MatriculaModel.estado.in_(['PENDIENTE', 'COMPENSACION_PENDIENTE']))
         if despues_de is not None:
             consulta = consulta.where(MatriculaModel.id > despues_de)
         modelos = self.session.scalars(consulta.order_by(MatriculaModel.id).limit(limite)).all()
@@ -73,9 +73,10 @@ class SqlAlchemyMatriculaRepository:
         self.session.rollback()
         return resultado
 
-    def cambiar_estado(self, matricula_id: UUID, estado: str, codigo_rechazo: int | None = None) -> Matricula:
+    def cambiar_estado(self, matricula_id: UUID, estado: str, codigo_rechazo: int | None = None,
+                       estado_actual: str = 'PENDIENTE') -> Matricula:
         sentencia = (update(MatriculaModel).where(MatriculaModel.id == matricula_id,
-                                                  MatriculaModel.estado == 'PENDIENTE')
+                                                  MatriculaModel.estado == estado_actual)
                      .values(estado=estado, codigo_rechazo=codigo_rechazo).returning(MatriculaModel))
         try:
             modelo = self.session.execute(sentencia).scalar_one_or_none()

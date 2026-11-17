@@ -34,6 +34,7 @@ Crear matrícula para la plataforma de gestión académica.
 - `201`: matrícula `ACTIVA` confirmada; devuelve `id`, ambos IDs, estado y `Location` al detalle.
 - `202`: operación aceptada pero pendiente o con resultado incierto; devuelve `id`, estado `PENDIENTE` y `Location` para consulta. No se presenta como éxito definitivo.
 - `400`: JSON, UUID o clave inválida. `404`: estudiante o curso inexistente. `409`: alumno o curso inactivo, curso lleno, matrícula activa duplicada o clave reutilizada con otros datos. `422`: campo obligatorio ausente.
+- `500`: la operación no pudo completarse y la reserva ya fue compensada.
 - `503`: el servicio no puede aceptar la operación y no se ha iniciado ninguna reserva. Una vez iniciada, el resultado incierto se representa mediante `202` y estado consultable.
 
 ## Criterios adicionales de aceptación
@@ -49,7 +50,7 @@ Crear matrícula para la plataforma de gestión académica.
 - Pruebas: Integración, concurrencia, idempotencia y compensación.
 - Issue: [10](https://github.com/Jhostin283/plataforma-gestion-academica/issues/10).
 - Pull request: [#33](https://github.com/Jhostin283/plataforma-gestion-academica/pull/33) (borrador, avance parcial).
-- Estado: en progreso; cliente de reservas preparado, operación de matrícula y validación pendientes.
+- Estado: en progreso; creación, compensación y reconciliación preparadas, validación pendiente.
 
 ## Pruebas relacionadas
 

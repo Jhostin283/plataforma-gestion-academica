@@ -20,3 +20,7 @@ class MatriculaNoEncontrada(Exception):
 
 class ResultadoPersistenciaIncierto(Exception):
     pass
+
+
+class MatriculaCompensada(Exception):
+    pass

@@ -1,4 +1,8 @@
 from uuid import uuid4
+import asyncio
+import logging
+import os
+from contextlib import asynccontextmanager, suppress
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
@@ -6,9 +10,32 @@ from sqlalchemy.exc import SQLAlchemyError
 from app.adapters.in_web.routes import router
 from app.adapters.in_web.matriculas_routes import router as matriculas_router
 from app.application.exception.errores import (DocumentoDuplicado, EstudianteNoEncontrado,
-                                               ConflictoMatricula, CursoNoEncontrado, MatriculaNoEncontrada)
+                                               ConflictoMatricula, CursoNoEncontrado, MatriculaNoEncontrada,
+                                               MatriculaCompensada)
 
-app = FastAPI(title="Servicio de estudiantes", version="1.0.0")
+async def _reconciliacion_periodica():
+    from app.reconciliar_matriculas import reconciliar
+    intervalo = max(1, int(os.getenv('MATRICULAS_RECONCILIACION_SEGUNDOS', '60')))
+    while True:
+        try:
+            await asyncio.to_thread(reconciliar)
+        except Exception:
+            logging.getLogger(__name__).error('Falló el ciclo de reconciliación de matrículas')
+        await asyncio.sleep(intervalo)
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    tarea = asyncio.create_task(_reconciliacion_periodica())
+    try:
+        yield
+    finally:
+        tarea.cancel()
+        with suppress(asyncio.CancelledError):
+            await tarea
+
+
+app = FastAPI(title="Servicio de estudiantes", version="1.0.0", lifespan=lifespan)
 app.include_router(router)
 app.include_router(matriculas_router)
 
@@ -49,6 +76,11 @@ async def persistencia(_request: Request, _exc: SQLAlchemyError):
 @app.exception_handler(ConflictoMatricula)
 async def conflicto_matricula(_request: Request, _exc: ConflictoMatricula):
     return respuesta_error(409, 'CONFLICTO_MATRICULA', 'No se puede crear la matrícula')
+
+
+@app.exception_handler(MatriculaCompensada)
+async def matricula_compensada(_request: Request, _exc: MatriculaCompensada):
+    return respuesta_error(500, 'MATRICULA_COMPENSADA', 'La matrícula no se completó y la reserva fue liberada')
 
 
 @app.exception_handler(CursoNoEncontrado)

@@ -85,7 +85,8 @@
 - Se prepararon modelo, migración y repositorio de operaciones durables, con restricciones de clave y matrícula vigente y bloqueo del estudiante. No están conectados al caso de uso ni se han probado.
 - Se conectaron el caso de uso y endpoints de creación y detalle: la operación incierta queda pendiente y admite reintento con la misma clave. Se prepararon casos unitarios, sin ejecutarlos.
 - Se preparó un proceso ejecutable para reintentar operaciones pendientes con la clave original y conservar el estado pendiente ante un resultado incierto al actualizar. No se ejecutó ni validó.
-- Pendiente: compensación automática segura, programar el proceso de reconciliación y verificar las transiciones, concurrencia y persistencia reales; la dependencia CUR-PLZ-01 sigue en borrador en el PR #28. No se han verificado criterios de aceptación.
+- Se prepararon transición durable de compensación, liberación idempotente y reconciliación periódica; se añadieron casos unitarios sin ejecutar.
+- Pendiente: validar transiciones, compensación, concurrencia y persistencia reales y cobertura; la dependencia CUR-PLZ-01 sigue en borrador en el PR #28. Ningún criterio se declara aprobado.
 
 ## Formato para próximas sesiones
 

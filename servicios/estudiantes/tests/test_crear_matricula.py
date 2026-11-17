@@ -41,3 +41,23 @@ def test_fallo_persistencia_tras_reserva_conserva_operacion_pendiente():
     reservas.reservar.return_value = Reserva(clave, curso, 'RESERVADA')
     repositorio.cambiar_estado.side_effect = ResultadoPersistenciaIncierto()
     assert CrearMatricula(repositorio, reservas).ejecutar(clave, estudiante, curso) == pendiente
+
+
+def test_compensacion_durable_libera_reserva():
+    estudiante, curso, clave, pendiente, repositorio, reservas = preparar()
+    compensando = Matricula(pendiente.id, clave, estudiante, curso, 'COMPENSACION_PENDIENTE')
+    fallida = Matricula(pendiente.id, clave, estudiante, curso, 'FALLIDA', 503)
+    reservas.reservar.return_value = Reserva(clave, curso, 'RESERVADA')
+    reservas.liberar.return_value = Reserva(clave, curso, 'LIBERADA')
+    repositorio.cambiar_estado.side_effect = [ResultadoPersistenciaIncierto(), compensando, fallida]
+    assert CrearMatricula(repositorio, reservas).ejecutar(clave, estudiante, curso) == fallida
+    reservas.liberar.assert_called_once_with(clave)
+
+
+def test_compensacion_incierta_conserva_estado_para_reintento():
+    estudiante, curso, clave, pendiente, repositorio, reservas = preparar()
+    compensando = Matricula(pendiente.id, clave, estudiante, curso, 'COMPENSACION_PENDIENTE')
+    repositorio.iniciar.return_value = compensando
+    reservas.liberar.side_effect = ResultadoReservaIncierto()
+    assert CrearMatricula(repositorio, reservas).ejecutar(clave, estudiante, curso) == compensando
+    repositorio.cambiar_estado.assert_not_called()
