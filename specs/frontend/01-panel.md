@@ -25,7 +25,7 @@ Consultar panel principal para la plataforma de gestión académica.
 - Pruebas: Interfaz, integración y accesibilidad.
 - Issue: [13](https://github.com/Jhostin283/plataforma-gestion-academica/issues/13).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; panel preparado, accesos a pantallas y validación pendientes.
 
 ## Pruebas relacionadas
 
