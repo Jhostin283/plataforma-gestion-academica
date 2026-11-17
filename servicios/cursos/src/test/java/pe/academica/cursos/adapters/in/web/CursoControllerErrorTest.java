@@ -20,22 +20,36 @@ import pe.academica.cursos.application.CursoNoEncontradoException;
 import pe.academica.cursos.domain.Curso;
 import pe.academica.cursos.application.port.in.ConsultarCursoUseCase;
 import pe.academica.cursos.application.port.in.RegistrarCursoUseCase;
+import pe.academica.cursos.application.port.in.ListarCursosUseCase;
+import pe.academica.cursos.domain.PaginaCursos;
+import java.util.List;
 
 class CursoControllerErrorTest {
     MockMvc mvc;
     RegistrarCursoUseCase registrar;
     ConsultarCursoUseCase consultar;
+    ListarCursosUseCase listar;
 
     @BeforeEach void configurar() {
         registrar = mock(RegistrarCursoUseCase.class);
         consultar = mock(ConsultarCursoUseCase.class);
+        listar = mock(ListarCursosUseCase.class);
         var validator = new LocalValidatorFactoryBean();
         validator.afterPropertiesSet();
-        mvc = MockMvcBuilders.standaloneSetup(new CursoController(registrar, consultar))
+        mvc = MockMvcBuilders.standaloneSetup(new CursoController(registrar, consultar, listar))
                 .setControllerAdvice(new ApiExceptionHandler()).setValidator(validator).build();
     }
 
     private final String body = "{\"codigo\":\"C1\",\"nombre\":\"Java\",\"descripcion\":\"Curso\",\"duracionHoras\":20,\"capacidad\":15}";
+
+    @Test void listaSinResultadosYValidaParametros() throws Exception {
+        when(listar.ejecutar("sin coincidencia", 0, 20)).thenReturn(new PaginaCursos(List.of(), 0, 20, 0));
+        mvc.perform(get("/api/v1/cursos").param("buscar", "sin coincidencia"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.items").isEmpty())
+                .andExpect(jsonPath("$.total").value(0));
+        mvc.perform(get("/api/v1/cursos").param("page", "abc"))
+                .andExpect(status().isBadRequest()).andExpect(jsonPath("$.codigo").value("PARAMETRO_INVALIDO"));
+    }
 
     @Test void registroExitosoDevuelveLocationYEstado() throws Exception {
         UUID id = UUID.randomUUID();

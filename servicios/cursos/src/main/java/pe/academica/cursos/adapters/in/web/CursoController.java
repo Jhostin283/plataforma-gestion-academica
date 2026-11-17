@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.academica.cursos.application.port.in.RegistrarCursoUseCase;
 import pe.academica.cursos.application.port.in.ConsultarCursoUseCase;
+import pe.academica.cursos.application.port.in.ListarCursosUseCase;
 import pe.academica.cursos.domain.Curso;
+import pe.academica.cursos.domain.PaginaCursos;
 import java.util.UUID;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -18,8 +20,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 class CursoController {
     private final RegistrarCursoUseCase registrar;
     private final ConsultarCursoUseCase consultar;
-    CursoController(RegistrarCursoUseCase registrar, ConsultarCursoUseCase consultar) {
-        this.registrar = registrar; this.consultar = consultar;
+    private final ListarCursosUseCase listar;
+    CursoController(RegistrarCursoUseCase registrar, ConsultarCursoUseCase consultar, ListarCursosUseCase listar) {
+        this.registrar = registrar; this.consultar = consultar; this.listar = listar;
     }
 
     @Schema(example = "{\"codigo\":\"CUR-001\",\"nombre\":\"Java\",\"descripcion\":\"Fundamentos\",\"duracionHoras\":20,\"capacidad\":30}")
@@ -47,5 +50,16 @@ class CursoController {
         @ApiResponse(responseCode="404", description="Curso no encontrado")})
     ResponseEntity<Curso> obtener(@PathVariable UUID cursoId) {
         return ResponseEntity.ok(consultar.ejecutar(cursoId));
+    }
+
+    @GetMapping
+    @Operation(summary = "Listar y buscar cursos", description = "Busca por nombre o código. page comienza en 0 y size admite valores de 1 a 100.", responses = {
+        @ApiResponse(responseCode="200", description="Página de cursos"),
+        @ApiResponse(responseCode="400", description="Parámetros inválidos"),
+        @ApiResponse(responseCode="503", description="Persistencia no disponible")})
+    ResponseEntity<PaginaCursos> listar(@RequestParam(defaultValue = "") String buscar,
+                                        @RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "20") int size) {
+        return ResponseEntity.ok(listar.ejecutar(buscar, page, size));
     }
 }
