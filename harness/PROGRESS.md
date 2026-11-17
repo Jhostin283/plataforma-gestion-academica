@@ -62,7 +62,7 @@
 
 - Issue #7 y spec `specs/servicio-estudiantes/02-consultar-estudiantes.md`: se prepararon listado, búsqueda por nombres, apellidos o documento, paginación y documentación HTTP; el detalle proviene de EST-01.
 - Se prepararon casos unitarios para filtros, resultados vacíos, paginación e identificador inválido. No se ejecutaron por indicación del usuario de realizar las pruebas al final; los criterios siguen sin aprobarse.
-- La rama local `feature/est-02-consultar-estudiantes` parte provisionalmente de EST-01 porque esa base aún no está integrada en `devops`. El PR de EST-01 continúa registrado como borrador y GitHub CLI no tiene sesión autenticada. No se ha creado PR para EST-02.
+- La rama local `feature/est-02-consultar-estudiantes` parte provisionalmente de EST-01 porque esa base aún no está integrada en `devops`. El PR de EST-01 continúa registrado como borrador y GitHub CLI no tiene sesión autenticada. Se creó el PR #30 en borrador.
 - Siguiente paso: validar al final EST-01 y EST-02, integrar la base según el acuerdo de PR en borrador y preparar el PR de EST-02 con su destino y autenticación disponibles.
 
 ## 2026-11-17 — EST-03 en progreso
