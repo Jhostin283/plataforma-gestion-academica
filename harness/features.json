@@ -8,7 +8,7 @@
       "depends_on": [],
       "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/1",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/22",
       "evidence": [
         "mvn verify: 5 pruebas con H2; PostgreSQL y concurrencia pendientes."
       ],
