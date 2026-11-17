@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.academica.cursos.application.port.in.RegistrarCursoUseCase;
 import pe.academica.cursos.application.port.in.ConsultarCursoUseCase;
 import pe.academica.cursos.application.port.in.ListarCursosUseCase;
+import pe.academica.cursos.application.port.in.ActualizarCursoUseCase;
 import pe.academica.cursos.domain.Curso;
 import pe.academica.cursos.domain.PaginaCursos;
 import java.util.UUID;
@@ -21,8 +22,9 @@ class CursoController {
     private final RegistrarCursoUseCase registrar;
     private final ConsultarCursoUseCase consultar;
     private final ListarCursosUseCase listar;
-    CursoController(RegistrarCursoUseCase registrar, ConsultarCursoUseCase consultar, ListarCursosUseCase listar) {
-        this.registrar = registrar; this.consultar = consultar; this.listar = listar;
+    private final ActualizarCursoUseCase actualizar;
+    CursoController(RegistrarCursoUseCase registrar, ConsultarCursoUseCase consultar, ListarCursosUseCase listar, ActualizarCursoUseCase actualizar) {
+        this.registrar = registrar; this.consultar = consultar; this.listar = listar; this.actualizar = actualizar;
     }
 
     @Schema(example = "{\"codigo\":\"CUR-001\",\"nombre\":\"Java\",\"descripcion\":\"Fundamentos\",\"duracionHoras\":20,\"capacidad\":30}")
@@ -61,5 +63,17 @@ class CursoController {
                                         @RequestParam(defaultValue = "0") int page,
                                         @RequestParam(defaultValue = "20") int size) {
         return ResponseEntity.ok(listar.ejecutar(buscar, page, size));
+    }
+
+    @PutMapping("/{cursoId}")
+    @Operation(summary = "Actualizar curso", responses = {
+        @ApiResponse(responseCode="200", description="Curso actualizado"),
+        @ApiResponse(responseCode="400", description="ID o JSON inválido"),
+        @ApiResponse(responseCode="404", description="Curso inexistente"),
+        @ApiResponse(responseCode="409", description="Conflicto de código o capacidad"),
+        @ApiResponse(responseCode="422", description="Campos inválidos")})
+    ResponseEntity<Curso> actualizar(@PathVariable UUID cursoId, @Valid @RequestBody CrearCurso request) {
+        return ResponseEntity.ok(actualizar.ejecutar(cursoId, request.codigo(), request.nombre(),
+                request.descripcion(), request.duracionHoras(), request.capacidad()));
     }
 }

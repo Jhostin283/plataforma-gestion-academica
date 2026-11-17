@@ -10,6 +10,8 @@ import java.util.UUID;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import pe.academica.cursos.domain.PaginaCursos;
+import org.springframework.transaction.annotation.Transactional;
+import pe.academica.cursos.application.CursoNoEncontradoException;
 
 @Repository
 class PostgresCursoRepository implements CursoRepository {
@@ -22,6 +24,19 @@ class PostgresCursoRepository implements CursoRepository {
         var resultado = repository.buscar(buscar, PageRequest.of(page, size, Sort.by("codigo").ascending()));
         return new PaginaCursos(resultado.getContent().stream().map(CursoEntity::aDominio).toList(),
                 page, size, resultado.getTotalElements());
+    }
+    @Override @Transactional
+    public Curso actualizar(UUID id, String codigo, String nombre, String descripcion, int duracionHoras, int capacidad) {
+        CursoEntity actual = repository.buscarParaActualizar(id).orElseThrow(CursoNoEncontradoException::new);
+        // El control de reservas vigentes se incorpora junto con CUR-PLZ-01.
+        actual.codigo = codigo; actual.nombre = nombre; actual.descripcion = descripcion;
+        actual.duracionHoras = duracionHoras; actual.capacidad = capacidad;
+        try { return repository.saveAndFlush(actual).aDominio(); }
+        catch (DataIntegrityViolationException ex) {
+            if (ex.getMostSpecificCause().getMessage().toLowerCase().contains("uq_cursos_codigo"))
+                throw new CursoDuplicadoException();
+            throw ex;
+        }
     }
     @Override public Curso guardar(Curso curso) {
         try { repository.saveAndFlush(new CursoEntity(curso)); return curso; }

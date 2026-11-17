@@ -9,4 +9,5 @@ public interface CursoRepository {
     Curso guardar(Curso curso);
     Optional<Curso> buscarPorId(UUID id);
     PaginaCursos listar(String buscar, int page, int size);
+    Curso actualizar(UUID id, String codigo, String nombre, String descripcion, int duracionHoras, int capacidad);
 }
