@@ -26,7 +26,7 @@ Gestionar cursos desde el frontend para la plataforma de gestión académica.
 - Pruebas: Interfaz, API y accesibilidad.
 - Issue: [14](https://github.com/Jhostin283/plataforma-gestion-academica/issues/14).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; gestión preparada, validación pendiente.
 
 ## Pruebas relacionadas
 
