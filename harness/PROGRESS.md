@@ -69,7 +69,7 @@
 
 - Issue #8 y spec `specs/servicio-estudiantes/03-actualizar-estudiante.md`: se preparó PUT para actualizar datos conservando el estado, con manejo de documento duplicado y estudiante inexistente.
 - Se prepararon casos unitarios para actualización y rechazos. No se ejecutaron por indicación del usuario; persistencia, concurrencia y cobertura quedan pendientes de validación final.
-- La rama local `feature/est-03-actualizar-estudiante` parte provisionalmente de EST-02 y EST-01; ambas siguen pendientes de validación e integración. GitHub CLI sigue sin sesión autenticada; no se ha creado PR para EST-03.
+- La rama local `feature/est-03-actualizar-estudiante` parte provisionalmente de EST-02 y EST-01; ambas siguen pendientes de validación e integración. Se creó el PR #31 en borrador tras autenticar GitHub CLI.
 - Siguiente paso: revisar y publicar las ramas cuando exista acceso; ejecutar los criterios al final y mantener las tareas sin aprobar hasta entonces.
 
 ## Formato para próximas sesiones
