@@ -36,7 +36,7 @@ Consultar estudiantes para la plataforma de gestión académica.
 - Pruebas: API, filtros y casos vacíos.
 - Issue: [7](https://github.com/Jhostin283/plataforma-gestion-academica/issues/7).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; implementación y casos unitarios preparados, validación pendiente.
 
 ## Pruebas relacionadas
 
