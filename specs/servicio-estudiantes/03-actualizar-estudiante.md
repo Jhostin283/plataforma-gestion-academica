@@ -37,7 +37,7 @@ Actualizar estudiante para la plataforma de gestión académica.
 - Pruebas: API, unicidad y persistencia.
 - Issue: [8](https://github.com/Jhostin283/plataforma-gestion-academica/issues/8).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; implementación y casos unitarios preparados, validación pendiente.
 
 ## Pruebas relacionadas
 

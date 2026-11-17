@@ -3,7 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 from app.adapters.out.persistence.modelos import EstudianteModel
-from app.application.exception.errores import DocumentoDuplicado
+from app.application.exception.errores import DocumentoDuplicado, EstudianteNoEncontrado
 from app.domain.entity.estudiante import Estudiante
 
 
@@ -31,6 +31,21 @@ class SqlAlchemyEstudianteRepository:
     def buscar_por_id(self, estudiante_id: UUID) -> Estudiante | None:
         modelo = self.session.get(EstudianteModel, estudiante_id)
         return _dominio(modelo) if modelo else None
+
+    def actualizar(self, estudiante: Estudiante) -> Estudiante:
+        modelo = self.session.get(EstudianteModel, estudiante.id)
+        if modelo is None:
+            raise EstudianteNoEncontrado()
+        modelo.documento, modelo.nombres = estudiante.documento, estudiante.nombres
+        modelo.apellidos, modelo.correo = estudiante.apellidos, estudiante.correo
+        try:
+            self.session.commit()
+        except IntegrityError as exc:
+            self.session.rollback()
+            if getattr(getattr(exc.orig, "diag", None), "constraint_name", None) == "uq_estudiantes_documento":
+                raise DocumentoDuplicado() from exc
+            raise
+        return estudiante
 
     def listar(self, buscar: str | None, page: int, size: int) -> tuple[list[Estudiante], int]:
         filtros = []

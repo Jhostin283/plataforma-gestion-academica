@@ -65,6 +65,13 @@
 - La rama local `feature/est-02-consultar-estudiantes` parte provisionalmente de EST-01 porque esa base aún no está integrada en `devops`. El PR de EST-01 continúa registrado como borrador y GitHub CLI no tiene sesión autenticada. No se ha creado PR para EST-02.
 - Siguiente paso: validar al final EST-01 y EST-02, integrar la base según el acuerdo de PR en borrador y preparar el PR de EST-02 con su destino y autenticación disponibles.
 
+## 2026-11-17 — EST-03 en progreso
+
+- Issue #8 y spec `specs/servicio-estudiantes/03-actualizar-estudiante.md`: se preparó PUT para actualizar datos conservando el estado, con manejo de documento duplicado y estudiante inexistente.
+- Se prepararon casos unitarios para actualización y rechazos. No se ejecutaron por indicación del usuario; persistencia, concurrencia y cobertura quedan pendientes de validación final.
+- La rama local `feature/est-03-actualizar-estudiante` parte provisionalmente de EST-02 y EST-01; ambas siguen pendientes de validación e integración. GitHub CLI sigue sin sesión autenticada; no se ha creado PR para EST-03.
+- Siguiente paso: revisar y publicar las ramas cuando exista acceso; ejecutar los criterios al final y mantener las tareas sin aprobar hasta entonces.
+
 ## Formato para próximas sesiones
 
 ```text

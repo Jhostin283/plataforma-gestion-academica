@@ -19,6 +19,12 @@ class RepositorioSimulado:
     def buscar_por_id(self, estudiante_id):
         return self.estudiantes.get(estudiante_id)
 
+    def actualizar(self, estudiante):
+        if any(x.documento == estudiante.documento and x.id != estudiante.id for x in self.estudiantes.values()):
+            raise DocumentoDuplicado()
+        self.estudiantes[estudiante.id] = estudiante
+        return estudiante
+
     def listar(self, buscar, page, size):
         texto = (buscar or "").strip().casefold()
         resultados = sorted((x for x in self.estudiantes.values() if any(
@@ -82,5 +88,27 @@ def test_est_02_listado_filtros_y_paginacion():
         for parametros in ({"page": -1}, {"size": 0}, {"size": 101}, {"page": "x"}):
             assert client.get("/api/v1/estudiantes", params=parametros).status_code == 400
         assert client.get("/api/v1/estudiantes/no-es-uuid").status_code == 400
+    finally:
+        app.dependency_overrides.clear()
+
+
+def test_est_03_actualizacion_y_rechazos():
+    client, _ = cliente()
+    try:
+        original = {"documento": "123", "nombres": "Ana", "apellidos": "Pérez", "correo": "ana@example.com"}
+        otro = {**original, "documento": "456"}
+        ubicacion = client.post("/api/v1/estudiantes", json=original).headers["location"]
+        client.post("/api/v1/estudiantes", json=otro)
+        nuevos = {**original, "nombres": "María"}
+        actualizado = client.put(ubicacion, json=nuevos)
+        assert actualizado.status_code == 200
+        assert actualizado.json()["nombres"] == "María"
+        assert actualizado.json()["estado"] == "ACTIVO"
+        assert client.put(ubicacion, json={**nuevos, "documento": "456"}).status_code == 409
+        assert client.put(ubicacion, json={**nuevos, "correo": "inválido"}).status_code == 422
+        assert client.put(ubicacion, json={"documento": "123"}).status_code == 422
+        assert client.get(ubicacion).json()["nombres"] == "María"
+        assert client.put(f"/api/v1/estudiantes/{uuid4()}", json=nuevos).status_code == 404
+        assert client.put("/api/v1/estudiantes/invalido", json=nuevos).status_code == 400
     finally:
         app.dependency_overrides.clear()
