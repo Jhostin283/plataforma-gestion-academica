@@ -48,7 +48,7 @@ Crear matrícula para la plataforma de gestión académica.
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: Integración, concurrencia, idempotencia y compensación.
 - Issue: [10](https://github.com/Jhostin283/plataforma-gestion-academica/issues/10).
-- Pull request: pendiente.
+- Pull request: [#33](https://github.com/Jhostin283/plataforma-gestion-academica/pull/33) (borrador, avance parcial).
 - Estado: en progreso; cliente de reservas preparado, operación de matrícula y validación pendientes.
 
 ## Pruebas relacionadas
