@@ -36,7 +36,7 @@ Consultar matrículas para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, filtros e historial.
 - Issue: [11](https://github.com/Jhostin283/plataforma-gestion-academica/issues/11).
-- Pull request: pendiente.
+- Pull request: [#34](https://github.com/Jhostin283/plataforma-gestion-academica/pull/34) (borrador).
 - Estado: en progreso; filtros, detalle y casos preparados, validación pendiente.
 
 ## Pruebas relacionadas
