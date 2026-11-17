@@ -10,4 +10,5 @@ public interface CursoRepository {
     Optional<Curso> buscarPorId(UUID id);
     PaginaCursos listar(String buscar, int page, int size);
     Curso actualizar(UUID id, String codigo, String nombre, String descripcion, int duracionHoras, int capacidad);
+    Curso cambiarEstado(UUID id, String estado);
 }
