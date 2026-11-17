@@ -38,6 +38,14 @@ Cancelar matrícula para la plataforma de gestión académica.
 - Requisito: EST-MAT-03
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: Integración, idempotencia y recuperación.
-- Issue: pendiente.
+- Issue: [12](https://github.com/Jhostin283/plataforma-gestion-academica/issues/12).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
+
+- **PR-EST-MAT-03-03:** Cancelar matrícula inexistente, UUID inválido o estado incompatible.
+- **PR-EST-MAT-03-05:** Cancelar con reserva confirmada usando puertos simulados.
+- **PR-EST-MAT-03-06:** Simular fallo al liberar una reserva.

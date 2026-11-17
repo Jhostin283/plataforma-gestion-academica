@@ -39,6 +39,13 @@
 - Se preparó la rama `main` y el commit inicial con la estructura, los specs y el harness.
 - Pendiente: configurar el remoto y autenticar GitHub para subirlo; después crear el primer issue.
 
+## 2026-11-17 — Reinicio de la estrategia
+
+- Se restableció la base y se preparó una estrategia centrada exclusivamente en pruebas unitarias; no se ha implementado ningún servicio en esta base.
+- Se sincronizaron los identificadores simplificados, el banco de pruebas y los enlaces a los 20 issues existentes. Todos los estados siguen pendientes.
+- Las pruebas unitarias no demuestran persistencia, migraciones ni concurrencia reales; esos criterios permanecen en los specs y no se deben declarar verificados mediante mocks.
+- Siguiente paso: sincronizar `devops` con esta base y empezar la tarea correctiva acordada.
+
 ## Formato para próximas sesiones
 
 ```text

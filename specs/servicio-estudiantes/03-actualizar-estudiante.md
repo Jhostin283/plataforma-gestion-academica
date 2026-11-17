@@ -1,4 +1,4 @@
-# EST-EST-03: Actualizar estudiante
+# EST-03: Actualizar estudiante
 
 ## Objetivo
 Actualizar estudiante para la plataforma de gestión académica.
@@ -32,9 +32,17 @@ Actualizar estudiante para la plataforma de gestión académica.
 - El contrato y las pruebas cubren cada respuesta; los errores no muestran trazas internas.
 
 ## Trazabilidad
-- Requisito: EST-EST-03
+- Requisito: EST-03
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, unicidad y persistencia.
-- Issue: pendiente.
+- Issue: [8](https://github.com/Jhostin283/plataforma-gestion-academica/issues/8).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
+
+- **PR-EST-03-03:** Enviar correo inválido o cuerpo incompleto.
+- **PR-EST-03-04:** Actualizar ID inexistente o inválido.
+- **PR-EST-03-06:** Actualizar un estudiante con repositorio simulado.

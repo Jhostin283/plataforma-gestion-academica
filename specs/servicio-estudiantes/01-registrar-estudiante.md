@@ -1,4 +1,4 @@
-# EST-EST-01: Registrar estudiante
+# EST-01: Registrar estudiante
 
 ## Objetivo
 Registrar estudiante para la plataforma de gestión académica.
@@ -32,9 +32,18 @@ Registrar estudiante para la plataforma de gestión académica.
 - Un rechazo no registra datos parciales; los errores siguen las [convenciones](../convenciones-api.md).
 
 ## Trazabilidad
-- Requisito: EST-EST-01
+- Requisito: EST-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, validación y PostgreSQL.
-- Issue: pendiente.
+- Issue: [6](https://github.com/Jhostin283/plataforma-gestion-academica/issues/6).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
+
+- **PR-EST-01-02:** Omitir datos o enviar correo inválido.
+- **PR-EST-01-04:** Enviar JSON malformado.
+- **PR-EST-01-05:** Registrar estudiante válido con repositorio simulado.
+- **PR-EST-01-06:** Simular conflicto de documento en el repositorio.

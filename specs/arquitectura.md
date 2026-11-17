@@ -42,6 +42,28 @@ HTTP / controladores   →   Casos de uso → Dominio   →   PostgreSQL
 - **Adaptadores de salida:** implementan los puertos de persistencia y comunicación. Por ejemplo, un repositorio PostgreSQL o el cliente HTTP del servicio de cursos.
 - **Configuración:** ensambla las dependencias mediante los mecanismos de cada framework. Las dependencias del código apuntan hacia el núcleo: este no importa adaptadores concretos.
 
+### Estructura de paquetes
+
+Cada servicio organiza su código con esta estructura conceptual; la sintaxis concreta de paquetes se adapta al lenguaje:
+
+```text
+servicio/
+├── domain/                    # Modelos y reglas de negocio
+├── application/
+│   ├── port/
+│   │   ├── in/                # Contratos de casos de uso
+│   │   └── out/               # Contratos para persistencia y servicios externos
+│   └── ...                    # Implementaciones de casos de uso
+└── adapters/
+    ├── in/
+    │   └── web/               # Controladores HTTP y DTO de entrada
+    └── out/
+        ├── persistence/       # Implementación de los puertos de datos
+        └── ...                # Otros adaptadores, como clientes HTTP
+```
+
+Por ejemplo, el controlador de cursos invoca el puerto de entrada `RegistrarCursoUseCase`. El caso de uso implementa ese puerto y depende del puerto de salida `CursoRepository`; el adaptador de persistencia implementa este último. No todos los servicios necesitan los mismos adaptadores: se crean según sus dependencias reales.
+
 Las transacciones locales se delimitan al coordinar cada caso de uso. Las operaciones distribuidas conservan sus estados y mecanismos de recuperación; la arquitectura hexagonal no crea una transacción entre servicios. Usa puertos y adaptadores donde exista una dependencia real, sin añadir abstracciones innecesarias. No se comparten entidades ni bases entre servicios.
 
 ## Flujo de matrícula

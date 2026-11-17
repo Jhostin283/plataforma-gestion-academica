@@ -1,4 +1,4 @@
-# CUR-CUR-01: Registrar curso
+# CUR-01: Registrar curso
 
 ## Objetivo
 Registrar curso para la plataforma de gestión académica.
@@ -34,9 +34,21 @@ Registrar curso para la plataforma de gestión académica.
 - La documentación OpenAPI incluye ejemplo de cuerpo, respuestas y errores.
 
 ## Trazabilidad
-- Requisito: CUR-CUR-01
+- Requisito: CUR-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, validación y persistencia PostgreSQL.
-- Issue: pendiente.
+- Issue: [1](https://github.com/Jhostin283/plataforma-gestion-academica/issues/1).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
+
+- **PR-CUR-01-01:** Enviar un curso válido al controlador con el caso de uso simulado.
+- **PR-CUR-01-02:** Simular conflicto de código duplicado en el caso de uso.
+- **PR-CUR-01-03:** Omitir campo obligatorio o usar duración/capacidad no positivas.
+- **PR-CUR-01-04:** Enviar JSON malformado.
+- **PR-CUR-01-06:** Simular fallo de persistencia al registrar el curso.
+- **PR-CUR-01-07:** Registrar un curso con repositorio simulado y espacios en código y nombre.
+- **PR-CUR-01-08:** Simular que el repositorio informa un código duplicado.

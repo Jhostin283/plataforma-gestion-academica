@@ -47,6 +47,15 @@ Crear matrícula para la plataforma de gestión académica.
 - Requisito: EST-MAT-01
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: Integración, concurrencia, idempotencia y compensación.
-- Issue: pendiente.
+- Issue: [10](https://github.com/Jhostin283/plataforma-gestion-academica/issues/10).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
+
+- **PR-EST-MAT-01-04:** Enviar JSON, UUID o clave inválidos, o campos ausentes.
+- **PR-EST-MAT-01-10:** Simular estudiante inactivo o matrícula duplicada.
+- **PR-EST-MAT-01-11:** Simular reserva confirmada y persistencia exitosa.
+- **PR-EST-MAT-01-12:** Simular fallo de registro tras reservar.

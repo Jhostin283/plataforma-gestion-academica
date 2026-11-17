@@ -23,6 +23,13 @@ Consultar panel principal para la plataforma de gestión académica.
 - Requisito: WEB-PAN-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Interfaz, integración y accesibilidad.
-- Issue: pendiente.
+- Issue: [13](https://github.com/Jhostin283/plataforma-gestion-academica/issues/13).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
+
+- **PR-WEB-PAN-01-01:** Abrir panel con datos conocidos en las API.
+- **PR-WEB-PAN-01-02:** Simular API caída o sin registros.

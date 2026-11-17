@@ -8,6 +8,8 @@ El seguimiento inicial está disponible en [harness/WORKFLOW.md](harness/WORKFLO
 
 La [arquitectura propuesta](specs/arquitectura.md) describe los componentes, la comunicación entre servicios, el flujo de matrícula y el despliegue. El [índice de specs](specs/INDICE.md) relaciona cada funcionalidad con su tarea del harness.
 
+El [banco de pruebas](pruebas/BANCO-DE-PRUEBAS.md) contiene casos unitarios planificados para backend y frontend. Las pruebas usarán dependencias simuladas, sin contenedores ni bases reales para calcular la cobertura.
+
 Con Python 3 instalado, ejecuta `python harness/init.py` para verificar el harness sin instalar dependencias ni crear infraestructura. El workflow `harness.yml` valida el catálogo en GitHub Actions mediante ejecución manual (`workflow_dispatch`); aún no implementa el CI de las aplicaciones ni publica imágenes. Crea cada issue a partir de una tarea y vincúlalo a su pull request siguiendo el flujo del harness.
 
 ## Problemática
@@ -126,9 +128,9 @@ Cada servicio debe alcanzar una **cobertura de líneas superior al 80 %** de su 
 
 | ID de ejemplo | Requisito | Evidencia esperada | Estado |
 | --- | --- | --- | --- |
-| CUR-CUR-01 | Registrar cursos | Pruebas de API y persistencia | Pendiente |
+| CUR-01 | Registrar cursos | Pruebas de API y persistencia | Pendiente |
 | CUR-PLZ-01 | Reservar y liberar plazas | Pruebas de concurrencia e idempotencia | Pendiente |
-| EST-EST-01 | Registrar estudiantes | Pruebas de API y persistencia | Pendiente |
+| EST-01 | Registrar estudiantes | Pruebas de API y persistencia | Pendiente |
 | EST-MAT-01 | Crear matrículas | Pruebas de integración, fallos y compensación | Pendiente |
 | INF-CI-01 | Automatizar CI y publicar en ECR | Pruebas, cobertura y publicación | Pendiente |
 

@@ -39,6 +39,15 @@ Reservar y liberar plazas para la plataforma de gestión académica.
 - Requisito: CUR-PLZ-01
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: PostgreSQL, concurrencia, contrato e idempotencia.
-- Issue: pendiente.
+- Issue: [5](https://github.com/Jhostin283/plataforma-gestion-academica/issues/5).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
+
+- **PR-CUR-PLZ-01-05:** Reservar en curso inexistente, inactivo o lleno.
+- **PR-CUR-PLZ-01-08:** Usar clave, UUID o reserva inexistente inválidos.
+- **PR-CUR-PLZ-01-09:** Simular curso lleno y solicitar reserva.
+- **PR-CUR-PLZ-01-10:** Simular reserva existente para la misma clave.

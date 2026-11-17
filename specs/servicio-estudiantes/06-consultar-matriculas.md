@@ -35,6 +35,14 @@ Consultar matrículas para la plataforma de gestión académica.
 - Requisito: EST-MAT-02
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, filtros e historial.
-- Issue: pendiente.
+- Issue: [11](https://github.com/Jhostin283/plataforma-gestion-academica/issues/11).
 - Pull request: pendiente.
 - Estado: pendiente.
+
+## Pruebas relacionadas
+
+Casos unitarios planificados en el [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md):
+
+- **PR-EST-MAT-02-02:** Consultar sin coincidencias o con paginación inválida.
+- **PR-EST-MAT-02-03:** Consultar detalle existente, inexistente y UUID inválido.
+- **PR-EST-MAT-02-05:** Consultar matrículas con puerto de repositorio simulado.
