@@ -76,7 +76,7 @@
 
 - Issue #9 y spec `specs/servicio-estudiantes/04-cambiar-estado.md`: se preparó el cambio de estado y casos unitarios para repetición, valores inválidos e ID inválido o inexistente.
 - Las pruebas no se ejecutaron por indicación del usuario; persistencia, conservación del historial y cobertura siguen pendientes. La regla de rechazo de matrícula para estudiantes inactivos depende de EST-MAT-01, aún pendiente.
-- La rama parte provisionalmente de EST-03 y sus dependencias; la integración en `devops` se posterga hasta la validación final.
+- PR #32 en borrador hacia `devops`; la rama parte provisionalmente de EST-03 y sus dependencias. La integración se posterga hasta la validación final.
 
 ## Formato para próximas sesiones
 
