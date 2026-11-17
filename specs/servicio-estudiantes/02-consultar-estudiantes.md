@@ -35,7 +35,7 @@ Consultar estudiantes para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, filtros y casos vacíos.
 - Issue: [7](https://github.com/Jhostin283/plataforma-gestion-academica/issues/7).
-- Pull request: pendiente.
+- Pull request: [#30](https://github.com/Jhostin283/plataforma-gestion-academica/pull/30) (borrador).
 - Estado: en progreso; implementación y casos unitarios preparados, validación pendiente.
 
 ## Pruebas relacionadas
