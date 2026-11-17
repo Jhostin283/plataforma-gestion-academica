@@ -1,0 +1,29 @@
+# WEB-MAT-01: Gestionar matrículas desde el frontend
+
+## Objetivo
+Gestionar matrículas desde el frontend para la plataforma de gestión académica.
+
+## Precondiciones
+- Las API y el frontend están disponibles.
+
+## Flujo principal
+1. Seleccionar estudiante y curso.
+2. Consultar plazas y solicitar matrícula.
+3. Consultar historial o cancelar una matrícula.
+
+## Casos alternativos
+- Duplicado o curso lleno: mostrar el motivo.
+- Respuesta incierta: mostrar estado pendiente sin afirmar éxito.
+
+## Criterios de aceptación
+- Es posible matricular, consultar y cancelar.
+- La interfaz comunica errores y estados correctamente.
+- El flujo funciona con teclado y en móvil.
+
+## Trazabilidad
+- Requisito: WEB-MAT-01
+- Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
+- Pruebas: Interfaz, integración y accesibilidad.
+- Issue: pendiente.
+- Pull request: pendiente.
+- Estado: pendiente.

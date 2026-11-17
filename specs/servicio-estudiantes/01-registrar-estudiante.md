@@ -1,0 +1,40 @@
+# EST-EST-01: Registrar estudiante
+
+## Objetivo
+Registrar estudiante para la plataforma de gestión académica.
+
+## Precondiciones
+- El administrador dispone de documento, nombres, apellidos y correo.
+
+## Flujo principal
+1. Ingresar los datos.
+2. Validar campos, correo y documento único.
+3. Guardar y confirmar el registro.
+
+## Casos alternativos
+- Documento duplicado o datos inválidos: rechazar.
+- Fallo de almacenamiento: informar sin confirmar.
+
+## Criterios de aceptación
+- El estudiante válido se registra y se puede consultar.
+- Se rechazan duplicados y valores inválidos.
+- Los datos persisten en la base propia.
+
+## Endpoint propuesto
+
+`POST /api/v1/estudiantes` recibe `documento`, `nombres`, `apellidos` y `correo`; crea un estudiante `ACTIVO`. Devuelve `201` con `id`, datos creados y `Location` al detalle.
+
+- `400`: JSON malformado. `422`: campos faltantes, vacíos o correo inválido. `409`: documento duplicado.
+
+## Criterios adicionales de aceptación
+
+- Solicitudes concurrentes con el mismo documento crean como máximo un estudiante.
+- Un rechazo no registra datos parciales; los errores siguen las [convenciones](../convenciones-api.md).
+
+## Trazabilidad
+- Requisito: EST-EST-01
+- Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
+- Pruebas: API, validación y PostgreSQL.
+- Issue: pendiente.
+- Pull request: pendiente.
+- Estado: pendiente.

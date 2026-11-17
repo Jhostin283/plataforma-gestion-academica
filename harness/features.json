@@ -1,0 +1,273 @@
+{
+  "version": 1,
+  "features": [
+    {
+      "id": "CUR-CUR-01",
+      "title": "Registrar curso",
+      "spec": "specs/servicio-cursos/01-registrar-curso.md",
+      "depends_on": [],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "CUR-CUR-02",
+      "title": "Consultar cursos",
+      "spec": "specs/servicio-cursos/02-consultar-cursos.md",
+      "depends_on": [
+        "CUR-CUR-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "CUR-CUR-03",
+      "title": "Actualizar curso",
+      "spec": "specs/servicio-cursos/03-actualizar-curso.md",
+      "depends_on": [
+        "CUR-CUR-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "CUR-CUR-04",
+      "title": "Cambiar estado del curso",
+      "spec": "specs/servicio-cursos/04-cambiar-estado.md",
+      "depends_on": [
+        "CUR-CUR-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "CUR-PLZ-01",
+      "title": "Reservar y liberar plazas",
+      "spec": "specs/servicio-cursos/05-reservar-liberar-plazas.md",
+      "depends_on": [
+        "CUR-CUR-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "EST-EST-01",
+      "title": "Registrar estudiante",
+      "spec": "specs/servicio-estudiantes/01-registrar-estudiante.md",
+      "depends_on": [],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "EST-EST-02",
+      "title": "Consultar estudiantes",
+      "spec": "specs/servicio-estudiantes/02-consultar-estudiantes.md",
+      "depends_on": [
+        "EST-EST-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "EST-EST-03",
+      "title": "Actualizar estudiante",
+      "spec": "specs/servicio-estudiantes/03-actualizar-estudiante.md",
+      "depends_on": [
+        "EST-EST-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "EST-EST-04",
+      "title": "Cambiar estado del estudiante",
+      "spec": "specs/servicio-estudiantes/04-cambiar-estado.md",
+      "depends_on": [
+        "EST-EST-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "EST-MAT-01",
+      "title": "Crear matrícula",
+      "spec": "specs/servicio-estudiantes/05-crear-matricula.md",
+      "depends_on": [
+        "EST-EST-01",
+        "CUR-PLZ-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "EST-MAT-02",
+      "title": "Consultar matrículas",
+      "spec": "specs/servicio-estudiantes/06-consultar-matriculas.md",
+      "depends_on": [
+        "EST-MAT-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "EST-MAT-03",
+      "title": "Cancelar matrícula",
+      "spec": "specs/servicio-estudiantes/07-cancelar-matricula.md",
+      "depends_on": [
+        "EST-MAT-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "WEB-PAN-01",
+      "title": "Consultar panel principal",
+      "spec": "specs/frontend/01-panel.md",
+      "depends_on": [
+        "CUR-CUR-02",
+        "EST-EST-02",
+        "EST-MAT-02"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "WEB-CUR-01",
+      "title": "Gestionar cursos desde el frontend",
+      "spec": "specs/frontend/02-cursos.md",
+      "depends_on": [
+        "CUR-CUR-02",
+        "CUR-CUR-03",
+        "CUR-CUR-04"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "WEB-EST-01",
+      "title": "Gestionar estudiantes desde el frontend",
+      "spec": "specs/frontend/03-estudiantes.md",
+      "depends_on": [
+        "EST-EST-02",
+        "EST-EST-03",
+        "EST-EST-04"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "WEB-MAT-01",
+      "title": "Gestionar matrículas desde el frontend",
+      "spec": "specs/frontend/04-matriculas.md",
+      "depends_on": [
+        "EST-MAT-02",
+        "EST-MAT-03",
+        "CUR-PLZ-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "INF-LOC-01",
+      "title": "Preparar contenedores y ejecución local",
+      "spec": "specs/infraestructura/01-contenedores.md",
+      "depends_on": [
+        "CUR-CUR-01",
+        "EST-EST-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "INF-CI-01",
+      "title": "Configurar CI y publicación en ECR",
+      "spec": "specs/infraestructura/02-github-actions-ecr.md",
+      "depends_on": [
+        "INF-LOC-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "INF-K8S-01",
+      "title": "Definir recursos Kubernetes",
+      "spec": "specs/infraestructura/03-kubernetes.md",
+      "depends_on": [
+        "INF-LOC-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "INF-CD-01",
+      "title": "Desplegar en EKS con Argo CD",
+      "spec": "specs/infraestructura/04-aws-argocd.md",
+      "depends_on": [
+        "INF-CI-01",
+        "INF-K8S-01",
+        "WEB-MAT-01"
+      ],
+      "status": "pending",
+      "issue": null,
+      "pr": null,
+      "evidence": [],
+      "blocked_reason": null
+    }
+  ]
+}
