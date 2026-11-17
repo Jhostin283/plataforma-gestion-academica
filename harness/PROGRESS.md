@@ -62,6 +62,13 @@
 - Pendiente: verificar migración y persistencia con PostgreSQL, duplicados concurrentes y comportamiento tras reinicio; completar la consulta de detalle de CUR-02. Docker no respondió durante la verificación.
 - Estado: `in_progress`. No se cierran el issue ni el PR hasta reunir las evidencias pendientes.
 
+## 2026-11-17 — Pruebas de CUR-01 con PostgreSQL
+
+- `mvn clean verify` con PostgreSQL 16 temporal: siete pruebas pasaron, incluidas migración Flyway, registro y solicitudes simultáneas con código duplicado. Las otras pruebas usan H2.
+- JaCoCo reportó 28 de 30 líneas cubiertas (93,33 %) en el código actual del servicio; es una medición inicial, no la cobertura de funcionalidades aún no implementadas.
+- Al reiniciar el contenedor PostgreSQL, los dos registros de prueba permanecieron. Esto comprueba la persistencia de la base tras su reinicio, no el reinicio completo del servicio.
+- Pendiente para CUR-01: consulta de detalle, prevista en CUR-02, y comprobación de reinicio completo de la aplicación. Estado `in_progress`.
+
 ## Formato para próximas sesiones
 
 ```text

@@ -39,11 +39,11 @@ Registrar curso para la plataforma de gestión académica.
 - Pruebas: API, validación y persistencia PostgreSQL.
 - Issue: [1](https://github.com/Jhostin283/plataforma-gestion-academica/issues/1).
 - Pull request: [#22](https://github.com/Jhostin283/plataforma-gestion-academica/pull/22) (borrador).
-- Estado: en progreso; pruebas con PostgreSQL y concurrencia pendientes.
+- Estado: en progreso; falta la consulta de detalle y comprobar el reinicio completo de la aplicación.
 
 ## Pruebas relacionadas
 
-Casos del [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md): las pruebas iniciales con H2 cubren creación, duplicado secuencial, validación y JSON inválido. La validación con PostgreSQL y concurrencia sigue pendiente.
+Casos del [banco de pruebas](../../pruebas/BANCO-DE-PRUEBAS.md): se ejecutaron las pruebas de creación y concurrencia con PostgreSQL; creación, duplicado secuencial, validación y JSON inválido también se comprobaron con H2. Falta verificar consulta de detalle y reinicio completo de la aplicación.
 
 - **PR-CUR-01-01:** Enviar un curso válido a `POST /api/v1/cursos`.
 - **PR-CUR-01-02:** Enviar código ya registrado.

@@ -4,7 +4,7 @@ El estado de cada fila debe coincidir con `features.json`. Agrega enlaces y evid
 
 | ID | Spec | Issue | PR | Evidencia | Estado |
 | --- | --- | --- | --- | --- | --- |
-| CUR-01 | [Abrir](../specs/servicio-cursos/01-registrar-curso.md) | [#1](https://github.com/Jhostin283/plataforma-gestion-academica/issues/1) | [#22](https://github.com/Jhostin283/plataforma-gestion-academica/pull/22) | 5 pruebas H2; PostgreSQL pendiente | in_progress |
+| CUR-01 | [Abrir](../specs/servicio-cursos/01-registrar-curso.md) | [#1](https://github.com/Jhostin283/plataforma-gestion-academica/issues/1) | [#22](https://github.com/Jhostin283/plataforma-gestion-academica/pull/22) | 7 pruebas H2/PostgreSQL; detalle pendiente | in_progress |
 | CUR-02 | [Abrir](../specs/servicio-cursos/02-consultar-cursos.md) | [#2](https://github.com/Jhostin283/plataforma-gestion-academica/issues/2) | Pendiente | Pendiente | pending |
 | CUR-03 | [Abrir](../specs/servicio-cursos/03-actualizar-curso.md) | [#3](https://github.com/Jhostin283/plataforma-gestion-academica/issues/3) | Pendiente | Pendiente | pending |
 | CUR-04 | [Abrir](../specs/servicio-cursos/04-cambiar-estado.md) | [#4](https://github.com/Jhostin283/plataforma-gestion-academica/issues/4) | Pendiente | Pendiente | pending |
