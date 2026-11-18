@@ -67,6 +67,11 @@
 - Se implementó la actualización de los datos del curso y casos unitarios del caso de uso.
 - El control de capacidad con reservas queda vinculado a CUR-PLZ-01.
 
+## 2026-11-17 — CUR-04 en progreso
+
+- Se implementó el cambio de estado del curso y casos unitarios asociados.
+- La restricción de reservas de cursos inactivos depende de CUR-PLZ-01.
+
 ## Formato para próximas sesiones
 
 ```text

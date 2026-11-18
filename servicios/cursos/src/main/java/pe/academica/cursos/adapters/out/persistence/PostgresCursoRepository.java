@@ -38,6 +38,12 @@ class PostgresCursoRepository implements CursoRepository {
             throw ex;
         }
     }
+    @Override @Transactional
+    public Curso cambiarEstado(UUID id, String estado) {
+        CursoEntity actual = repository.buscarParaActualizar(id).orElseThrow(CursoNoEncontradoException::new);
+        actual.estado = estado;
+        return repository.saveAndFlush(actual).aDominio();
+    }
     @Override public Curso guardar(Curso curso) {
         try { repository.saveAndFlush(new CursoEntity(curso)); return curso; }
         catch (DataIntegrityViolationException ex) {

@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import pe.academica.cursos.application.port.in.ConsultarCursoUseCase;
 import pe.academica.cursos.application.port.in.RegistrarCursoUseCase;
 import pe.academica.cursos.application.port.in.ListarCursosUseCase;
 import pe.academica.cursos.application.port.in.ActualizarCursoUseCase;
+import pe.academica.cursos.application.port.in.CambiarEstadoCursoUseCase;
 import pe.academica.cursos.domain.PaginaCursos;
 import java.util.List;
 
@@ -31,15 +33,17 @@ class CursoControllerErrorTest {
     ConsultarCursoUseCase consultar;
     ListarCursosUseCase listar;
     ActualizarCursoUseCase actualizar;
+    CambiarEstadoCursoUseCase cambiarEstado;
 
     @BeforeEach void configurar() {
         registrar = mock(RegistrarCursoUseCase.class);
         consultar = mock(ConsultarCursoUseCase.class);
         listar = mock(ListarCursosUseCase.class);
         actualizar = mock(ActualizarCursoUseCase.class);
+        cambiarEstado = mock(CambiarEstadoCursoUseCase.class);
         var validator = new LocalValidatorFactoryBean();
         validator.afterPropertiesSet();
-        mvc = MockMvcBuilders.standaloneSetup(new CursoController(registrar, consultar, listar, actualizar))
+        mvc = MockMvcBuilders.standaloneSetup(new CursoController(registrar, consultar, listar, actualizar, cambiarEstado))
                 .setControllerAdvice(new ApiExceptionHandler()).setValidator(validator).build();
     }
 
@@ -52,6 +56,15 @@ class CursoControllerErrorTest {
                 .andExpect(jsonPath("$.total").value(0));
         mvc.perform(get("/api/v1/cursos").param("page", "abc"))
                 .andExpect(status().isBadRequest()).andExpect(jsonPath("$.codigo").value("PARAMETRO_INVALIDO"));
+    }
+
+    @Test void cambiaEstadoYRechazaValoresInvalidos() throws Exception {
+        UUID id = UUID.randomUUID();
+        when(cambiarEstado.ejecutar(id, "INACTIVO")).thenReturn(new Curso(id, "C1", "Java", "Curso", 20, 15, "INACTIVO"));
+        mvc.perform(patch("/api/v1/cursos/" + id + "/estado").contentType(MediaType.APPLICATION_JSON).content("{\"estado\":\"INACTIVO\"}"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.estado").value("INACTIVO"));
+        mvc.perform(patch("/api/v1/cursos/" + id + "/estado").contentType(MediaType.APPLICATION_JSON).content("{\"estado\":\"OTRO\"}"))
+                .andExpect(status().isUnprocessableEntity());
     }
 
     @Test void registroExitosoDevuelveLocationYEstado() throws Exception {
