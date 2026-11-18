@@ -124,6 +124,12 @@
 - Se preparó un caso para respuesta 202 sin ejecutarlo por indicación del usuario. Faltan pruebas de creación confirmada, errores y cancelación, compilación, accesibilidad e integración; no se declaran criterios aprobados.
 - La rama parte de los PR previos de frontend y matrículas, aún en borrador.
 
+## 2026-11-17 — INF-LOC-01 en progreso
+
+- Issue #17 y spec `specs/infraestructura/01-contenedores.md`: se prepararon Dockerfiles, Compose con dos bases y volúmenes separados, migración de estudiantes y proxy de frontend; no se incluyeron credenciales reales.
+- No se construyeron ni ejecutaron imágenes ni se comprobaron migraciones o persistencia por indicación de reservar las pruebas para el final. El código de cursos se encuentra en una cadena separada aún en borrador, por lo que esta rama no dispone del contexto de construcción completo.
+- Pendiente: integrar dependencias en una revisión y validar el entorno completo; no se declaran criterios aprobados.
+
 ## Formato para próximas sesiones
 
 ```text

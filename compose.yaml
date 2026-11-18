@@ -1,0 +1,58 @@
+services:
+  db-cursos:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: cursos
+      POSTGRES_USER: cursos
+      POSTGRES_PASSWORD: ${CURSOS_DB_PASSWORD:?Defina CURSOS_DB_PASSWORD}
+    volumes: [cursos-data:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U cursos -d cursos"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  db-estudiantes:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: estudiantes
+      POSTGRES_USER: estudiantes
+      POSTGRES_PASSWORD: ${ESTUDIANTES_DB_PASSWORD:?Defina ESTUDIANTES_DB_PASSWORD}
+    volumes: [estudiantes-data:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U estudiantes -d estudiantes"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  cursos:
+    build: ./servicios/cursos
+    environment:
+      CURSOS_DB_URL: jdbc:postgresql://db-cursos:5432/cursos
+      CURSOS_DB_USER: cursos
+      CURSOS_DB_PASSWORD: ${CURSOS_DB_PASSWORD:?Defina CURSOS_DB_PASSWORD}
+    depends_on:
+      db-cursos:
+        condition: service_healthy
+  migrar-estudiantes:
+    build: ./servicios/estudiantes
+    command: [alembic, upgrade, head]
+    environment:
+      ESTUDIANTES_DB_URL: ${ESTUDIANTES_DB_URL:?Defina ESTUDIANTES_DB_URL}
+    depends_on:
+      db-estudiantes:
+        condition: service_healthy
+    restart: 'no'
+  estudiantes:
+    build: ./servicios/estudiantes
+    environment:
+      ESTUDIANTES_DB_URL: ${ESTUDIANTES_DB_URL:?Defina ESTUDIANTES_DB_URL}
+      CURSOS_BASE_URL: http://cursos:8080
+    depends_on:
+      migrar-estudiantes:
+        condition: service_completed_successfully
+  frontend:
+    build: ./frontend
+    ports: ['127.0.0.1:8080:8080']
+    depends_on: [cursos, estudiantes]
+volumes:
+  cursos-data:
+  estudiantes-data:

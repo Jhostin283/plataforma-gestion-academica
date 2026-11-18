@@ -222,7 +222,7 @@
         "CUR-01",
         "EST-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/17",
       "pr": null,
       "evidence": [],
