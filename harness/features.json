@@ -6,10 +6,12 @@
       "title": "Registrar curso",
       "spec": "specs/servicio-cursos/01-registrar-curso.md",
       "depends_on": [],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/1",
-      "pr": null,
-      "evidence": [],
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/24",
+      "evidence": [
+        "12 pruebas unitarias aprobadas; se verificaron los 7 casos del banco vinculados a CUR-01."
+      ],
       "blocked_reason": null
     },
     {
@@ -19,9 +21,9 @@
       "depends_on": [
         "CUR-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/2",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/25",
       "evidence": [],
       "blocked_reason": null
     },
@@ -32,9 +34,9 @@
       "depends_on": [
         "CUR-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/3",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/26",
       "evidence": [],
       "blocked_reason": null
     },
@@ -45,9 +47,9 @@
       "depends_on": [
         "CUR-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/4",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/27",
       "evidence": [],
       "blocked_reason": null
     },
@@ -58,9 +60,9 @@
       "depends_on": [
         "CUR-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/5",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/28",
       "evidence": [],
       "blocked_reason": null
     },
