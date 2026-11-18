@@ -215,6 +215,30 @@
 - Cursos ejecutó 34 pruebas con un error en la preparación de un mock de `PostgresCursoRepositoryTest.actualizarTraduceSoloConflictoDeCodigo`. La ejecución se detuvo antes de calcular su cobertura.
 - Se preparó una corrección del mock en una rama nueva; aún no se ha ejecutado. Ninguna tarea se declara aprobada por estos resultados.
 
+## 2026-11-17 — INF-LOC-01: ejecución local
+
+- Se construyeron y arrancaron los servicios y dos bases mediante Docker Compose en un proyecto local aislado; la migración de estudiantes terminó y el frontend abrió correctamente.
+- Se registraron un curso y un estudiante, se confirmó una matrícula, se repitió la solicitud con la misma clave y se canceló. Los tres registros se consultaron tras reiniciar servicios y bases. Detalle en `harness/evidencia/inf-loc-01-2026-11-17.md`.
+- La instalación del frontend informó seis vulnerabilidades de dependencias (tres moderadas, una alta y dos críticas); su alcance y solución están pendientes de análisis. Persistencia bajo fallos, concurrencia, ausencia de secretos en imágenes y despliegue siguen sin comprobarse completamente.
+
+## 2026-11-17 — Evidencia de pruebas de aplicación
+
+- El usuario indica que probó la aplicación y que funciona; no se han proporcionado detalles de cada criterio de aceptación ni evidencia de un despliegue EKS.
+- La [ejecución CI](https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44210749208) correspondiente al PR #46 terminó correctamente: cursos 34 pruebas y 87,50 % de líneas, estudiantes 31 pruebas y 81,18 %, frontend 5 pruebas y compilación.
+- Persistencia y flujo local observados en `harness/evidencia/inf-loc-01-2026-11-17.md`. La verificación de cada criterio restante y del entorno de despliegue permanece pendiente.
+
+## 2026-11-17 — CUR-PLZ-01: verificación local
+
+- En PostgreSQL local se verificaron 10 rondas de dos solicitudes por la última plaza: cada ronda produjo una reserva `201` y un conflicto `409`. Dos solicitudes simultáneas con la misma clave respondieron `201` y `200` para una única reserva.
+- También se verificaron consulta, reintento, liberación repetida, errores y contrato OpenAPI. El primer intento de consultar OpenAPI usó una ruta incorrecta y recibió `404`; la consulta corregida respondió `200`. Resultados en `harness/evidencia/cur-plz-01-concurrencia.txt`.
+- La suite de cursos del PR #46 tuvo 34 pruebas satisfactorias y 87,50 % de cobertura de líneas. CUR-PLZ-01 permanece `in_progress` mientras CUR-01, su dependencia, no esté aprobada.
+
+## 2026-11-17 — CUR-01: fallo de persistencia detectado
+
+- Registro local concurrente con el mismo código produjo `201` y `409`, una única fila, validación `422`, JSON malformado `400` y OpenAPI `200`.
+- Al detener temporalmente la base local, el servicio devolvió `500` en vez de `503`; el registro no pudo confirmarse. La base fue restaurada. Evidencia: `harness/evidencia/cur-01-registro-local.txt`.
+- CUR-01 y su dependiente CUR-PLZ-01 permanecen `in_progress` hasta corregir y verificar este comportamiento.
+
 ## Formato para próximas sesiones
 
 ```text

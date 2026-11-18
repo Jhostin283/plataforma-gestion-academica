@@ -10,7 +10,8 @@
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/1",
       "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/24",
       "evidence": [
-        "12 pruebas unitarias aprobadas; se verificaron los 7 casos del banco vinculados a CUR-01."
+        "12 pruebas unitarias aprobadas; se verificaron los 7 casos del banco vinculados a CUR-01.",
+        "2026-11-17: registro concurrente, validaciones y OpenAPI verificados en PostgreSQL local; prueba de base detenida devolvió 500 en vez de 503. Detalle: harness/evidencia/cur-01-registro-local.txt."
       ],
       "blocked_reason": null
     },
@@ -63,7 +64,10 @@
       "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/5",
       "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/28",
-      "evidence": [],
+      "evidence": [
+        "2026-11-17: reservas y liberaciones con PostgreSQL local, diez rondas de concurrencia por última plaza y reintentos simultáneos; ver harness/evidencia/cur-plz-01-concurrencia.txt.",
+        "CI https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44210749208: 34 pruebas de cursos satisfactorias; 87,50 % de cobertura de líneas."
+      ],
       "blocked_reason": null
     },
     {
@@ -227,7 +231,9 @@
       "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/17",
       "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/40",
-      "evidence": [],
+      "evidence": [
+        "2026-11-17: construcción y arranque Docker Compose local; migración de estudiantes; registro de curso y estudiante, matrícula y cancelación; registros accesibles tras reiniciar servicios y bases. Detalle: harness/evidencia/inf-loc-01-2026-11-17.md."
+      ],
       "blocked_reason": null
     },
     {
@@ -242,7 +248,8 @@
       "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/41",
       "evidence": [
         "CI https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44208787841: cursos 24 pruebas, 67.50 %; estudiantes 18 pruebas, 67.59 %; frontend 5 pruebas. La puerta de cobertura falló en ambos backends.",
-        "CI https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44210233013: estudiantes 31 pruebas, 81.18 %; cursos 34 pruebas, 1 error y cobertura no medida en esta ejecución; frontend pasó."
+        "CI https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44210233013: estudiantes 31 pruebas, 81.18 %; cursos 34 pruebas, 1 error y cobertura no medida en esta ejecución; frontend pasó.",
+        "CI https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44210749208: cursos 34 pruebas y 87.50 % de líneas; estudiantes 31 pruebas y 81.18 %; frontend 5 pruebas y compilación satisfactorias."
       ],
       "blocked_reason": null
     },
