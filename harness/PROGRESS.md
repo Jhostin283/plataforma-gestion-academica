@@ -46,6 +46,17 @@
 - Las pruebas unitarias no demuestran persistencia, migraciones ni concurrencia reales; esos criterios permanecen en los specs y no se deben declarar verificados mediante mocks.
 - Siguiente paso: sincronizar `devops` con esta base y empezar la tarea correctiva acordada.
 
+## 2026-11-17 — CUR-01 sobre devops corregido
+
+- Se reconstruyó la rama de CUR-01 desde la base corregida de devops, conservando la implementación y únicamente pruebas unitarias.
+- `mvn -o test jacoco:report`: 12 pruebas unitarias aprobadas, que incluyen los 7 casos del banco vinculados a CUR-01.
+- El issue sigue en progreso; el PR #24 está en borrador.
+
+## 2026-11-17 — Revisión de documentación
+
+- Se actualizaron referencias de pruebas en el README y los specs para reflejar la estrategia unitaria acordada.
+- Se corrigió el flujo del harness para consultar el estado real de cada componente.
+
 ## Formato para próximas sesiones
 
 ```text
