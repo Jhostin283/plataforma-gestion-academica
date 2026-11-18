@@ -183,6 +183,38 @@
 - Bloqueo: no se ha proporcionado un entorno EKS/Argo CD autorizado; las imágenes y dependencias no están verificadas. No se han creado recursos, aplicado manifiestos, sincronizado ni probado el despliegue.
 - Siguiente paso: completar y validar las dependencias y preparar el entorno autorizado antes de verificar el despliegue.
 
+## 2026-11-17 — Validación de cobertura en CI
+
+- INF-CI-01, issue #18: se preparó la ejecución del workflow de aplicaciones en PR hacia `developer` para obtener resultados reales y reportes por servicio.
+- Ejecución [CI](https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44208787841) sobre `58e1099`: cursos 24 pruebas satisfactorias y 81/120 líneas (67,50 %); estudiantes 18 pruebas satisfactorias y 413/611 líneas (67,59 %); frontend 5 pruebas satisfactorias y compilación correcta. La puerta de cobertura falló para ambos backends.
+- Pendiente: aumentar cobertura con pruebas significativas y verificar criterios funcionales, persistencia, concurrencia, accesibilidad y despliegue. La cobertura no demuestra por sí sola estos criterios; ninguna funcionalidad se marca como aprobada.
+
+## 2026-11-17 — CUR-PLZ-01: casos adicionales preparados
+
+- Issue #5: se prepararon pruebas aisladas para endpoints de reserva, reintentos, consulta, liberación y errores del repositorio.
+- No se ejecutaron estos nuevos casos por indicación del usuario; la cobertura posterior y los criterios reales de concurrencia y persistencia siguen pendientes. La última cobertura observada de cursos fue 67,50 %.
+
+## 2026-11-17 — EST-01: casos adicionales preparados
+
+- Issue #6: se prepararon pruebas aisladas del adaptador de registro, consulta y tratamiento de conflictos de integridad.
+- No se ejecutaron por indicación del usuario; no demuestran persistencia PostgreSQL real. La última cobertura observada del servicio fue 67,59 %.
+
+## 2026-11-17 — EST-MAT-01: casos adicionales preparados
+
+- Issue #10: se prepararon pruebas aisladas para persistencia de operaciones, repetición de claves, conflictos, consulta y transiciones.
+- No se ejecutaron por indicación del usuario; no demuestran concurrencia ni persistencia PostgreSQL reales. La última cobertura observada del servicio fue 67,59 %.
+
+## 2026-11-17 — CUR-03: casos adicionales preparados
+
+- Issue #3: se prepararon pruebas aisladas del adaptador para actualización válida, curso inexistente y conflictos de código o integridad.
+- No se ejecutaron por indicación del usuario; la cobertura posterior y la persistencia real siguen pendientes de validación.
+
+## 2026-11-17 — Resultado de cobertura del PR #45
+
+- [Ejecución CI](https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44210233013): estudiantes ejecutó 31 pruebas satisfactoriamente y obtuvo 496/611 líneas (81,18 %); frontend pasó sus pruebas y compilación.
+- Cursos ejecutó 34 pruebas con un error en la preparación de un mock de `PostgresCursoRepositoryTest.actualizarTraduceSoloConflictoDeCodigo`. La ejecución se detuvo antes de calcular su cobertura.
+- Se preparó una corrección del mock en una rama nueva; aún no se ha ejecutado. Ninguna tarea se declara aprobada por estos resultados.
+
 ## Formato para próximas sesiones
 
 ```text
