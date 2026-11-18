@@ -180,9 +180,9 @@
         "CUR-03",
         "CUR-04"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/14",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/37",
       "evidence": [],
       "blocked_reason": null
     },

@@ -29,3 +29,17 @@ export async function contarActivos(path, signal) {
 export async function contarMatriculasActivas(signal) {
   return (await pagina('matriculas', { estado: 'ACTIVA', page: '0', size: '1' }, signal)).total;
 }
+
+export async function solicitar(path, { method = 'GET', body, signal } = {}) {
+  const response = await fetch(`${baseUrl}/api/v1/${path}`, {
+    method, signal, headers: body ? { 'Content-Type': 'application/json' } : {},
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const error = new Error(data.mensaje || 'No se pudo completar la solicitud');
+    error.detalles = data.detalles || {};
+    throw error;
+  }
+  return data;
+}
