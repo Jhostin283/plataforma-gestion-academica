@@ -114,7 +114,7 @@
 
 ## 2026-11-17 — WEB-EST-01 en progreso
 
-- Issue #15 y spec `specs/frontend/03-estudiantes.md`: se preparó búsqueda y listado de estudiantes, registro, edición y cambio de estado, con estados de carga y error.
+- Issue #15, PR #38 en borrador y spec `specs/frontend/03-estudiantes.md`: se preparó búsqueda y listado de estudiantes, registro, edición y cambio de estado, con estados de carga y error.
 - Se preparó un caso unitario sin ejecutarlo por indicación del usuario. Faltan pruebas de edición, estado y errores, compilación, accesibilidad e integración; no se declaran criterios aprobados.
 - La rama parte de los PR previos de frontend y estudiantes, aún en borrador.
 
