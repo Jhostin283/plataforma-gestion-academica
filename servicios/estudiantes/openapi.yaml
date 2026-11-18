@@ -1,0 +1,572 @@
+openapi: 3.1.0
+info:
+  title: Servicio de estudiantes
+  version: 1.0.0
+paths:
+  /api/v1/estudiantes:
+    post:
+      tags:
+      - estudiantes
+      summary: Registrar
+      operationId: registrar_api_v1_estudiantes_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrearEstudiante'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstudianteRespuesta'
+        '400':
+          description: JSON inválido
+        '409':
+          description: Documento duplicado
+        '422':
+          description: Datos inválidos
+        '503':
+          description: Persistencia no disponible
+    get:
+      tags:
+      - estudiantes
+      summary: Listar Estudiantes
+      operationId: listar_estudiantes_api_v1_estudiantes_get
+      parameters:
+      - name: buscar
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Busca por nombres, apellidos o documento
+          title: Buscar
+        description: Busca por nombres, apellidos o documento
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: Page
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 20
+          title: Size
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginaEstudiantes'
+        '400':
+          description: Paginación inválida
+        '503':
+          description: Persistencia no disponible
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/estudiantes/{estudiante_id}:
+    get:
+      tags:
+      - estudiantes
+      summary: Consultar
+      operationId: consultar_api_v1_estudiantes__estudiante_id__get
+      parameters:
+      - name: estudiante_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Estudiante Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstudianteRespuesta'
+        '400':
+          description: UUID inválido
+        '404':
+          description: Estudiante no encontrado
+        '503':
+          description: Persistencia no disponible
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    put:
+      tags:
+      - estudiantes
+      summary: Actualizar
+      operationId: actualizar_api_v1_estudiantes__estudiante_id__put
+      parameters:
+      - name: estudiante_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Estudiante Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrearEstudiante'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstudianteRespuesta'
+        '400':
+          description: JSON o UUID inválido
+        '404':
+          description: Estudiante no encontrado
+        '409':
+          description: Documento duplicado
+        '422':
+          description: Datos inválidos
+        '503':
+          description: Persistencia no disponible
+  /api/v1/estudiantes/{estudiante_id}/estado:
+    patch:
+      tags:
+      - estudiantes
+      summary: Cambiar Estado
+      operationId: cambiar_estado_api_v1_estudiantes__estudiante_id__estado_patch
+      parameters:
+      - name: estudiante_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Estudiante Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstadoEstudiante'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstudianteRespuesta'
+        '400':
+          description: JSON o UUID inválido
+        '404':
+          description: Estudiante no encontrado
+        '422':
+          description: Estado inválido
+        '503':
+          description: Persistencia no disponible
+  /api/v1/matriculas:
+    post:
+      tags:
+      - matrículas
+      summary: Crear
+      operationId: crear_api_v1_matriculas_post
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Idempotency-Key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrearMatriculaSolicitud'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatriculaRespuesta'
+        '202':
+          description: Operación pendiente
+        '400':
+          description: Formato inválido
+        '404':
+          description: Estudiante o curso inexistente
+        '409':
+          description: Conflicto
+        '422':
+          description: Datos incompletos
+        '500':
+          description: No se completó la matrícula y la reserva fue liberada
+        '503':
+          description: Persistencia no disponible
+    get:
+      tags:
+      - matrículas
+      summary: Listar
+      operationId: listar_api_v1_matriculas_get
+      parameters:
+      - name: estudianteId
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Estudianteid
+      - name: cursoId
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Cursoid
+      - name: estado
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - enum:
+            - PENDIENTE
+            - ACTIVA
+            - FALLIDA
+            - CANCELACION_PENDIENTE
+            - CANCELADA
+            type: string
+          - type: 'null'
+          title: Estado
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: Page
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 20
+          title: Size
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginaMatriculas'
+        '400':
+          description: Filtro o paginación inválidos
+        '503':
+          description: Persistencia no disponible
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/matriculas/{matricula_id}:
+    get:
+      tags:
+      - matrículas
+      summary: Consultar
+      operationId: consultar_api_v1_matriculas__matricula_id__get
+      parameters:
+      - name: matricula_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Matricula Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatriculaRespuesta'
+        '400':
+          description: UUID inválido
+        '404':
+          description: Matrícula inexistente
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/matriculas/{matricula_id}/cancelacion:
+    post:
+      tags:
+      - matrículas
+      summary: Cancelar
+      operationId: cancelar_api_v1_matriculas__matricula_id__cancelacion_post
+      parameters:
+      - name: matricula_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Matricula Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatriculaRespuesta'
+        '202':
+          description: Cancelación pendiente
+        '400':
+          description: UUID inválido
+        '404':
+          description: Matrícula inexistente
+        '409':
+          description: Estado incompatible
+        '503':
+          description: Persistencia no disponible
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /health:
+    get:
+      tags:
+      - salud
+      summary: Salud
+      operationId: salud_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+components:
+  schemas:
+    CrearEstudiante:
+      properties:
+        documento:
+          type: string
+          maxLength: 50
+          minLength: 1
+          title: Documento
+        nombres:
+          type: string
+          maxLength: 150
+          minLength: 1
+          title: Nombres
+        apellidos:
+          type: string
+          maxLength: 150
+          minLength: 1
+          title: Apellidos
+        correo:
+          type: string
+          format: email
+          title: Correo
+      type: object
+      required:
+      - documento
+      - nombres
+      - apellidos
+      - correo
+      title: CrearEstudiante
+    CrearMatriculaSolicitud:
+      properties:
+        estudianteId:
+          type: string
+          format: uuid
+          title: Estudianteid
+        cursoId:
+          type: string
+          format: uuid
+          title: Cursoid
+      type: object
+      required:
+      - estudianteId
+      - cursoId
+      title: CrearMatriculaSolicitud
+    EstadoEstudiante:
+      properties:
+        estado:
+          type: string
+          enum:
+          - ACTIVO
+          - INACTIVO
+          title: Estado
+      type: object
+      required:
+      - estado
+      title: EstadoEstudiante
+    EstudianteRespuesta:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        documento:
+          type: string
+          title: Documento
+        nombres:
+          type: string
+          title: Nombres
+        apellidos:
+          type: string
+          title: Apellidos
+        correo:
+          type: string
+          format: email
+          title: Correo
+        estado:
+          type: string
+          title: Estado
+      type: object
+      required:
+      - id
+      - documento
+      - nombres
+      - apellidos
+      - correo
+      - estado
+      title: EstudianteRespuesta
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    MatriculaRespuesta:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        estudianteId:
+          type: string
+          format: uuid
+          title: Estudianteid
+        cursoId:
+          type: string
+          format: uuid
+          title: Cursoid
+        estado:
+          type: string
+          title: Estado
+      type: object
+      required:
+      - id
+      - estudianteId
+      - cursoId
+      - estado
+      title: MatriculaRespuesta
+    PaginaEstudiantes:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/EstudianteRespuesta'
+          type: array
+          title: Items
+        page:
+          type: integer
+          title: Page
+        size:
+          type: integer
+          title: Size
+        total:
+          type: integer
+          title: Total
+      type: object
+      required:
+      - items
+      - page
+      - size
+      - total
+      title: PaginaEstudiantes
+    PaginaMatriculas:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/MatriculaRespuesta'
+          type: array
+          title: Items
+        page:
+          type: integer
+          title: Page
+        size:
+          type: integer
+          title: Size
+        total:
+          type: integer
+          title: Total
+      type: object
+      required:
+      - items
+      - page
+      - size
+      - total
+      title: PaginaMatriculas
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

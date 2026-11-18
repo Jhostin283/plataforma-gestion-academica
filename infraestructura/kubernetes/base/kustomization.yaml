@@ -7,13 +7,14 @@ resources:
   - estudiantes.yaml
   - frontend.yaml
   - ingress.yaml
+  - precarga-datos.yaml
 images:
   - name: academia/cursos
-    newName: registry.invalid/academia/cursos
-    newTag: sin-configurar
+    newName: 357112747027.dkr.ecr.us-east-1.amazonaws.com/academia/cursos
+    newTag: ef354c8d6f9f5a4cf44abe6ddf13045ac8b44ede
   - name: academia/estudiantes
-    newName: registry.invalid/academia/estudiantes
-    newTag: sin-configurar
+    newName: 357112747027.dkr.ecr.us-east-1.amazonaws.com/academia/estudiantes
+    newTag: ef354c8d6f9f5a4cf44abe6ddf13045ac8b44ede
   - name: academia/frontend
-    newName: registry.invalid/academia/frontend
-    newTag: sin-configurar
+    newName: 357112747027.dkr.ecr.us-east-1.amazonaws.com/academia/frontend
+    newTag: ef354c8d6f9f5a4cf44abe6ddf13045ac8b44ede

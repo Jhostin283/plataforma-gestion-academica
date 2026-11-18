@@ -1,0 +1,382 @@
+openapi: 3.0.3
+info:
+  title: Servicio de Cursos
+  description: API REST para la gestión de cursos académicos y reservas atómicas de plazas.
+  version: 1.0.0
+paths:
+  /api/v1/cursos:
+    post:
+      summary: Registrar un curso
+      description: El código distingue mayúsculas y minúsculas; se eliminan espacios al inicio y al final antes de guardarlo.
+      operationId: crearCurso
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrearCurso'
+      responses:
+        '201':
+          description: Curso creado exitosamente
+          headers:
+            Location:
+              schema:
+                type: string
+                example: /api/v1/cursos/123e4567-e89b-12d3-a456-426614174000
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Curso'
+        '400':
+          description: JSON malformado
+        '409':
+          description: Código duplicado
+        '422':
+          description: Campos inválidos
+        '503':
+          description: Persistencia no disponible
+    get:
+      summary: Listar y buscar cursos
+      description: Busca por nombre o código. page comienza en 0 y size admite valores de 1 a 100.
+      operationId: listarCursos
+      parameters:
+        - name: buscar
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ''
+          description: Término de búsqueda por nombre o código
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+          description: Número de página (base 0)
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+          description: Cantidad de elementos por página
+      responses:
+        '200':
+          description: Página de cursos obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginaCursos'
+        '400':
+          description: Parámetros inválidos
+        '503':
+          description: Persistencia no disponible
+
+  /api/v1/cursos/{cursoId}:
+    get:
+      summary: Consultar un curso por ID
+      operationId: obtenerCurso
+      parameters:
+        - name: cursoId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Identificador único del curso
+      responses:
+        '200':
+          description: Curso encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetalleCurso'
+        '400':
+          description: ID inválido
+        '404':
+          description: Curso no encontrado
+    put:
+      summary: Actualizar curso
+      operationId: actualizarCurso
+      parameters:
+        - name: cursoId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrearCurso'
+      responses:
+        '200':
+          description: Curso actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Curso'
+        '400':
+          description: ID o JSON inválido
+        '404':
+          description: Curso inexistente
+        '409':
+          description: Conflicto de código o capacidad
+        '422':
+          description: Campos inválidos
+
+  /api/v1/cursos/{cursoId}/estado:
+    patch:
+      summary: Cambiar estado del curso
+      operationId: cambiarEstadoCurso
+      parameters:
+        - name: cursoId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CambioEstado'
+      responses:
+        '200':
+          description: Estado actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Curso'
+        '400':
+          description: ID o JSON inválido
+        '404':
+          description: Curso inexistente
+        '422':
+          description: Estado inválido
+
+  /api/v1/cursos/{cursoId}/reservas:
+    post:
+      summary: Reservar una plaza en el curso
+      operationId: reservarPlaza
+      parameters:
+        - name: cursoId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Identificador único de operación para idempotencia
+      responses:
+        '201':
+          description: Reserva creada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reserva'
+        '200':
+          description: Reserva ya existente (idempotente)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reserva'
+        '400':
+          description: Identificador o clave inválida
+        '404':
+          description: Curso no encontrado
+        '409':
+          description: Curso inactivo, lleno o clave en conflicto
+
+  /api/v1/reservas/{operacionId}:
+    get:
+      summary: Consultar estado de una reserva
+      operationId: consultarReserva
+      parameters:
+        - name: operacionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Reserva encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reserva'
+        '404':
+          description: Reserva no encontrada
+
+  /api/v1/reservas/{operacionId}/liberacion:
+    post:
+      summary: Liberar una reserva de plaza
+      operationId: liberarReserva
+      parameters:
+        - name: operacionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Reserva liberada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reserva'
+        '404':
+          description: Reserva no encontrada
+        '503':
+          description: Error de persistencia
+
+components:
+  schemas:
+    CrearCurso:
+      type: object
+      required:
+        - codigo
+        - nombre
+        - descripcion
+        - duracionHoras
+        - capacidad
+      properties:
+        codigo:
+          type: string
+          maxLength: 100
+          example: CC-101
+        nombre:
+          type: string
+          maxLength: 255
+          example: Arquitectura Cloud y Microservicios
+        descripcion:
+          type: string
+          example: Diseño de sistemas distribuidos y microservicios escalables en AWS.
+        duracionHoras:
+          type: integer
+          minimum: 1
+          example: 60
+        capacidad:
+          type: integer
+          minimum: 1
+          example: 30
+
+    CambioEstado:
+      type: object
+      required:
+        - estado
+      properties:
+        estado:
+          type: string
+          enum: [ACTIVO, INACTIVO]
+          example: ACTIVO
+
+    Curso:
+      type: object
+      required:
+        - id
+        - codigo
+        - nombre
+        - descripcion
+        - duracionHoras
+        - capacidad
+        - estado
+      properties:
+        id:
+          type: string
+          format: uuid
+        codigo:
+          type: string
+        nombre:
+          type: string
+        descripcion:
+          type: string
+        duracionHoras:
+          type: integer
+        capacidad:
+          type: integer
+        estado:
+          type: string
+          enum: [ACTIVO, INACTIVO]
+
+    DetalleCurso:
+      type: object
+      required:
+        - id
+        - codigo
+        - nombre
+        - descripcion
+        - duracionHoras
+        - capacidad
+        - estado
+        - plazasDisponibles
+      properties:
+        id:
+          type: string
+          format: uuid
+        codigo:
+          type: string
+        nombre:
+          type: string
+        descripcion:
+          type: string
+        duracionHoras:
+          type: integer
+        capacidad:
+          type: integer
+        estado:
+          type: string
+        plazasDisponibles:
+          type: integer
+          format: int64
+
+    PaginaCursos:
+      type: object
+      required:
+        - items
+        - page
+        - size
+        - total
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Curso'
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+          format: int64
+
+    Reserva:
+      type: object
+      required:
+        - operacionId
+        - cursoId
+        - estado
+      properties:
+        operacionId:
+          type: string
+          format: uuid
+        cursoId:
+          type: string
+          format: uuid
+        estado:
+          type: string
+          enum: [RESERVADA, LIBERADA]

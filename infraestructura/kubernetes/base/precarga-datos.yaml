@@ -1,0 +1,124 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: precarga-script
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+data:
+  seed.py: |
+    import sys, json, time, uuid, urllib.request, urllib.error
+
+    BASE_URL = sys.argv[1].rstrip("/") if len(sys.argv) > 1 else "http://frontend:8080"
+
+    CURSOS = [
+        {"codigo": "CC-101", "nombre": "Arquitectura Cloud y Microservicios", "descripcion": "Diseno distribuido con Docker y Kubernetes en AWS.", "duracionHoras": 60, "capacidad": 30},
+        {"codigo": "DEVOPS-201", "nombre": "DevOps, CI/CD y GitOps", "descripcion": "Pipelines automatizados con GitHub Actions y Argo CD.", "duracionHoras": 45, "capacidad": 25},
+        {"codigo": "BACK-301", "nombre": "Desarrollo Backend con Java y Python", "descripcion": "APIs REST con Spring Boot y FastAPI.", "duracionHoras": 50, "capacidad": 20},
+        {"codigo": "BD-102", "nombre": "Bases de Datos Distribuidas y NoSQL", "descripcion": "Transacciones distribuidas y particionamiento.", "duracionHoras": 40, "capacidad": 25},
+        {"codigo": "SEC-401", "nombre": "Ciberseguridad y Seguridad en la Nube", "descripcion": "IAM, cifrado y politicas Zero Trust.", "duracionHoras": 45, "capacidad": 20},
+        {"codigo": "AI-202", "nombre": "Inteligencia Artificial y ML Aplicado", "descripcion": "Modelos predictivos y pipelines de datos.", "duracionHoras": 55, "capacidad": 30},
+        {"codigo": "FRONT-103", "nombre": "Desarrollo Web Moderno con React", "descripcion": "Componentes reactivos y TypeScript.", "duracionHoras": 40, "capacidad": 30},
+        {"codigo": "NET-302", "nombre": "Redes Avanzadas y Edge Computing", "descripcion": "Service Mesh, balanceo de carga y CDN.", "duracionHoras": 35, "capacidad": 20}
+    ]
+
+    ESTUDIANTES = [
+        {"documento": "71234567", "nombres": "Ana Sofia", "apellidos": "Garcia Morales", "correo": "ana.garcia@universidad.edu.pe"},
+        {"documento": "72345678", "nombres": "Carlos Eduardo", "apellidos": "Mendoza Ruiz", "correo": "carlos.mendoza@universidad.edu.pe"},
+        {"documento": "73456789", "nombres": "Lucia Fernanda", "apellidos": "Paredes Quispe", "correo": "lucia.paredes@universidad.edu.pe"},
+        {"documento": "74567890", "nombres": "Diego Alejandro", "apellidos": "Flores Castillo", "correo": "diego.flores@universidad.edu.pe"},
+        {"documento": "75678901", "nombres": "Valeria Nicole", "apellidos": "Ramos Salazar", "correo": "valeria.ramos@universidad.edu.pe"},
+        {"documento": "76789012", "nombres": "Mateo Sebastian", "apellidos": "Vargas Gutierrez", "correo": "mateo.vargas@universidad.edu.pe"},
+        {"documento": "77890123", "nombres": "Camila Beatriz", "apellidos": "Chavez Torres", "correo": "camila.chavez@universidad.edu.pe"},
+        {"documento": "78901234", "nombres": "Rodrigo Javier", "apellidos": "Pena Huaman", "correo": "rodrigo.pena@universidad.edu.pe"},
+        {"documento": "79012345", "nombres": "Gabriela Patricia", "apellidos": "Soto Alarcon", "correo": "gabriela.soto@universidad.edu.pe"},
+        {"documento": "80123456", "nombres": "Juan Pablo", "apellidos": "Romero Caceres", "correo": "juan.romero@universidad.edu.pe"}
+    ]
+
+    ASIGNACIONES = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 5), (5, 0), (6, 6), (7, 4)]
+
+    def req(method, path, body=None, headers=None):
+        url = f"{BASE_URL}{path}"
+        hdrs = {"Content-Type": "application/json"}
+        if headers: hdrs.update(headers)
+        data = json.dumps(body).encode() if body else None
+        r = urllib.request.Request(url, data=data, headers=hdrs, method=method)
+        try:
+            with urllib.request.urlopen(r, timeout=10) as resp:
+                raw = resp.read().decode()
+                return resp.status, json.loads(raw) if raw else {}
+        except urllib.error.HTTPError as e:
+            raw = e.read().decode()
+            try: res = json.loads(raw)
+            except: res = {}
+            return e.code, res
+        except Exception as e:
+            return None, str(e)
+
+    print("Esperando que el servicio este listo...")
+    for _ in range(30):
+        st, _ = req("GET", "/api/v1/cursos?page=0&size=1")
+        if st == 200:
+            print("Servicios listos y respondiendo.")
+            break
+        time.sleep(2)
+    else:
+        print("Tiempo de espera agotado.")
+        sys.exit(1)
+
+    print("1. Insertando Cursos...")
+    for c in CURSOS:
+        st, res = req("POST", "/api/v1/cursos", c)
+        if st in (201, 409): print(f"   [OK] Curso {c['codigo']}")
+
+    _, res_c = req("GET", "/api/v1/cursos?page=0&size=50")
+    cursos = res_c.get("items", []) if isinstance(res_c, dict) else []
+
+    print("2. Insertando Estudiantes...")
+    for e in ESTUDIANTES:
+        st, res = req("POST", "/api/v1/estudiantes", e)
+        if st in (201, 409): print(f"   [OK] Estudiante {e['documento']}")
+
+    _, res_e = req("GET", "/api/v1/estudiantes?page=0&size=50")
+    estudiantes = res_e.get("items", []) if isinstance(res_e, dict) else []
+
+    print("3. Asignando Matriculas...")
+    for e_idx, c_idx in ASIGNACIONES:
+        if e_idx < len(estudiantes) and c_idx < len(cursos):
+            e_id = estudiantes[e_idx]["id"]
+            c_id = cursos[c_idx]["id"]
+            st, _ = req("POST", "/api/v1/matriculas", {"estudianteId": e_id, "cursoId": c_id}, {"Idempotency-Key": str(uuid.uuid4())})
+            if st in (201, 202, 409): print(f"   [OK] Matricula {e_idx}->{c_idx}")
+
+    print("Precarga de datos finalizada con exito.")
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: precarga-datos
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: precarga
+          image: academia/estudiantes
+          command: ["python", "/scripts/seed.py", "http://frontend:8080"]
+          volumeMounts:
+            - name: script-vol
+              mountPath: /scripts
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {cpu: 250m, memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities: {drop: [ALL]}
+      volumes:
+        - name: script-vol
+          configMap:
+            name: precarga-script
