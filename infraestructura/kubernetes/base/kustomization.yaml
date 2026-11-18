@@ -6,7 +6,6 @@ resources:
   - cursos.yaml
   - estudiantes.yaml
   - frontend.yaml
-  - ingress.yaml
   - precarga-datos.yaml
 images:
   - name: academia/cursos
