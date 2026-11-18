@@ -7,4 +7,4 @@ El servicio de cursos es proveedor de reservas; el servicio de estudiantes es co
 - Liberar reserva: debe poder repetirse sin liberar más de una vez. Debe identificar la reserva original.
 - Se rechazan cursos inexistentes o inactivos y capacidad agotada; se documentan respuestas y errores.
 - El consumidor aplica timeout y reintentos limitados, guarda el estado pendiente y reconcilia resultados inciertos o compensaciones fallidas. No mantiene una transacción abierta durante una llamada de red.
-- Las pruebas de contrato verifican compatibilidad; las pruebas de integración cubren concurrencia, respuestas perdidas y compensación.
+- Las pruebas unitarias de los casos de uso deben cubrir las decisiones ante respuestas perdidas y compensación mediante dependencias simuladas. La compatibilidad real entre servicios y la concurrencia real no quedan demostradas por esas pruebas.
