@@ -165,9 +165,9 @@
         "EST-02",
         "EST-MAT-02"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/13",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/36",
       "evidence": [],
       "blocked_reason": null
     },
