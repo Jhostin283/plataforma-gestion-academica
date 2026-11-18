@@ -29,4 +29,4 @@ Una tarea puede volver a un estado anterior si una comprobación posterior revel
 
 ## Límites de esta versión
 
-Los specs son un punto de partida para crear issues; no son evidencia de implementación. No hay aún backend, frontend, pipeline, despliegue ni infraestructura operativa. `check.py` valida metadatos y referencias locales, no verifica que el producto funcione.
+Los specs son un punto de partida para crear issues; no son evidencia de implementación. Consulta el catálogo y el progreso para conocer el estado real de cada componente. `check.py` valida metadatos y referencias locales, no verifica que el producto funcione.

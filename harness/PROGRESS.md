@@ -64,6 +64,41 @@
 - Se prepararon casos unitarios para filtros, resultados vacíos, paginación e identificador inválido. No se ejecutaron por indicación del usuario de realizar las pruebas al final; los criterios siguen sin aprobarse.
 - La rama local `feature/est-02-consultar-estudiantes` parte provisionalmente de EST-01 porque esa base aún no está integrada en `devops`. El PR de EST-01 continúa registrado como borrador y GitHub CLI no tiene sesión autenticada. Se creó el PR #30 en borrador.
 - Siguiente paso: validar al final EST-01 y EST-02, integrar la base según el acuerdo de PR en borrador y preparar el PR de EST-02 con su destino y autenticación disponibles.
+## 2026-11-17 — CUR-01 sobre devops corregido
+
+- Se reconstruyó la rama de CUR-01 desde la base corregida de devops, conservando la implementación y únicamente pruebas unitarias.
+- `mvn -o test jacoco:report`: 12 pruebas unitarias aprobadas, que incluyen los 7 casos del banco vinculados a CUR-01.
+- El issue sigue en progreso; el PR #24 está en borrador.
+
+## 2026-11-17 — Revisión de documentación
+
+- Se actualizaron referencias de pruebas en el README y los specs para reflejar la estrategia unitaria acordada.
+- Se corrigió el flujo del harness para consultar el estado real de cada componente.
+
+## 2026-11-17 — CUR-02 en progreso
+
+- Se implementaron búsqueda, paginación y casos unitarios asociados. El cálculo de plazas depende de CUR-PLZ-01.
+- Siguiente paso: completar las funcionalidades dependientes y su revisión.
+
+## 2026-11-17 — CUR-03 en progreso
+
+- Se implementó la actualización de los datos del curso y casos unitarios del caso de uso.
+- El control de capacidad con reservas queda vinculado a CUR-PLZ-01.
+
+## 2026-11-17 — CUR-04 en progreso
+
+- Se implementó el cambio de estado del curso y casos unitarios asociados.
+- La restricción de reservas de cursos inactivos depende de CUR-PLZ-01.
+
+## 2026-11-17 — CUR-PLZ-01 en progreso
+
+- Se preparó la reserva, consulta y liberación de plazas; la capacidad se controla mediante bloqueo del curso y registro de reservas.
+- Se incorporaron casos unitarios para las reglas de reserva y actualización de capacidad.
+
+## 2026-11-17 — Organización de arquitectura hexagonal
+
+- Se organizaron las entidades de dominio, los casos de uso, modelos y excepciones en paquetes explícitos; los adaptadores de entrada y salida permanecen separados.
+- Se actualizaron las referencias del código y la documentación de arquitectura.
 
 ## 2026-11-17 — EST-03 en progreso
 
