@@ -67,7 +67,7 @@ class PostgresCursoRepositoryTest {
         when(jpa.saveAndFlush(any())).thenThrow(new DataIntegrityViolationException("uq_cursos_codigo"));
         assertThatThrownBy(() -> adapter.actualizar(curso.id(), "C2", "Redes", "Contenido", 40, 10))
                 .isInstanceOf(CursoDuplicadoException.class);
-        when(jpa.saveAndFlush(any())).thenThrow(new DataIntegrityViolationException("otra restricción"));
+        doThrow(new DataIntegrityViolationException("otra restricción")).when(jpa).saveAndFlush(any());
         assertThatThrownBy(() -> adapter.actualizar(curso.id(), "C2", "Redes", "Contenido", 40, 10))
                 .isInstanceOf(DataIntegrityViolationException.class);
     }

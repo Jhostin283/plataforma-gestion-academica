@@ -209,6 +209,12 @@
 - Issue #3: se prepararon pruebas aisladas del adaptador para actualización válida, curso inexistente y conflictos de código o integridad.
 - No se ejecutaron por indicación del usuario; la cobertura posterior y la persistencia real siguen pendientes de validación.
 
+## 2026-11-17 — Resultado de cobertura del PR #45
+
+- [Ejecución CI](https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44210233013): estudiantes ejecutó 31 pruebas satisfactoriamente y obtuvo 496/611 líneas (81,18 %); frontend pasó sus pruebas y compilación.
+- Cursos ejecutó 34 pruebas con un error en la preparación de un mock de `PostgresCursoRepositoryTest.actualizarTraduceSoloConflictoDeCodigo`. La ejecución se detuvo antes de calcular su cobertura.
+- Se preparó una corrección del mock en una rama nueva; aún no se ha ejecutado. Ninguna tarea se declara aprobada por estos resultados.
+
 ## Formato para próximas sesiones
 
 ```text
