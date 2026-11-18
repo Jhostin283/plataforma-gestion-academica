@@ -37,6 +37,7 @@ Lee el README y los specs y contratos pertinentes antes de implementar. Si aún 
 - Aplica **arquitectura hexagonal** en cada servicio; consulta `specs/arquitectura.md`.
 - **Dominio:** contiene modelos y reglas de negocio. No importa frameworks, ORM ni clientes HTTP.
 - **Aplicación:** coordina casos de uso y define los puertos necesarios para interactuar con el exterior.
+- **Paquetes:** ubica entidades del dominio en `domain/entity`, casos de uso en `application/usecase`, modelos de aplicación en `application/model` y excepciones en `application/exception`. Las entidades JPA permanecen en el adaptador de persistencia.
 - **Adaptadores de entrada:** controladores Spring o rutas FastAPI convierten HTTP y DTO en llamadas a casos de uso.
 - **Adaptadores de salida:** implementan los puertos para PostgreSQL y llamadas al otro servicio.
 - **Composición:** configura la inyección de dependencias en el borde de la aplicación. Las dependencias del código apuntan hacia el núcleo.
