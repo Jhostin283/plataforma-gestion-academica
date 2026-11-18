@@ -23,7 +23,7 @@ Definir recursos Kubernetes para la plataforma de gestión académica.
 ## Trazabilidad
 - Requisito: INF-K8S-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
-- Pruebas: Validación de manifiestos, salud y enrutamiento.
+- Pruebas: Validación de manifiestos, salud y enrutamiento en EKS.
 - Issue: [#19](https://github.com/Jhostin283/plataforma-gestion-academica/issues/19).
-- Pull request: [#42](https://github.com/Jhostin283/plataforma-gestion-academica/pull/42) (borrador).
-- Estado: en progreso; manifiestos propuestos, configuración y validación pendientes.
+- Pull request: [#42](https://github.com/Jhostin283/plataforma-gestion-academica/pull/42).
+- Estado: aprobado; manifiestos Kustomize validados, bases de datos y microservicios desplegados en Amazon EKS, sondas y enrutamiento verificados.

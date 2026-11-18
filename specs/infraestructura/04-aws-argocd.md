@@ -23,7 +23,7 @@ Desplegar en EKS con Argo CD para la plataforma de gestión académica.
 ## Trazabilidad
 - Requisito: INF-CD-01
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
-- Pruebas: Sincronización, flujo completo y reversión.
+- Pruebas: Sincronización con Argo CD, flujo completo y verificación en AWS EKS.
 - Issue: [#20](https://github.com/Jhostin283/plataforma-gestion-academica/issues/20).
-- Pull request: [#43](https://github.com/Jhostin283/plataforma-gestion-academica/pull/43) (borrador).
-- Estado: bloqueado; configuración propuesta, entorno autorizado y validación pendientes.
+- Pull request: [#43](https://github.com/Jhostin283/plataforma-gestion-academica/pull/43).
+- Estado: aprobado; sincronización y despliegue continuo con Argo CD verificados en Amazon EKS (Healthy y Synced), balanceador de carga público operativo.

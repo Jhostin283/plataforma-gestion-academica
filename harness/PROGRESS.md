@@ -365,3 +365,25 @@ Evidencia:
 Bloqueos:
 Siguiente paso:
 ```
+
+## 2026-11-17 — INF-K8S-01 e INF-CD-01: Despliegue en AWS EKS y Argo CD completado
+
+- Tareas y specs:
+  - INF-K8S-01, specs/infraestructura/03-kubernetes.md; issue #19, PR #42.
+  - INF-CD-01, specs/infraestructura/04-aws-argocd.md; issue #20, PR #43.
+- Infraestructura: clúster Amazon EKS `academia-cluster` (v1.34) con 5-7 nodos EC2 `workers-free` (tipo `t3.micro`, Free Tier eligible).
+- Pruebas y resultado:
+  1. Manifiestos Kustomize validados e imágenes versionadas de ECR desplegadas.
+  2. Pods de microservicios (`cursos`, `estudiantes`, `frontend`) y bases PostgreSQL en estado `Running 1/1`.
+  3. Despliegue y sincronización continua con Argo CD verificados con estado `Healthy` (corazón verde) y `Synced` (check verde).
+  4. Job de precarga automática de datos (`precarga-datos`) ejecutado exitosamente vía PostSync hook.
+  5. Balanceadores de carga de AWS (`LoadBalancer`) asignados y operativos en internet con URL pública.
+- Evidencias:
+  - `Evidencias/01-cobertura-jacoco-cursos.jpg`
+  - `Evidencias/02-artefactos-ci-reportes.jpg`
+  - `Evidencias/03-github-actions-pipeline-ecr.jpg`
+  - `Evidencias/04-amazon-ecr-repositorios.jpg`
+  - `Evidencias/05-amazon-eks-cluster-activo.jpg`
+  - `Evidencias/06-amazon-ec2-nodos-workers.jpg`
+  - `Evidencias/07-argocd-despliegue-healthy-synced.jpg`
+- Estado: INF-K8S-01 e INF-CD-01 pasaron a passed. Catálogo del proyecto: 20 de 20 tareas completadas (100 %).

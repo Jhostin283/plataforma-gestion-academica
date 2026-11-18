@@ -320,10 +320,15 @@
       "depends_on": [
         "INF-LOC-01"
       ],
-      "status": "in_progress",
+      "status": "passed",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/19",
       "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/42",
-      "evidence": [],
+      "evidence": [
+        "Manifiestos Kustomize validados sintácticamente con kubectl kustomize.",
+        "Deployments y Services de cursos, estudiantes y frontend desplegados en el clúster EKS academia-cluster (v1.34).",
+        "Bases de datos PostgreSQL desplegadas y secretos de conexión configurados.",
+        "Evidencias registradas en Evidencias/05-amazon-eks-cluster-activo.jpg y Evidencias/06-amazon-ec2-nodos-workers.jpg."
+      ],
       "blocked_reason": null
     },
     {
@@ -335,11 +340,17 @@
         "INF-K8S-01",
         "WEB-MAT-01"
       ],
-      "status": "blocked",
+      "status": "passed",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/20",
       "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/43",
-      "evidence": [],
-      "blocked_reason": "No se ha proporcionado un entorno EKS/Argo CD autorizado; imágenes y dependencias aún no están verificadas."
+      "evidence": [
+        "Aplicación sincronizada y saludable en Argo CD (Healthy y Synced).",
+        "Imágenes reales de ECR (tag ef354c8d6f9f5a4cf44abe6ddf13045ac8b44ede) desplegadas y operativas en los pods.",
+        "Job de precarga automática de datos precarga-datos configurado y ejecutado.",
+        "Frontend expuesto públicamente mediante AWS LoadBalancer en puerto 8080.",
+        "Evidencias registradas en Evidencias/07-argocd-despliegue-healthy-synced.jpg."
+      ],
+      "blocked_reason": null
     }
   ]
 }
