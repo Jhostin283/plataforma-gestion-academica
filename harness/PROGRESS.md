@@ -199,6 +199,11 @@
 - Issue #6: se prepararon pruebas aisladas del adaptador de registro, consulta y tratamiento de conflictos de integridad.
 - No se ejecutaron por indicación del usuario; no demuestran persistencia PostgreSQL real. La última cobertura observada del servicio fue 67,59 %.
 
+## 2026-11-17 — EST-MAT-01: casos adicionales preparados
+
+- Issue #10: se prepararon pruebas aisladas para persistencia de operaciones, repetición de claves, conflictos, consulta y transiciones.
+- No se ejecutaron por indicación del usuario; no demuestran concurrencia ni persistencia PostgreSQL reales. La última cobertura observada del servicio fue 67,59 %.
+
 ## Formato para próximas sesiones
 
 ```text
