@@ -26,4 +26,4 @@ Definir recursos Kubernetes para la plataforma de gestión académica.
 - Pruebas: Validación de manifiestos, salud y enrutamiento.
 - Issue: [#19](https://github.com/Jhostin283/plataforma-gestion-academica/issues/19).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; manifiestos propuestos, configuración y validación pendientes.

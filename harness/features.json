@@ -248,7 +248,7 @@
       "depends_on": [
         "INF-LOC-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/19",
       "pr": null,
       "evidence": [],
