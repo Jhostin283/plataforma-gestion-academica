@@ -7,7 +7,7 @@ Este harness adapta el patrón de Anthropic para trabajo prolongado: lista de fu
 1. Lee `README.md`, `AGENTS.md`, este archivo y `PROGRESS.md`.
 2. Ejecuta `python harness/check.py` para validar la estructura y `python harness/init.py` para conocer las comprobaciones disponibles. Estos comandos no crean infraestructura ni instalan dependencias.
 3. Selecciona una tarea pendiente en `features.json`. Lee su spec en `specs/INDICE.md`, sus dependencias y contratos. Para funcionalidades de aplicación consulta sus casos en `pruebas/BANCO-DE-PRUEBAS.md`. Comprueba que sus dependencias estén aprobadas antes de implementarla.
-4. Identifica el issue enlazado a la tarea. Crea una rama `feature/<id>-<descripcion>` desde `devops`; abre su PR hacia `devops`. La rama `main` queda para la versión integrada.
+4. Identifica el issue enlazado a la tarea. Crea una rama `feature/<id>-<descripcion>` desde `developer`; abre su PR hacia `developer`. La rama `main` queda para la versión integrada.
 
 ## Durante la implementación
 
@@ -15,8 +15,8 @@ Este harness adapta el patrón de Anthropic para trabajo prolongado: lista de fu
 2. Implementa y ejecuta los casos unitarios aplicables del banco; documenta los criterios que no puedan verificarse con mocks. En el PR identifica casos, comandos, resultados y evidencia; documenta los no ejecutados y los bloqueos. Para cada backend, configura una puerta de CI que rechace una cobertura de líneas menor o igual al 80 %.
 3. Actualiza la evidencia en `features.json` y `TRACEABILITY.md`. Solo marca `passed` cuando todos los criterios aplicables estén comprobados y la evidencia identifique pruebas y resultados reales. Si hay un bloqueo usa `blocked` e indica el motivo.
 4. Añade una entrada a `PROGRESS.md` con fecha, tarea, cambios, pruebas, resultados, bloqueos y siguiente paso. Si usas commits, incluye el ID de tarea en el mensaje.
-5. Abre un pull request hacia `devops` que enlace el issue, el spec y la evidencia. Registra cada vínculo en la matriz. GitHub no cierra automáticamente un issue con `Closes #N` al fusionar hacia una rama que no sea la predeterminada: tras la integración y verificación en `devops`, cierra el issue manualmente con referencia al PR, o espera al PR de `devops` hacia la rama predeterminada. No cierres issues por trabajo no verificado.
-6. Una vez completadas y verificadas todas las tareas, integra `devops` en `main` mediante PR. Crea la etiqueta `v1.0.0` sobre el commit de la versión verificada en `main`; no anticipes la etiqueta si quedan tareas o comprobaciones pendientes.
+5. Abre un pull request hacia `developer` que enlace el issue, el spec y la evidencia. Registra cada vínculo en la matriz. GitHub no cierra automáticamente un issue con `Closes #N` al fusionar hacia una rama que no sea la predeterminada: tras la integración y verificación en `developer`, cierra el issue manualmente con referencia al PR, o espera al PR de `developer` hacia la rama predeterminada. No cierres issues por trabajo no verificado.
+6. Una vez completadas y verificadas todas las tareas, integra `developer` en `main` mediante PR. Crea la etiqueta `v1.0.0` sobre el commit de la versión verificada en `main`; no anticipes la etiqueta si quedan tareas o comprobaciones pendientes.
 
 ## Estados
 
@@ -29,4 +29,4 @@ Una tarea puede volver a un estado anterior si una comprobación posterior revel
 
 ## Límites de esta versión
 
-Los specs son un punto de partida para crear issues; no son evidencia de implementación. No hay aún backend, frontend, pipeline, despliegue ni infraestructura operativa. `check.py` valida metadatos y referencias locales, no verifica que el producto funcione.
+Los specs son un punto de partida para crear issues; no son evidencia de implementación. Consulta el catálogo y el progreso para conocer el estado real de cada componente. `check.py` valida metadatos y referencias locales, no verifica que el producto funcione.

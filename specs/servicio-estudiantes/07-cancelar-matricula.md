@@ -37,7 +37,7 @@ Cancelar matrícula para la plataforma de gestión académica.
 ## Trazabilidad
 - Requisito: EST-MAT-03
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
-- Pruebas: Integración, idempotencia y recuperación.
+- Pruebas: unitarias de idempotencia y recuperación con dependencias simuladas.
 - Issue: [12](https://github.com/Jhostin283/plataforma-gestion-academica/issues/12).
 - Pull request: [#35](https://github.com/Jhostin283/plataforma-gestion-academica/pull/35) (borrador).
 - Estado: en progreso; cancelación y reconciliación preparadas, validación pendiente.
