@@ -147,6 +147,12 @@
 - Se preparó un caso unitario sin ejecutar por indicación del usuario. Faltan verificar los errores por campo y ejecutar pruebas de edición y cambio de estado, compilación, accesibilidad e integración; no se declaran criterios aprobados.
 - La rama parte del panel y la cadena provisional de estudiantes; las API de cursos siguen en ramas en borrador no integradas en `devops`.
 
+## 2026-11-17 — WEB-EST-01 en progreso
+
+- Issue #15, PR #38 en borrador y spec `specs/frontend/03-estudiantes.md`: se preparó búsqueda y listado de estudiantes, registro, edición y cambio de estado, con estados de carga y error.
+- Se preparó un caso unitario sin ejecutarlo por indicación del usuario. Faltan pruebas de edición, estado y errores, compilación, accesibilidad e integración; no se declaran criterios aprobados.
+- La rama parte de los PR previos de frontend y estudiantes, aún en borrador.
+
 ## Formato para próximas sesiones
 
 ```text
