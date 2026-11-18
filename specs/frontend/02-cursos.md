@@ -25,7 +25,7 @@ Gestionar cursos desde el frontend para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Interfaz, API y accesibilidad.
 - Issue: [14](https://github.com/Jhostin283/plataforma-gestion-academica/issues/14).
-- Pull request: pendiente.
+- Pull request: [#37](https://github.com/Jhostin283/plataforma-gestion-academica/pull/37) (borrador).
 - Estado: en progreso; gestión preparada, validación pendiente.
 
 ## Pruebas relacionadas

@@ -108,7 +108,7 @@
 
 ## 2026-11-17 — WEB-CUR-01 en progreso
 
-- Issue #14 y spec `specs/frontend/02-cursos.md`: se prepararon navegación, búsqueda y listado de cursos, formulario de registro y edición y cambio de estado.
+- Issue #14, PR #37 en borrador y spec `specs/frontend/02-cursos.md`: se prepararon navegación, búsqueda y listado de cursos, formulario de registro y edición y cambio de estado.
 - Se preparó un caso unitario sin ejecutar por indicación del usuario. Faltan verificar los errores por campo y ejecutar pruebas de edición y cambio de estado, compilación, accesibilidad e integración; no se declaran criterios aprobados.
 - La rama parte del panel y la cadena provisional de estudiantes; las API de cursos siguen en ramas en borrador no integradas en `devops`.
 
