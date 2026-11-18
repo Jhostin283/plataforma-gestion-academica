@@ -26,7 +26,7 @@ Gestionar matrículas desde el frontend para la plataforma de gestión académic
 - Pruebas: Interfaz, integración y accesibilidad.
 - Issue: [16](https://github.com/Jhostin283/plataforma-gestion-academica/issues/16).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; pantalla y casos preparados, validación pendiente.
 
 ## Pruebas relacionadas
 
