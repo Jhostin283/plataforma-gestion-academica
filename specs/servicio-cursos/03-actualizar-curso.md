@@ -38,8 +38,8 @@ Actualizar curso para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, persistencia y reglas de capacidad.
 - Issue: [3](https://github.com/Jhostin283/plataforma-gestion-academica/issues/3).
-- Pull request: pendiente.
-- Estado: pendiente.
+- Pull request: [#26](https://github.com/Jhostin283/plataforma-gestion-academica/pull/26) (borrador).
+- Estado: en progreso; el control de capacidad con reservas depende de CUR-PLZ-01.
 
 ## Pruebas relacionadas
 
