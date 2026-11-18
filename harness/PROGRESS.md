@@ -204,6 +204,11 @@
 - Issue #10: se prepararon pruebas aisladas para persistencia de operaciones, repetición de claves, conflictos, consulta y transiciones.
 - No se ejecutaron por indicación del usuario; no demuestran concurrencia ni persistencia PostgreSQL reales. La última cobertura observada del servicio fue 67,59 %.
 
+## 2026-11-17 — CUR-03: casos adicionales preparados
+
+- Issue #3: se prepararon pruebas aisladas del adaptador para actualización válida, curso inexistente y conflictos de código o integridad.
+- No se ejecutaron por indicación del usuario; la cobertura posterior y la persistencia real siguen pendientes de validación.
+
 ## Formato para próximas sesiones
 
 ```text
