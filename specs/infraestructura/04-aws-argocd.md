@@ -25,5 +25,5 @@ Desplegar en EKS con Argo CD para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Sincronización, flujo completo y reversión.
 - Issue: [#20](https://github.com/Jhostin283/plataforma-gestion-academica/issues/20).
-- Pull request: pendiente.
-- Estado: pendiente.
+- Pull request: [#43](https://github.com/Jhostin283/plataforma-gestion-academica/pull/43) (borrador).
+- Estado: bloqueado; configuración propuesta, entorno autorizado y validación pendientes.
