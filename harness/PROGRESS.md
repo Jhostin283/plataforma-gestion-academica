@@ -46,6 +46,10 @@
 - Las pruebas unitarias no demuestran persistencia, migraciones ni concurrencia reales; esos criterios permanecen en los specs y no se deben declarar verificados mediante mocks.
 - Siguiente paso: sincronizar `devops` con esta base y empezar la tarea correctiva acordada.
 
+## 2026-11-17 — EST-01 en progreso
+
+- Se preparó el servicio de estudiantes con registro, consulta básica, migración y casos unitarios.
+
 ## 2026-11-17 — CUR-01 sobre devops corregido
 
 - Se reconstruyó la rama de CUR-01 desde la base corregida de devops, conservando la implementación y únicamente pruebas unitarias.

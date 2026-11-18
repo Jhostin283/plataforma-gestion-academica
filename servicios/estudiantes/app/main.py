@@ -1,0 +1,46 @@
+from uuid import uuid4
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+from sqlalchemy.exc import SQLAlchemyError
+from app.adapters.in_web.routes import router
+from app.application.exception.errores import DocumentoDuplicado, EstudianteNoEncontrado
+
+app = FastAPI(title="Servicio de estudiantes", version="1.0.0")
+app.include_router(router)
+
+
+def respuesta_error(status: int, codigo: str, mensaje: str, detalles=None):
+    return JSONResponse(status_code=status, content={"codigo": codigo, "mensaje": mensaje,
+                        "detalles": detalles or {}, "correlationId": str(uuid4())})
+
+
+@app.exception_handler(RequestValidationError)
+async def validacion(_request: Request, exc: RequestValidationError):
+    errores = exc.errors()
+    if any(error["type"] == "json_invalid" for error in errores):
+        return respuesta_error(400, "JSON_INVALIDO", "El cuerpo no es válido")
+    if any(error["loc"] and error["loc"][0] in ("path", "query") for error in errores):
+        return respuesta_error(400, "PARAMETRO_INVALIDO", "El parámetro no es válido")
+    detalles = {".".join(map(str, error["loc"])): error["msg"] for error in errores}
+    return respuesta_error(422, "DATOS_INVALIDOS", "Los datos no son válidos", detalles)
+
+
+@app.exception_handler(DocumentoDuplicado)
+async def duplicado(_request: Request, _exc: DocumentoDuplicado):
+    return respuesta_error(409, "DOCUMENTO_DUPLICADO", "El documento ya está registrado")
+
+
+@app.exception_handler(EstudianteNoEncontrado)
+async def no_encontrado(_request: Request, _exc: EstudianteNoEncontrado):
+    return respuesta_error(404, "ESTUDIANTE_NO_ENCONTRADO", "El estudiante no existe")
+
+
+@app.exception_handler(SQLAlchemyError)
+async def persistencia(_request: Request, _exc: SQLAlchemyError):
+    return respuesta_error(503, "PERSISTENCIA_NO_DISPONIBLE", "No se pudo procesar la solicitud")
+
+
+@app.get("/health", tags=["salud"])
+def salud():
+    return {"estado": "UP"}

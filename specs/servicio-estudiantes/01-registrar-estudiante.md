@@ -36,8 +36,8 @@ Registrar estudiante para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, validación y PostgreSQL.
 - Issue: [6](https://github.com/Jhostin283/plataforma-gestion-academica/issues/6).
-- Pull request: pendiente.
-- Estado: pendiente.
+- Pull request: [#29](https://github.com/Jhostin283/plataforma-gestion-academica/pull/29) (borrador).
+- Estado: en progreso; registro, consulta básica y casos unitarios preparados.
 
 ## Pruebas relacionadas
 
