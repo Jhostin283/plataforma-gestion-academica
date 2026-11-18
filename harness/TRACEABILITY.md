@@ -4,11 +4,11 @@ El estado de cada fila debe coincidir con `features.json`. Agrega enlaces y evid
 
 | ID | Spec | Issue | PR | Evidencia | Estado |
 | --- | --- | --- | --- | --- | --- |
-| CUR-01 | [Abrir](../specs/servicio-cursos/01-registrar-curso.md) | [#1](https://github.com/Jhostin283/plataforma-gestion-academica/issues/1) | Pendiente | Pendiente | pending |
-| CUR-02 | [Abrir](../specs/servicio-cursos/02-consultar-cursos.md) | [#2](https://github.com/Jhostin283/plataforma-gestion-academica/issues/2) | Pendiente | Pendiente | pending |
-| CUR-03 | [Abrir](../specs/servicio-cursos/03-actualizar-curso.md) | [#3](https://github.com/Jhostin283/plataforma-gestion-academica/issues/3) | Pendiente | Pendiente | pending |
-| CUR-04 | [Abrir](../specs/servicio-cursos/04-cambiar-estado.md) | [#4](https://github.com/Jhostin283/plataforma-gestion-academica/issues/4) | Pendiente | Pendiente | pending |
-| CUR-PLZ-01 | [Abrir](../specs/servicio-cursos/05-reservar-liberar-plazas.md) | [#5](https://github.com/Jhostin283/plataforma-gestion-academica/issues/5) | Pendiente | Pendiente | pending |
+| CUR-01 | [Abrir](../specs/servicio-cursos/01-registrar-curso.md) | [#1](https://github.com/Jhostin283/plataforma-gestion-academica/issues/1) | [#24](https://github.com/Jhostin283/plataforma-gestion-academica/pull/24) | 12 pruebas unitarias aprobadas; 7 casos vinculados | in_progress |
+| CUR-02 | [Abrir](../specs/servicio-cursos/02-consultar-cursos.md) | [#2](https://github.com/Jhostin283/plataforma-gestion-academica/issues/2) | [#25](https://github.com/Jhostin283/plataforma-gestion-academica/pull/25) | Pendiente | in_progress |
+| CUR-03 | [Abrir](../specs/servicio-cursos/03-actualizar-curso.md) | [#3](https://github.com/Jhostin283/plataforma-gestion-academica/issues/3) | [#26](https://github.com/Jhostin283/plataforma-gestion-academica/pull/26) | Pendiente | in_progress |
+| CUR-04 | [Abrir](../specs/servicio-cursos/04-cambiar-estado.md) | [#4](https://github.com/Jhostin283/plataforma-gestion-academica/issues/4) | [#27](https://github.com/Jhostin283/plataforma-gestion-academica/pull/27) | Pendiente | in_progress |
+| CUR-PLZ-01 | [Abrir](../specs/servicio-cursos/05-reservar-liberar-plazas.md) | [#5](https://github.com/Jhostin283/plataforma-gestion-academica/issues/5) | [#28](https://github.com/Jhostin283/plataforma-gestion-academica/pull/28) | Pendiente | in_progress |
 | EST-01 | [Abrir](../specs/servicio-estudiantes/01-registrar-estudiante.md) | [#6](https://github.com/Jhostin283/plataforma-gestion-academica/issues/6) | [#29](https://github.com/Jhostin283/plataforma-gestion-academica/pull/29) | Pendiente | in_progress |
 | EST-02 | [Abrir](../specs/servicio-estudiantes/02-consultar-estudiantes.md) | [#7](https://github.com/Jhostin283/plataforma-gestion-academica/issues/7) | [#30](https://github.com/Jhostin283/plataforma-gestion-academica/pull/30) | Implementación provisional; validación final pendiente | in_progress |
 | EST-03 | [Abrir](../specs/servicio-estudiantes/03-actualizar-estudiante.md) | [#8](https://github.com/Jhostin283/plataforma-gestion-academica/issues/8) | [#31](https://github.com/Jhostin283/plataforma-gestion-academica/pull/31) | Implementación provisional; validación final pendiente | in_progress |

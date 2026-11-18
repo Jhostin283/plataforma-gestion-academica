@@ -1,0 +1,5 @@
+package pe.academica.cursos.application.exception;
+
+public class ConflictoReservaException extends RuntimeException {
+    public ConflictoReservaException(String mensaje) { super(mensaje); }
+}
