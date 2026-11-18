@@ -11,6 +11,7 @@ import pe.academica.cursos.application.CursoDuplicadoException;
 import pe.academica.cursos.application.CursoNoEncontradoException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.dao.DataAccessException;
+import pe.academica.cursos.application.ParametrosConsultaInvalidosException;
 
 @RestControllerAdvice
 class ApiExceptionHandler {
@@ -32,6 +33,8 @@ class ApiExceptionHandler {
     ResponseEntity<ErrorApi> noEncontrado() { return error(HttpStatus.NOT_FOUND, "CURSO_NO_ENCONTRADO", "El curso no existe", Map.of()); }
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     ResponseEntity<ErrorApi> tipoInvalido() { return error(HttpStatus.BAD_REQUEST, "PARAMETRO_INVALIDO", "El parámetro no es válido", Map.of()); }
+    @ExceptionHandler(ParametrosConsultaInvalidosException.class)
+    ResponseEntity<ErrorApi> paginacionInvalida() { return error(HttpStatus.BAD_REQUEST, "PAGINACION_INVALIDA", "La paginación no es válida", Map.of()); }
     @ExceptionHandler(DataAccessException.class)
     ResponseEntity<ErrorApi> persistencia() {
         return error(HttpStatus.SERVICE_UNAVAILABLE, "PERSISTENCIA_NO_DISPONIBLE", "No se pudo guardar o consultar el curso", Map.of());

@@ -57,6 +57,11 @@
 - Se actualizaron referencias de pruebas en el README y los specs para reflejar la estrategia unitaria acordada.
 - Se corrigió el flujo del harness para consultar el estado real de cada componente.
 
+## 2026-11-17 — CUR-02 en progreso
+
+- Se implementaron búsqueda, paginación y casos unitarios asociados. El cálculo de plazas depende de CUR-PLZ-01.
+- Siguiente paso: completar las funcionalidades dependientes y su revisión.
+
 ## Formato para próximas sesiones
 
 ```text

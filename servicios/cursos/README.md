@@ -13,7 +13,7 @@ mvn verify
 mvn spring-boot:run
 ```
 
-Las pruebas predeterminadas ejercitan casos de uso y controladores con dependencias simuladas, sin base de datos. La suite no utiliza bases de datos. JaCoCo genera su reporte en `target/site/jacoco/`. Están implementados `POST /api/v1/cursos` y la consulta básica `GET /api/v1/cursos/{id}`; Springdoc publica el contrato en `/v3/api-docs`. El listado, filtros y disponibilidad de plazas siguen pendientes en `CUR-02` y `CUR-PLZ-01`.
+La suite ejercita casos de uso y controladores con dependencias simuladas. JaCoCo genera su reporte en `target/site/jacoco/`. Están implementados `POST /api/v1/cursos`, `GET /api/v1/cursos/{id}` y `GET /api/v1/cursos` con búsqueda y paginación; Springdoc publica el contrato en `/v3/api-docs`. La disponibilidad de plazas sigue pendiente en `CUR-PLZ-01`.
 
 
 Las pruebas unitarias no comprueban migraciones, concurrencia ni persistencia reales. Las comprobaciones realizadas antes del cambio permanecen como evidencia histórica en el registro de progreso.
