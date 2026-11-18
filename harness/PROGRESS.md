@@ -186,7 +186,8 @@
 ## 2026-11-17 — Validación de cobertura en CI
 
 - INF-CI-01, issue #18: se preparó la ejecución del workflow de aplicaciones en PR hacia `developer` para obtener resultados reales y reportes por servicio.
-- La ejecución y sus resultados están pendientes; la cobertura no demuestra por sí sola persistencia, concurrencia, accesibilidad ni despliegue. No se marca ninguna funcionalidad como aprobada.
+- Ejecución [CI](https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44208787841) sobre `58e1099`: cursos 24 pruebas satisfactorias y 81/120 líneas (67,50 %); estudiantes 18 pruebas satisfactorias y 413/611 líneas (67,59 %); frontend 5 pruebas satisfactorias y compilación correcta. La puerta de cobertura falló para ambos backends.
+- Pendiente: aumentar cobertura con pruebas significativas y verificar criterios funcionales, persistencia, concurrencia, accesibilidad y despliegue. La cobertura no demuestra por sí sola estos criterios; ninguna funcionalidad se marca como aprobada.
 
 ## Formato para próximas sesiones
 
