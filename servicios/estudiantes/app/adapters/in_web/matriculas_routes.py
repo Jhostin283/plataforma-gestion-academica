@@ -1,8 +1,8 @@
 import os
-from typing import Annotated
+from typing import Annotated, Literal
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, Header, Response
+from fastapi import APIRouter, Depends, Header, Query, Response
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
@@ -11,6 +11,7 @@ from app.adapters.out.persistence.matricula_repository import SqlAlchemyMatricul
 from app.adapters.out.reservas_cursos_http import ReservasCursosHttp
 from app.application.exception.errores import MatriculaNoEncontrada
 from app.application.usecase.crear_matricula import CrearMatricula
+from app.application.usecase.listar_matriculas import ListarMatriculas
 
 router = APIRouter(prefix='/api/v1/matriculas', tags=['matrículas'])
 
@@ -25,6 +26,13 @@ class MatriculaRespuesta(BaseModel):
     estudianteId: UUID
     cursoId: UUID
     estado: str
+
+
+class PaginaMatriculas(BaseModel):
+    items: list[MatriculaRespuesta]
+    page: int
+    size: int
+    total: int
 
 
 def repositorio(session: Annotated[Session, Depends(obtener_sesion)]):
@@ -62,6 +70,16 @@ def crear(datos: CrearMatriculaSolicitud, response: Response,
     response.status_code = 201 if matricula.estado == 'ACTIVA' else 202
     response.headers['Location'] = f'/api/v1/matriculas/{matricula.id}'
     return respuesta(matricula)
+
+
+@router.get('', response_model=PaginaMatriculas,
+            responses={400: {'description': 'Filtro o paginación inválidos'}, 503: {'description': 'Persistencia no disponible'}})
+def listar(estudiante_id: UUID | None = Query(default=None, alias='estudianteId'),
+           curso_id: UUID | None = Query(default=None, alias='cursoId'),
+           estado: Literal['PENDIENTE', 'ACTIVA', 'FALLIDA', 'CANCELACION_PENDIENTE', 'CANCELADA'] | None = Query(default=None),
+           page: int = Query(default=0, ge=0), size: int = Query(default=20, ge=1, le=100), repo=Depends(repositorio)):
+    items, total = ListarMatriculas(repo).ejecutar(estudiante_id, curso_id, estado, page, size)
+    return {'items': [respuesta(item) for item in items], 'page': page, 'size': size, 'total': total}
 
 
 @router.get('/{matricula_id}', response_model=MatriculaRespuesta,

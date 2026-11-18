@@ -123,6 +123,12 @@
 - Se prepararon transición durable de compensación, liberación idempotente y reconciliación periódica; se añadieron casos unitarios sin ejecutar.
 - Pendiente: validar transiciones, compensación, concurrencia y persistencia reales y cobertura; la dependencia CUR-PLZ-01 sigue en borrador en el PR #28. Ningún criterio se declara aprobado.
 
+## 2026-11-17 — EST-MAT-02 en progreso
+
+- Issue #11, PR #34 en borrador y spec `specs/servicio-estudiantes/06-consultar-matriculas.md`: se preparó el listado con filtros por estudiante, curso y estado, paginación y detalle. La compensación pendiente se presenta como PENDIENTE.
+- Se prepararon casos de filtro, vacío, detalle y errores, sin ejecutarlos por indicación del usuario. Persistencia, historial y criterios de aceptación siguen pendientes de validación.
+- La rama parte provisionalmente de EST-MAT-01, aún en borrador; no se ha integrado a `devops`.
+
 ## Formato para próximas sesiones
 
 ```text
