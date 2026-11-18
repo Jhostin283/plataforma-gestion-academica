@@ -193,7 +193,7 @@
         "EST-03",
         "EST-04"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/15",
       "pr": null,
       "evidence": [],

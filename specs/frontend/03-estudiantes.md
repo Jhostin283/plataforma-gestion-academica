@@ -26,7 +26,7 @@ Gestionar estudiantes desde el frontend para la plataforma de gestión académic
 - Pruebas: Interfaz, API y accesibilidad.
 - Issue: [15](https://github.com/Jhostin283/plataforma-gestion-academica/issues/15).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; pantalla y casos preparados, validación pendiente.
 
 ## Pruebas relacionadas
 
