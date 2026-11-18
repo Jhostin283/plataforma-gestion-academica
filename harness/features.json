@@ -84,9 +84,9 @@
       "depends_on": [
         "EST-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/7",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/30",
       "evidence": [],
       "blocked_reason": null
     },

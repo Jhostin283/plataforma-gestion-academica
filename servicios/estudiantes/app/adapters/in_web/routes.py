@@ -1,11 +1,12 @@
 from typing import Annotated
 from uuid import UUID
-from fastapi import APIRouter, Depends, Response, status
+from fastapi import APIRouter, Depends, Query, Response, status
 from pydantic import BaseModel, EmailStr, Field, field_validator
 from sqlalchemy.orm import Session
 from app.adapters.out.persistence.database import obtener_sesion
 from app.adapters.out.persistence.estudiante_repository import SqlAlchemyEstudianteRepository
 from app.application.usecase.consultar_estudiante import ConsultarEstudiante
+from app.application.usecase.listar_estudiantes import ListarEstudiantes
 from app.application.usecase.registrar_estudiante import RegistrarEstudiante
 
 router = APIRouter(prefix="/api/v1/estudiantes", tags=["estudiantes"])
@@ -32,6 +33,13 @@ class EstudianteRespuesta(BaseModel):
     estado: str
 
 
+class PaginaEstudiantes(BaseModel):
+    items: list[EstudianteRespuesta]
+    page: int
+    size: int
+    total: int
+
+
 def repository(session: Annotated[Session, Depends(obtener_sesion)]):
     return SqlAlchemyEstudianteRepository(session)
 
@@ -45,6 +53,15 @@ def registrar(datos: CrearEstudiante, response: Response, repo=Depends(repositor
     return estudiante
 
 
-@router.get("/{estudiante_id}", response_model=EstudianteRespuesta, responses={404: {"description": "Estudiante no encontrado"}})
+@router.get("", response_model=PaginaEstudiantes,
+            responses={400: {"description": "Paginación inválida"}, 503: {"description": "Persistencia no disponible"}})
+def listar_estudiantes(buscar: str | None = Query(default=None, description="Busca por nombres, apellidos o documento"),
+                       page: int = Query(default=0, ge=0), size: int = Query(default=20, ge=1, le=100),
+                       repo=Depends(repository)):
+    items, total = ListarEstudiantes(repo).ejecutar(buscar, page, size)
+    return {"items": items, "page": page, "size": size, "total": total}
+
+
+@router.get("/{estudiante_id}", response_model=EstudianteRespuesta, responses={400: {"description": "UUID inválido"}, 404: {"description": "Estudiante no encontrado"}, 503: {"description": "Persistencia no disponible"}})
 def consultar(estudiante_id: UUID, repo=Depends(repository)):
     return ConsultarEstudiante(repo).ejecutar(estudiante_id)

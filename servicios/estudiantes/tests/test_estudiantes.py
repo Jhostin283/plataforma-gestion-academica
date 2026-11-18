@@ -19,6 +19,13 @@ class RepositorioSimulado:
     def buscar_por_id(self, estudiante_id):
         return self.estudiantes.get(estudiante_id)
 
+    def listar(self, buscar, page, size):
+        texto = (buscar or "").strip().casefold()
+        resultados = sorted((x for x in self.estudiantes.values() if any(
+            texto in valor.casefold() for valor in (x.nombres, x.apellidos, x.documento))),
+            key=lambda x: (x.apellidos, x.nombres, x.id))
+        return resultados[page * size:(page + 1) * size], len(resultados)
+
 
 def cliente():
     repo = RepositorioSimulado()
@@ -54,5 +61,26 @@ def test_duplicado_y_datos_invalidos():
         assert client.post("/api/v1/estudiantes", json=datos).status_code == 409
         assert client.post("/api/v1/estudiantes", json={**datos, "correo": "incorrecto"}).status_code == 422
         assert client.post("/api/v1/estudiantes", content="{", headers={"content-type": "application/json"}).status_code == 400
+    finally:
+        app.dependency_overrides.clear()
+
+
+def test_est_02_listado_filtros_y_paginacion():
+    client, _ = cliente()
+    try:
+        for documento, nombres, apellidos in [("123", "Ana", "Pérez"), ("456", "Luis", "Pérez"), ("789", "Ana", "Rojas")]:
+            client.post("/api/v1/estudiantes", json={"documento": documento, "nombres": nombres,
+                        "apellidos": apellidos, "correo": "alumno@example.com"})
+        for termino, total in [("ana", 2), ("PÉREZ", 2), ("456", 1), ("inexistente", 0)]:
+            response = client.get("/api/v1/estudiantes", params={"buscar": termino})
+            assert response.status_code == 200
+            assert response.json()["total"] == total
+            assert len(response.json()["items"]) == total
+        pagina = client.get("/api/v1/estudiantes", params={"page": 1, "size": 1}).json()
+        assert pagina["total"] == 3 and len(pagina["items"]) == 1
+        assert set(pagina["items"][0]) == {"id", "documento", "nombres", "apellidos", "correo", "estado"}
+        for parametros in ({"page": -1}, {"size": 0}, {"size": 101}, {"page": "x"}):
+            assert client.get("/api/v1/estudiantes", params=parametros).status_code == 400
+        assert client.get("/api/v1/estudiantes/no-es-uuid").status_code == 400
     finally:
         app.dependency_overrides.clear()

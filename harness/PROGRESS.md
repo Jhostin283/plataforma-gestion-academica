@@ -50,6 +50,20 @@
 
 - Se preparó el servicio de estudiantes con registro, consulta básica, migración y casos unitarios.
 
+## 2026-11-17 — EST-02 bloqueada por dependencia
+
+- Tarea y spec: EST-02, `specs/servicio-estudiantes/02-consultar-estudiantes.md`; issue #7.
+- EST-01 continúa `in_progress` y su PR #29 está registrado como borrador; aún faltan pruebas de persistencia y concurrencia reales para sus criterios de aceptación. No se ha integrado en `devops`.
+- Comprobaciones: `python harness/check.py` y `python harness/init.py` finalizaron correctamente. Tras instalar dependencias, `uv run --directory servicios/estudiantes --extra test pytest --cov=app --cov-report=term-missing` ejecutó 3 pruebas unitarias satisfactorias con 87 % de cobertura; no demuestra persistencia ni concurrencia reales. El usuario indicó después que las pruebas restantes se harán al final. GitHub CLI informó que no hay sesión autenticada.
+- Bloqueos: validar EST-01 y resolver su integración respetando el acuerdo de mantener los PR en borrador hasta la validación final; acceso autenticado a GitHub para consultar y operar sobre el PR.
+- Siguiente paso: resolver la integración de la base y el acceso a GitHub; ejecutar la validación pendiente al final según la indicación del usuario. La puerta de cobertura en CI para estudiantes aún no está configurada.
+
+## 2026-11-17 — EST-02 en progreso
+
+- Issue #7 y spec `specs/servicio-estudiantes/02-consultar-estudiantes.md`: se prepararon listado, búsqueda por nombres, apellidos o documento, paginación y documentación HTTP; el detalle proviene de EST-01.
+- Se prepararon casos unitarios para filtros, resultados vacíos, paginación e identificador inválido. No se ejecutaron por indicación del usuario de realizar las pruebas al final; los criterios siguen sin aprobarse.
+- La rama local `feature/est-02-consultar-estudiantes` parte provisionalmente de EST-01 porque esa base aún no está integrada en `devops`. El PR de EST-01 continúa registrado como borrador y GitHub CLI no tiene sesión autenticada. Se creó el PR #30 en borrador.
+- Siguiente paso: validar al final EST-01 y EST-02, integrar la base según el acuerdo de PR en borrador y preparar el PR de EST-02 con su destino y autenticación disponibles.
 ## 2026-11-17 — CUR-01 sobre devops corregido
 
 - Se reconstruyó la rama de CUR-01 desde la base corregida de devops, conservando la implementación y únicamente pruebas unitarias.
