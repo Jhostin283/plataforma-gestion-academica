@@ -26,4 +26,4 @@ Desplegar en EKS con Argo CD para la plataforma de gestión académica.
 - Pruebas: Sincronización, flujo completo y reversión.
 - Issue: [#20](https://github.com/Jhostin283/plataforma-gestion-academica/issues/20).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: bloqueado; configuración propuesta, entorno autorizado y validación pendientes.

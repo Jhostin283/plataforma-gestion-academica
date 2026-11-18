@@ -142,6 +142,12 @@
 - No se aplicaron ni validaron manifiestos o recursos. Faltan imágenes reales, controlador y TLS, bases y secretos configurados, y verificar rutas, persistencia y salud. La sonda de estudiantes no verifica la disponibilidad de la base.
 - No se declaran criterios aprobados ni se han creado recursos AWS.
 
+## 2026-11-17 — INF-CD-01 bloqueado
+
+- Issue #20 y spec `specs/infraestructura/04-aws-argocd.md`: se prepararon una aplicación Argo CD de sincronización manual y una guía de prerrequisitos, validación, reversión y costos.
+- Bloqueo: no se ha proporcionado un entorno EKS/Argo CD autorizado; las imágenes y dependencias no están verificadas. No se han creado recursos, aplicado manifiestos, sincronizado ni probado el despliegue.
+- Siguiente paso: completar y validar las dependencias y preparar el entorno autorizado antes de verificar el despliegue.
+
 ## Formato para próximas sesiones
 
 ```text
