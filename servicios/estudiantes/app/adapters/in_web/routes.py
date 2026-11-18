@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Literal
 from uuid import UUID
 from fastapi import APIRouter, Depends, Query, Response, status
 from pydantic import BaseModel, EmailStr, Field, field_validator
@@ -7,6 +7,7 @@ from app.adapters.out.persistence.database import obtener_sesion
 from app.adapters.out.persistence.estudiante_repository import SqlAlchemyEstudianteRepository
 from app.application.usecase.consultar_estudiante import ConsultarEstudiante
 from app.application.usecase.actualizar_estudiante import ActualizarEstudiante
+from app.application.usecase.cambiar_estado_estudiante import CambiarEstadoEstudiante
 from app.application.usecase.listar_estudiantes import ListarEstudiantes
 from app.application.usecase.registrar_estudiante import RegistrarEstudiante
 
@@ -39,6 +40,10 @@ class PaginaEstudiantes(BaseModel):
     page: int
     size: int
     total: int
+
+
+class EstadoEstudiante(BaseModel):
+    estado: Literal['ACTIVO', 'INACTIVO']
 
 
 def repository(session: Annotated[Session, Depends(obtener_sesion)]):
@@ -75,3 +80,10 @@ def consultar(estudiante_id: UUID, repo=Depends(repository)):
 def actualizar(estudiante_id: UUID, datos: CrearEstudiante, repo=Depends(repository)):
     return ActualizarEstudiante(repo).ejecutar(estudiante_id, datos.documento, datos.nombres,
                                               datos.apellidos, str(datos.correo))
+
+
+@router.patch("/{estudiante_id}/estado", response_model=EstudianteRespuesta,
+              responses={400: {"description": "JSON o UUID inválido"}, 404: {"description": "Estudiante no encontrado"},
+                         422: {"description": "Estado inválido"}, 503: {"description": "Persistencia no disponible"}})
+def cambiar_estado(estudiante_id: UUID, datos: EstadoEstudiante, repo=Depends(repository)):
+    return CambiarEstadoEstudiante(repo).ejecutar(estudiante_id, datos.estado)

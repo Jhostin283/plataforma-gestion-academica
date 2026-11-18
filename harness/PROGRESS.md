@@ -107,6 +107,12 @@
 - La rama local `feature/est-03-actualizar-estudiante` parte provisionalmente de EST-02 y EST-01; ambas siguen pendientes de validación e integración. Se creó el PR #31 en borrador tras autenticar GitHub CLI.
 - Siguiente paso: revisar y publicar las ramas cuando exista acceso; ejecutar los criterios al final y mantener las tareas sin aprobar hasta entonces.
 
+## 2026-11-17 — EST-04 en progreso
+
+- Issue #9 y spec `specs/servicio-estudiantes/04-cambiar-estado.md`: se preparó el cambio de estado y casos unitarios para repetición, valores inválidos e ID inválido o inexistente.
+- Las pruebas no se ejecutaron por indicación del usuario; persistencia, conservación del historial y cobertura siguen pendientes. La regla de rechazo de matrícula para estudiantes inactivos depende de EST-MAT-01, aún pendiente.
+- PR #32 en borrador hacia `devops`; la rama parte provisionalmente de EST-03 y sus dependencias. La integración se posterga hasta la validación final.
+
 ## Formato para próximas sesiones
 
 ```text

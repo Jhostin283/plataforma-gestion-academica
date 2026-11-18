@@ -1,6 +1,6 @@
 from uuid import UUID
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy import func, or_, select
+from sqlalchemy import func, or_, select, update
 from sqlalchemy.orm import Session
 from app.adapters.out.persistence.modelos import EstudianteModel
 from app.application.exception.errores import DocumentoDuplicado, EstudianteNoEncontrado
@@ -45,6 +45,16 @@ class SqlAlchemyEstudianteRepository:
             if getattr(getattr(exc.orig, "diag", None), "constraint_name", None) == "uq_estudiantes_documento":
                 raise DocumentoDuplicado() from exc
             raise
+        return estudiante
+
+    def cambiar_estado(self, estudiante_id: UUID, estado: str) -> Estudiante:
+        sentencia = (update(EstudianteModel).where(EstudianteModel.id == estudiante_id)
+                     .values(estado=estado).returning(EstudianteModel))
+        modelo = self.session.execute(sentencia).scalar_one_or_none()
+        if modelo is None:
+            raise EstudianteNoEncontrado()
+        estudiante = _dominio(modelo)
+        self.session.commit()
         return estudiante
 
     def listar(self, buscar: str | None, page: int, size: int) -> tuple[list[Estudiante], int]:
