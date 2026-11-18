@@ -76,7 +76,7 @@ Cada API tendrá un contrato **OpenAPI** que describa sus rutas, parámetros, cu
 
 - **Servicio de cursos:** se propone usar `springdoc-openapi` con Spring Boot para generar su documentación OpenAPI.
 - **Servicio de estudiantes:** se aprovechará la generación OpenAPI integrada en FastAPI.
-- Los contratos se conservarán o publicarán por servicio y se vincularán con sus specs. Pruebas de contrato e integración comprobarán que las solicitudes y respuestas respeten lo definido.
+- Los contratos se conservarán o publicarán por servicio y se vincularán con sus specs. Las pruebas unitarias comprobarán el comportamiento de los adaptadores con dependencias simuladas.
 - Las llamadas entre servicios tendrán tiempos de espera y reintentos controlados. Las operaciones de reserva y liberación deberán ser idempotentes y contemplar compensación y reconciliación ante fallos.
 
 ## Infraestructura y despliegue: ECR, EKS y Argo CD
@@ -131,7 +131,7 @@ Cada servicio debe alcanzar una **cobertura de líneas superior al 80 %** de su 
 | CUR-01 | Registrar cursos | Pruebas de API y persistencia | Pendiente |
 | CUR-PLZ-01 | Reservar y liberar plazas | Pruebas de concurrencia e idempotencia | Pendiente |
 | EST-01 | Registrar estudiantes | Pruebas de API y persistencia | Pendiente |
-| EST-MAT-01 | Crear matrículas | Pruebas de integración, fallos y compensación | Pendiente |
+| EST-MAT-01 | Crear matrículas | Pruebas unitarias de reglas, fallos y compensación | Pendiente |
 | INF-CI-01 | Automatizar CI y publicar en ECR | Pruebas, cobertura y publicación | Pendiente |
 
 ## Fuentes de referencia
