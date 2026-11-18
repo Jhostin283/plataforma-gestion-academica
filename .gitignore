@@ -15,7 +15,23 @@ Thumbs.db
 *.key
 *.p12
 *.pfx
-kubeconfig
+*.crt
+*.cer
+*.ca-bundle
+id_rsa*
+*.credentials
+credentials.json
+kubeconfig*
+*.kubeconfig
+.kube/
+.aws/
+trust-policy.json
+*-policy.json
+*policy*.json
+docker-compose.override.yml
+*.sqlite3
+*.db
+*.dump
 
 # Java y herramientas de construcción
 target/
@@ -52,3 +68,7 @@ coverage/
 .terraform/
 *.tfvars
 !*.tfvars.example
+
+# Guías y notas locales
+infraestructura/GUIA-CLI-AWS-ECR.md
+GUIA-*.md
