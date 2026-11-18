@@ -30,16 +30,34 @@ export async function contarMatriculasActivas(signal) {
   return (await pagina('matriculas', { estado: 'ACTIVA', page: '0', size: '1' }, signal)).total;
 }
 
-export async function solicitar(path, { method = 'GET', body, signal } = {}) {
+export async function solicitarConEstado(path, { method = 'GET', body, signal, headers = {} } = {}) {
   const response = await fetch(`${baseUrl}/api/v1/${path}`, {
-    method, signal, headers: body ? { 'Content-Type': 'application/json' } : {},
+    method, signal, headers: { ...(body ? { 'Content-Type': 'application/json' } : {}), ...headers },
     body: body ? JSON.stringify(body) : undefined,
   });
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
     const error = new Error(data.mensaje || 'No se pudo completar la solicitud');
     error.detalles = data.detalles || {};
+    error.status = response.status;
+    error.codigo = data.codigo;
     throw error;
   }
-  return data;
+  return { data, status: response.status };
+}
+
+export async function solicitar(path, options = {}) {
+  return (await solicitarConEstado(path, options)).data;
+}
+
+export async function listarTodos(path, signal) {
+  const items = [];
+  let page = 0;
+  while (true) {
+    const resultado = await pagina(path, { page: String(page), size: '100' }, signal);
+    items.push(...resultado.items);
+    if (items.length >= resultado.total) return items;
+    if (resultado.items.length === 0) throw new Error('Listado incompleto');
+    page += 1;
+  }
 }

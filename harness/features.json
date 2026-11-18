@@ -210,9 +210,9 @@
         "EST-MAT-03",
         "CUR-PLZ-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/16",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/39",
       "evidence": [],
       "blocked_reason": null
     },
