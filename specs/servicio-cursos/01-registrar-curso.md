@@ -38,8 +38,8 @@ Registrar curso para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, validación y persistencia PostgreSQL.
 - Issue: [1](https://github.com/Jhostin283/plataforma-gestion-academica/issues/1).
-- Pull request: pendiente.
-- Estado: pendiente.
+- Pull request: [#24](https://github.com/Jhostin283/plataforma-gestion-academica/pull/24) (borrador).
+- Estado: en progreso; pruebas unitarias aprobadas, criterios de persistencia real pendientes.
 
 ## Pruebas relacionadas
 

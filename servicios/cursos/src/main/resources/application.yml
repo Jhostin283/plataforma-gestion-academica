@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${CURSOS_DB_URL:jdbc:postgresql://localhost:5432/cursos}
+    username: ${CURSOS_DB_USER:cursos}
+    password: ${CURSOS_DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
