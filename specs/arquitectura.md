@@ -48,12 +48,15 @@ Cada servicio organiza su código con esta estructura conceptual; la sintaxis co
 
 ```text
 servicio/
-├── domain/                    # Modelos y reglas de negocio
+├── domain/
+│   └── entity/                # Entidades del dominio
 ├── application/
+│   ├── usecase/               # Implementaciones de casos de uso
+│   ├── model/                 # Resultados usados por la aplicación
+│   ├── exception/             # Errores expresados por la aplicación
 │   ├── port/
 │   │   ├── in/                # Contratos de casos de uso
 │   │   └── out/               # Contratos para persistencia y servicios externos
-│   └── ...                    # Implementaciones de casos de uso
 └── adapters/
     ├── in/
     │   └── web/               # Controladores HTTP y DTO de entrada
@@ -63,6 +66,8 @@ servicio/
 ```
 
 Por ejemplo, el controlador de cursos invoca el puerto de entrada `RegistrarCursoUseCase`. El caso de uso implementa ese puerto y depende del puerto de salida `CursoRepository`; el adaptador de persistencia implementa este último. No todos los servicios necesitan los mismos adaptadores: se crean según sus dependencias reales.
+
+En el servicio Java, `Curso` y `Reserva` pertenecen al dominio. `CursoEntity` y `ReservaEntity` son representaciones de persistencia JPA ubicadas en el adaptador de salida; no deben confundirse con las entidades del dominio. Los casos de uso se ubican en `application/usecase` y se acceden mediante `application/port/in`.
 
 Las transacciones locales se delimitan al coordinar cada caso de uso. Las operaciones distribuidas conservan sus estados y mecanismos de recuperación; la arquitectura hexagonal no crea una transacción entre servicios. Usa puertos y adaptadores donde exista una dependencia real, sin añadir abstracciones innecesarias. No se comparten entidades ni bases entre servicios.
 
