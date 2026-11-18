@@ -6,6 +6,7 @@ from app.adapters.out.persistence.database import SessionLocal
 from app.adapters.out.persistence.matricula_repository import SqlAlchemyMatriculaRepository
 from app.adapters.out.reservas_cursos_http import ReservasCursosHttp
 from app.application.usecase.crear_matricula import CrearMatricula
+from app.application.usecase.cancelar_matricula import CancelarMatricula
 
 logger = logging.getLogger(__name__)
 
@@ -21,8 +22,12 @@ def reconciliar():
         for pendiente in pendientes:
             try:
                 with SessionLocal() as session:
-                    CrearMatricula(SqlAlchemyMatriculaRepository(session), cliente).ejecutar(
-                        pendiente.operacion_id, pendiente.estudiante_id, pendiente.curso_id)
+                    repositorio = SqlAlchemyMatriculaRepository(session)
+                    if pendiente.estado == 'CANCELACION_PENDIENTE':
+                        CancelarMatricula(repositorio, cliente).ejecutar(pendiente.id)
+                    else:
+                        CrearMatricula(repositorio, cliente).ejecutar(
+                            pendiente.operacion_id, pendiente.estudiante_id, pendiente.curso_id)
             except Exception:
                 logger.error('No se pudo reconciliar la operación %s', pendiente.operacion_id)
         cursor = pendientes[-1].id

@@ -150,9 +150,9 @@
       "depends_on": [
         "EST-MAT-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/12",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/35",
       "evidence": [],
       "blocked_reason": null
     },

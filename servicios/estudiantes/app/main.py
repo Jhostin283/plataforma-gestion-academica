@@ -11,7 +11,7 @@ from app.adapters.in_web.routes import router
 from app.adapters.in_web.matriculas_routes import router as matriculas_router
 from app.application.exception.errores import (DocumentoDuplicado, EstudianteNoEncontrado,
                                                ConflictoMatricula, CursoNoEncontrado, MatriculaNoEncontrada,
-                                               MatriculaCompensada)
+                                               MatriculaCompensada, ResultadoPersistenciaIncierto)
 
 async def _reconciliacion_periodica():
     from app.reconciliar_matriculas import reconciliar
@@ -69,6 +69,7 @@ async def no_encontrado(_request: Request, _exc: EstudianteNoEncontrado):
 
 
 @app.exception_handler(SQLAlchemyError)
+@app.exception_handler(ResultadoPersistenciaIncierto)
 async def persistencia(_request: Request, _exc: SQLAlchemyError):
     return respuesta_error(503, "PERSISTENCIA_NO_DISPONIBLE", "No se pudo procesar la solicitud")
 

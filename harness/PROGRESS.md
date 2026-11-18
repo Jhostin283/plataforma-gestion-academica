@@ -129,6 +129,12 @@
 - Se prepararon casos de filtro, vacío, detalle y errores, sin ejecutarlos por indicación del usuario. Persistencia, historial y criterios de aceptación siguen pendientes de validación.
 - La rama parte provisionalmente de EST-MAT-01, aún en borrador; no se ha integrado a `devops`.
 
+## 2026-11-17 — EST-MAT-03 en progreso
+
+- Issue #12, PR #35 en borrador y spec `specs/servicio-estudiantes/07-cancelar-matricula.md`: se preparó la transición durable de cancelación, liberación idempotente y reintento desde el proceso de reconciliación.
+- Se prepararon casos unitarios de cancelación y fallos, sin ejecutarlos por indicación del usuario. Persistencia, historial, idempotencia y recuperación siguen pendientes de validación.
+- La rama parte provisionalmente de EST-MAT-02 y sus dependencias, aún en borrador.
+
 ## Formato para próximas sesiones
 
 ```text
