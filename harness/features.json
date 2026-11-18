@@ -308,6 +308,7 @@
       "evidence": [
         "CI https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44208787841: validación de puerta de cobertura cuando es menor o igual al 80 % (cursos 67,50 % y estudiantes 67,59 % rechazados).",
         "CI https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44210749208: cursos 34 pruebas y 87,50 % de líneas; estudiantes 31 pruebas y 81,18 %; frontend 5 pruebas y compilación satisfactorias.",
+        "CI https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44223038607: publicación en Amazon ECR completada satisfactoriamente para cursos, estudiantes y frontend mediante autenticación OIDC y tag ef354c8d6f9f5a4cf44abe6ddf13045ac8b44ede.",
         "Workflow configurado con OIDC y etiquetado por commit. Dependencia INF-LOC-01 aprobada."
       ],
       "blocked_reason": null

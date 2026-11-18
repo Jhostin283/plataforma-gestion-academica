@@ -344,6 +344,15 @@
 - Evidencia: ejecuciones CI 44208787841 y 44210749208.
 - Estado: pasó a passed.
 
+
+## 2026-11-17 — INF-CI-01: Publicación en Amazon ECR verificada
+
+- Tarea y spec: INF-CI-01, specs/infraestructura/02-github-actions-ecr.md; issue #18, PR #41.
+- Ejecución de workflow: [Run 44223038607](https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44223038607).
+- Pruebas y resultado: validación exitosa de los 3 componentes (cursos, estudiantes y frontend); autenticación segura en AWS vía GitHub OIDC sin claves estáticas; construcción y publicación de los 3 contenedores en Amazon ECR (cademia/cursos, cademia/estudiantes y cademia/frontend) etiquetados con el commit ef354c8d6f9f5a4cf44abe6ddf13045ac8b44ede.
+- Evidencia: ejecución CI 44223038607 e imágenes listadas en repositorios ECR de la cuenta 357112747027.
+- Estado: passed.
+
 ## Formato para próximas sesiones
 
 ```text
