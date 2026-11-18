@@ -7,7 +7,10 @@ import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import pe.academica.cursos.application.exception.ConflictoReservaException;
+import pe.academica.cursos.application.exception.CursoNoEncontradoException;
+import pe.academica.cursos.application.exception.ReservaNoEncontradaException;
 import pe.academica.cursos.domain.entity.Curso;
+import org.springframework.dao.DataIntegrityViolationException;
 
 class PostgresReservaRepositoryTest {
     private final SpringCursoRepository cursos = mock(SpringCursoRepository.class);
@@ -47,5 +50,29 @@ class PostgresReservaRepositoryTest {
         when(reservas.saveAndFlush(any(ReservaEntity.class))).thenAnswer(i -> i.getArgument(0));
         assertThat(adapter.liberar(operacionId).estado()).isEqualTo("LIBERADA");
         assertThat(adapter.liberar(operacionId).estado()).isEqualTo("LIBERADA");
+    }
+
+    @Test void consultaReservaYRechazaReservaInexistente() {
+        var reserva = new ReservaEntity(operacionId, cursoId);
+        when(reservas.findById(operacionId)).thenReturn(Optional.of(reserva));
+        assertThat(adapter.consultar(operacionId).operacionId()).isEqualTo(operacionId);
+        when(reservas.findById(operacionId)).thenReturn(Optional.empty());
+        assertThatThrownBy(() -> adapter.consultar(operacionId)).isInstanceOf(ReservaNoEncontradaException.class);
+        assertThatThrownBy(() -> adapter.liberar(operacionId)).isInstanceOf(ReservaNoEncontradaException.class);
+    }
+
+    @Test void rechazaCursoInexistenteYClaveDeOtroCurso() {
+        when(cursos.buscarParaActualizar(cursoId)).thenReturn(Optional.empty());
+        assertThatThrownBy(() -> adapter.reservar(cursoId, operacionId)).isInstanceOf(CursoNoEncontradoException.class);
+        when(cursos.buscarParaActualizar(cursoId)).thenReturn(Optional.of(curso));
+        when(reservas.findById(operacionId)).thenReturn(Optional.of(new ReservaEntity(operacionId, UUID.randomUUID())));
+        assertThatThrownBy(() -> adapter.reservar(cursoId, operacionId)).isInstanceOf(ConflictoReservaException.class);
+    }
+
+    @Test void traduceConflictoDeClaveAlGuardar() {
+        when(cursos.buscarParaActualizar(cursoId)).thenReturn(Optional.of(curso));
+        when(reservas.findById(operacionId)).thenReturn(Optional.empty());
+        when(reservas.saveAndFlush(any(ReservaEntity.class))).thenThrow(new DataIntegrityViolationException("conflicto"));
+        assertThatThrownBy(() -> adapter.reservar(cursoId, operacionId)).isInstanceOf(ConflictoReservaException.class);
     }
 }
