@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: estudiantes
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {app: estudiantes}
+  template:
+    metadata:
+      labels: {app: estudiantes}
+    spec:
+      containers:
+        - name: estudiantes
+          image: academia/estudiantes
+          ports: [{containerPort: 8000}]
+          env:
+            - {name: ESTUDIANTES_DB_URL, valueFrom: {secretKeyRef: {name: estudiantes-db, key: url}}}
+            - {name: CURSOS_BASE_URL, value: 'http://cursos:8080'}
+          startupProbe: {httpGet: {path: /health, port: 8000}, failureThreshold: 30, periodSeconds: 5}
+          livenessProbe: {httpGet: {path: /health, port: 8000}, periodSeconds: 10}
+          readinessProbe: {httpGet: {path: /health, port: 8000}, periodSeconds: 10}
+          resources: {requests: {cpu: 100m, memory: 128Mi}, limits: {cpu: '1', memory: 512Mi}}
+          securityContext: {allowPrivilegeEscalation: false, runAsNonRoot: true, capabilities: {drop: [ALL]}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: estudiantes
+spec:
+  type: ClusterIP
+  selector: {app: estudiantes}
+  ports: [{port: 8000, targetPort: 8000}]

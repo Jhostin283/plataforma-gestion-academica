@@ -25,5 +25,5 @@ Definir recursos Kubernetes para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Validación de manifiestos, salud y enrutamiento.
 - Issue: [#19](https://github.com/Jhostin283/plataforma-gestion-academica/issues/19).
-- Pull request: pendiente.
-- Estado: pendiente.
+- Pull request: [#42](https://github.com/Jhostin283/plataforma-gestion-academica/pull/42) (borrador).
+- Estado: en progreso; manifiestos propuestos, configuración y validación pendientes.

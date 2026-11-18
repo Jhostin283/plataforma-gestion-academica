@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cursos
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {app: cursos}
+  template:
+    metadata:
+      labels: {app: cursos}
+    spec:
+      containers:
+        - name: cursos
+          image: academia/cursos
+          ports: [{containerPort: 8080}]
+          env:
+            - {name: CURSOS_DB_URL, valueFrom: {secretKeyRef: {name: cursos-db, key: url}}}
+            - {name: CURSOS_DB_USER, valueFrom: {secretKeyRef: {name: cursos-db, key: usuario}}}
+            - {name: CURSOS_DB_PASSWORD, valueFrom: {secretKeyRef: {name: cursos-db, key: clave}}}
+            - {name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED, value: 'true'}
+          startupProbe: {httpGet: {path: /actuator/health/liveness, port: 8080}, failureThreshold: 30, periodSeconds: 10}
+          livenessProbe: {httpGet: {path: /actuator/health/liveness, port: 8080}, periodSeconds: 10}
+          readinessProbe: {httpGet: {path: /actuator/health/readiness, port: 8080}, periodSeconds: 10}
+          resources: {requests: {cpu: 100m, memory: 256Mi}, limits: {cpu: '1', memory: 768Mi}}
+          securityContext: {allowPrivilegeEscalation: false, runAsNonRoot: true, capabilities: {drop: [ALL]}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cursos
+spec:
+  type: ClusterIP
+  selector: {app: cursos}
+  ports: [{port: 8080, targetPort: 8080}]
