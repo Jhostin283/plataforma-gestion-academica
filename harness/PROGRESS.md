@@ -62,6 +62,11 @@
 - Se implementaron búsqueda, paginación y casos unitarios asociados. El cálculo de plazas depende de CUR-PLZ-01.
 - Siguiente paso: completar las funcionalidades dependientes y su revisión.
 
+## 2026-11-17 — CUR-03 en progreso
+
+- Se implementó la actualización de los datos del curso y casos unitarios del caso de uso.
+- El control de capacidad con reservas queda vinculado a CUR-PLZ-01.
+
 ## Formato para próximas sesiones
 
 ```text

@@ -34,9 +34,9 @@
       "depends_on": [
         "CUR-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/3",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/26",
       "evidence": [],
       "blocked_reason": null
     },

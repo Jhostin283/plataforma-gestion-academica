@@ -21,6 +21,7 @@ import pe.academica.cursos.domain.Curso;
 import pe.academica.cursos.application.port.in.ConsultarCursoUseCase;
 import pe.academica.cursos.application.port.in.RegistrarCursoUseCase;
 import pe.academica.cursos.application.port.in.ListarCursosUseCase;
+import pe.academica.cursos.application.port.in.ActualizarCursoUseCase;
 import pe.academica.cursos.domain.PaginaCursos;
 import java.util.List;
 
@@ -29,14 +30,16 @@ class CursoControllerErrorTest {
     RegistrarCursoUseCase registrar;
     ConsultarCursoUseCase consultar;
     ListarCursosUseCase listar;
+    ActualizarCursoUseCase actualizar;
 
     @BeforeEach void configurar() {
         registrar = mock(RegistrarCursoUseCase.class);
         consultar = mock(ConsultarCursoUseCase.class);
         listar = mock(ListarCursosUseCase.class);
+        actualizar = mock(ActualizarCursoUseCase.class);
         var validator = new LocalValidatorFactoryBean();
         validator.afterPropertiesSet();
-        mvc = MockMvcBuilders.standaloneSetup(new CursoController(registrar, consultar, listar))
+        mvc = MockMvcBuilders.standaloneSetup(new CursoController(registrar, consultar, listar, actualizar))
                 .setControllerAdvice(new ApiExceptionHandler()).setValidator(validator).build();
     }
 
