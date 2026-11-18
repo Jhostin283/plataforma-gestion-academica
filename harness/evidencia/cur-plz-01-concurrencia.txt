@@ -1,0 +1,22 @@
+CUR-PLZ-01: dos solicitudes simultáneas: [201, 409]
+Plazas disponibles tras reserva: 200 0
+Reintento de reserva: 200 RESERVADA
+Consulta de reserva: 200 RESERVADA
+Clave repetida para otro curso: 409
+Liberación 1: 200 LIBERADA
+Liberación 2: 200 LIBERADA
+Plazas tras dos liberaciones: 200 1
+Reserva inexistente: 404
+Clave inválida: 400
+Contrato OpenAPI: 404
+Corrección de la consulta OpenAPI: la ruta anterior era incorrecta (/api/v1/../v3/api-docs).
+OpenAPI: 200 ruta de reserva documentada: True
+Respuestas documentadas: 200, 201, 400, 404, 409
+Curso inactivo: 409 código: CONFLICTO_RESERVA
+Curso inexistente: 404 código: CURSO_NO_ENCONTRADO
+Cabecera ausente: 400 código: CABECERA_REQUERIDA
+UUID inválido: 400 código: PARAMETRO_INVALIDO
+Resultado: validaciones y formato de error satisfactorios.
+Última plaza: 10 de 10 rondas con una reserva y un conflicto.
+Misma clave simultánea: [200, 201]
+Resultado: reintento simultáneo conservó una única plaza reservada.

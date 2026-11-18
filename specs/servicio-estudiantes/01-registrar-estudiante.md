@@ -37,7 +37,7 @@ Registrar estudiante para la plataforma de gestión académica.
 - Pruebas: API, validación y PostgreSQL.
 - Issue: [6](https://github.com/Jhostin283/plataforma-gestion-academica/issues/6).
 - Pull request: [#29](https://github.com/Jhostin283/plataforma-gestion-academica/pull/29) (borrador).
-- Estado: en progreso; registro, consulta básica y casos unitarios preparados.
+- Estado: aprobado; registro, persistencia tras reinicio y cobertura CI (81,18 %) verificados.
 
 ## Pruebas relacionadas
 

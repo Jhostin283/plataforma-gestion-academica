@@ -41,7 +41,7 @@ Reservar y liberar plazas para la plataforma de gestión académica.
 - Pruebas: PostgreSQL, concurrencia, contrato e idempotencia.
 - Issue: [5](https://github.com/Jhostin283/plataforma-gestion-academica/issues/5).
 - Pull request: [#28](https://github.com/Jhostin283/plataforma-gestion-academica/pull/28) (borrador).
-- Estado: en progreso; implementación y casos unitarios preparados.
+- Estado: aprobado; concurrencia, idempotencia, contrato y cobertura verificados satisfactoriamente.
 
 ## Pruebas relacionadas
 

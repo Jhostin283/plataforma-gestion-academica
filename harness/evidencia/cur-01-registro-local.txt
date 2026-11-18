@@ -1,0 +1,11 @@
+Registro simultáneo con mismo código: [201, 409]
+Curso creado ACTIVO y Location: ACTIVO True
+Consulta por id: 200 True
+Registros con código único: 1
+Validación de campos: 422 DATOS_INVALIDOS
+JSON malformado: 400 JSON_INVALIDO
+OpenAPI registro: 200 201/400/409/422 documentados: True
+Resultado: escenarios CUR-01 anteriores satisfactorios; persistencia local tras reinicio consta en evidencia INF-LOC-01.
+Registro con base detenida: 500 código: None
+Tras corrección, registro con base detenida: 503 código: PERSISTENCIA_NO_DISPONIBLE
+Tras recuperar base: registros para solicitud fallida: 0

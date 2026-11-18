@@ -37,7 +37,7 @@ Consultar cursos para la plataforma de gestión académica.
 - Pruebas: API, filtros y resultados vacíos.
 - Issue: [2](https://github.com/Jhostin283/plataforma-gestion-academica/issues/2).
 - Pull request: [#25](https://github.com/Jhostin283/plataforma-gestion-academica/pull/25) (borrador).
-- Estado: en progreso; el cálculo de plazas corresponde a CUR-PLZ-01.
+- Estado: aprobado; consulta, detalle con cálculo de plazas y cobertura CI (87,50 %) verificados.
 
 ## Pruebas relacionadas
 

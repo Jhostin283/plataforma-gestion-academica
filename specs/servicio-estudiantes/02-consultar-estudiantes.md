@@ -36,7 +36,7 @@ Consultar estudiantes para la plataforma de gestión académica.
 - Pruebas: API, filtros y casos vacíos.
 - Issue: [7](https://github.com/Jhostin283/plataforma-gestion-academica/issues/7).
 - Pull request: [#30](https://github.com/Jhostin283/plataforma-gestion-academica/pull/30) (borrador).
-- Estado: en progreso; implementación y casos unitarios preparados, validación pendiente.
+- Estado: aprobado; búsqueda, detalle y cobertura CI (81,18 %) verificados.
 
 ## Pruebas relacionadas
 

@@ -35,7 +35,7 @@ Cambiar estado del curso para la plataforma de gestión académica.
 - Pruebas: API, persistencia y reserva de curso inactivo.
 - Issue: [4](https://github.com/Jhostin283/plataforma-gestion-academica/issues/4).
 - Pull request: [#27](https://github.com/Jhostin283/plataforma-gestion-academica/pull/27) (borrador).
-- Estado: en progreso; la validación de reservas corresponde a CUR-PLZ-01.
+- Estado: aprobado; cambio de estado, rechazo de reservas en inactivo y cobertura CI (87,50 %) verificados.
 
 ## Pruebas relacionadas
 

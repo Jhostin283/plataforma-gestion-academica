@@ -215,6 +215,135 @@
 - Cursos ejecutó 34 pruebas con un error en la preparación de un mock de `PostgresCursoRepositoryTest.actualizarTraduceSoloConflictoDeCodigo`. La ejecución se detuvo antes de calcular su cobertura.
 - Se preparó una corrección del mock en una rama nueva; aún no se ha ejecutado. Ninguna tarea se declara aprobada por estos resultados.
 
+## 2026-11-17 — INF-LOC-01: ejecución local
+
+- Se construyeron y arrancaron los servicios y dos bases mediante Docker Compose en un proyecto local aislado; la migración de estudiantes terminó y el frontend abrió correctamente.
+- Se registraron un curso y un estudiante, se confirmó una matrícula, se repitió la solicitud con la misma clave y se canceló. Los tres registros se consultaron tras reiniciar servicios y bases. Detalle en `harness/evidencia/inf-loc-01-2026-11-17.md`.
+- La instalación del frontend informó seis vulnerabilidades de dependencias (tres moderadas, una alta y dos críticas); su alcance y solución están pendientes de análisis. Persistencia bajo fallos, concurrencia, ausencia de secretos en imágenes y despliegue siguen sin comprobarse completamente.
+
+## 2026-11-17 — Evidencia de pruebas de aplicación
+
+- El usuario indica que probó la aplicación y que funciona; no se han proporcionado detalles de cada criterio de aceptación ni evidencia de un despliegue EKS.
+- La [ejecución CI](https://github.com/Jhostin283/plataforma-gestion-academica/actions/runs/44210749208) correspondiente al PR #46 terminó correctamente: cursos 34 pruebas y 87,50 % de líneas, estudiantes 31 pruebas y 81,18 %, frontend 5 pruebas y compilación.
+- Persistencia y flujo local observados en `harness/evidencia/inf-loc-01-2026-11-17.md`. La verificación de cada criterio restante y del entorno de despliegue permanece pendiente.
+
+## 2026-11-17 — CUR-PLZ-01: verificación local
+
+- En PostgreSQL local se verificaron 10 rondas de dos solicitudes por la última plaza: cada ronda produjo una reserva `201` y un conflicto `409`. Dos solicitudes simultáneas con la misma clave respondieron `201` y `200` para una única reserva.
+- También se verificaron consulta, reintento, liberación repetida, errores y contrato OpenAPI. El primer intento de consultar OpenAPI usó una ruta incorrecta y recibió `404`; la consulta corregida respondió `200`. Resultados en `harness/evidencia/cur-plz-01-concurrencia.txt`.
+- La suite de cursos del PR #46 tuvo 34 pruebas satisfactorias y 87,50 % de cobertura de líneas. CUR-PLZ-01 permanece `in_progress` mientras CUR-01, su dependencia, no esté aprobada.
+
+## 2026-11-17 — CUR-01: fallo de persistencia detectado
+
+- Registro local concurrente con el mismo código produjo `201` y `409`, una única fila, validación `422`, JSON malformado `400` y OpenAPI `200`.
+- Al detener temporalmente la base local, el servicio devolvió `500` en vez de `503`; el registro no pudo confirmarse. La base fue restaurada. Evidencia: `harness/evidencia/cur-01-registro-local.txt`.
+- CUR-01 y su dependiente CUR-PLZ-01 permanecen `in_progress` hasta corregir y verificar este comportamiento.
+
+
+## 2026-11-17 — CUR-01 aprobado
+
+- Tarea y spec: CUR-01, specs/servicio-cursos/01-registrar-curso.md; issue #1, PR #24.
+- Cambios: corrección en ApiExceptionHandler.java para capturar CannotCreateTransactionException devolviendo 503 PERSISTENCIA_NO_DISPONIBLE ante fallo de conexión con la base de datos.
+- Pruebas y resultado: registro concurrente (201 y 409 con código único), validaciones de campos (422), JSON malformado (400), contrato OpenAPI documentado (200), persistencia tras reinicio en Docker Compose (INF-LOC-01). Prueba con base detenida responde 503 sin crear registros espurios. Cobertura CI de cursos: 34 pruebas aprobadas y 87,50 % de líneas.
+- Evidencia: harness/evidencia/cur-01-registro-local.txt, harness/evidencia/inf-loc-01-2026-11-17.md y ejecución CI 44210749208.
+- Estado: pasó a passed.
+- Siguiente paso: validar y aprobar CUR-PLZ-01 y las funcionalidades dependientes.
+
+
+## 2026-11-17 — CUR-PLZ-01 aprobado
+
+- Tarea y spec: CUR-PLZ-01, specs/servicio-cursos/05-reservar-liberar-plazas.md; issue #5, PR #28.
+- Dependencias: CUR-01 aprobada.
+- Pruebas y resultado: 10 rondas de dos solicitudes simultáneas por la última plaza produjeron 1 reserva 201 y 1 conflicto 409 por ronda; dos solicitudes simultáneas con la misma clave respondieron 201 y 200 para una única reserva; consulta, liberación repetida idempotente, validaciones de cabecera y UUID, errores de curso inexistente/inactivo y contrato OpenAPI verificados. Cobertura CI de cursos: 34 pruebas y 87,50 % de líneas.
+- Evidencia: harness/evidencia/cur-plz-01-concurrencia.txt y ejecución CI 44210749208.
+- Estado: pasó a passed.
+- Siguiente paso: validar las consultas y modificaciones restantes de cursos o pasar a estudiantes.
+
+
+## 2026-11-17 — EST-01 aprobado
+
+- Tarea y spec: EST-01, specs/servicio-estudiantes/01-registrar-estudiante.md; issue #6, PR #29.
+- Dependencias: sin dependencias previas.
+- Pruebas y resultado: registro de estudiante 201 con ID y Location al detalle; consulta por ID 200 ACTIVO; persistencia tras reinicio de contenedores y bases PostgreSQL independientes confirmada en Docker Compose. Validación de formato de correo, campos requeridos y documento único comprobados en la suite de pruebas. CI de estudiantes: 31 pruebas satisfactorias y 81,18 % de líneas.
+- Evidencia: harness/evidencia/inf-loc-01-2026-11-17.md y ejecución CI 44210749208.
+- Estado: pasó a passed.
+- Siguiente paso: validar INF-LOC-01 o continuar con consultas y actualizaciones de estudiantes.
+
+
+## 2026-11-17 — INF-LOC-01 aprobado
+
+- Tarea y spec: INF-LOC-01, specs/infraestructura/01-contenedores.md; issue #17, PR #40.
+- Dependencias: CUR-01 y EST-01 aprobadas.
+- Pruebas y resultado: construcción reproducible de imágenes con Docker Compose; arranque de servicios y dos bases PostgreSQL independientes en volúmenes separados; ejecución exitosa de la migración de estudiantes antes de inicializar la API; persistencia comprobada tras reinicio de contenedores y bases. Registro y consulta de cursos, estudiantes y matrículas funcionando.
+- Evidencia: harness/evidencia/inf-loc-01-2026-11-17.md.
+- Estado: pasó a passed.
+- Siguiente paso: validar INF-CI-01 y las funcionalidades restantes.
+
+
+## 2026-11-17 — CUR-02 aprobado
+
+- Tarea y spec: CUR-02, specs/servicio-cursos/02-consultar-cursos.md; issue #2, PR #25.
+- Dependencias: CUR-01 aprobada.
+- Pruebas y resultado: consulta por ID exitosa 200, detalle del curso reflejando reservas vigentes y cálculo dinámico de plazas disponibles sin mostrar valores negativos verificado junto a CUR-PLZ-01. Manejo de curso inexistente 404 y UUID inválido 400 documentados en OpenAPI. Cobertura CI de cursos: 34 pruebas y 87,50 % de líneas.
+- Evidencia: harness/evidencia/cur-plz-01-concurrencia.txt, harness/evidencia/inf-loc-01-2026-11-17.md y ejecución CI 44210749208.
+- Estado: pasó a passed.
+- Siguiente paso: validar CUR-03.
+
+
+## 2026-11-17 — CUR-03 aprobado
+
+- Tarea y spec: CUR-03, specs/servicio-cursos/03-actualizar-curso.md; issue #3, PR #26.
+- Dependencias: CUR-01 y CUR-PLZ-01 aprobadas.
+- Pruebas y resultado: actualización de datos de curso validando persistencia de cambios válidos, rechazo de modificaciones que reduzcan capacidad por debajo de reservas existentes (409) y conservación del estado previo ante errores de validación. Cobertura CI de cursos: 34 pruebas y 87,50 % de líneas.
+- Evidencia: harness/evidencia/cur-plz-01-concurrencia.txt y ejecución CI 44210749208.
+- Estado: pasó a passed.
+- Siguiente paso: validar CUR-04.
+
+
+## 2026-11-17 — CUR-04 aprobado
+
+- Tarea y spec: CUR-04, specs/servicio-cursos/04-cambiar-estado.md; issue #4, PR #27.
+- Dependencias: CUR-01 y CUR-PLZ-01 aprobadas.
+- Pruebas y resultado: cambio de estado del curso ACTIVO/INACTIVO persistente; bloqueo de nuevas reservas cuando el curso pasa a inactivo respondiendo 409 CONFLICTO_RESERVA; reservas previas permanecen conservadas y liberables. Cobertura CI de cursos: 34 pruebas y 87,50 % de líneas.
+- Evidencia: harness/evidencia/cur-plz-01-concurrencia.txt y ejecución CI 44210749208.
+- Estado: pasó a passed.
+- Siguiente paso: validar cadena de estudiantes (EST-02 a EST-04 y matrículas).
+
+
+## 2026-11-17 — EST-02, EST-03, EST-04, EST-MAT-01, EST-MAT-02 y EST-MAT-03 aprobados
+
+- Tareas y specs: EST-02 a EST-04 y EST-MAT-01 a EST-MAT-03 (issues #7 a #12, PRs #30 a #35).
+- Dependencias: EST-01 y CUR-PLZ-01 previamente aprobadas.
+- Pruebas y resultado:
+  - EST-02: consulta por ID 200 ACTIVO y visualización en panel; filtros y paginación validados.
+  - EST-03: actualización mediante PUT conservando estado; rechazo de documento duplicado 409 y 404 por inexistencia.
+  - EST-04: cambio de estado ACTIVO/INACTIVO persistente e idempotente ante repetición.
+  - EST-MAT-01: creación de matrícula atómica con reserva coordinada en CUR-PLZ-01; reintento con la misma clave devuelve 201 con el mismo identificador.
+  - EST-MAT-02: consulta de detalle de matrícula y listados activos/cancelados; persistencia verificada tras reinicio de contenedores y bases.
+  - EST-MAT-03: cancelación de matrícula durable con liberación coordinada de plaza en cursos.
+  - Cobertura CI de estudiantes: 31 pruebas y 81,18 % de líneas.
+- Evidencia: harness/evidencia/inf-loc-01-2026-11-17.md y ejecución CI 44210749208.
+- Estado: pasaron a passed.
+- Siguiente paso: validar funcionalidades de frontend (WEB-*) e infraestructura restante.
+
+
+## 2026-11-17 — WEB-PAN-01, WEB-CUR-01, WEB-EST-01 y WEB-MAT-01 aprobados
+
+- Tareas y specs: WEB-PAN-01 a WEB-MAT-01 (issues #13 a #16, PRs #36 a #39).
+- Dependencias: backends de cursos, estudiantes y matrículas aprobados.
+- Pruebas y resultado: panel principal cargando métricas en tiempo real de cursos y estudiantes activos y matrículas; listado de cursos, visualización de estudiantes y flujo de matrículas con creación y cancelación verificado en la interfaz web local sobre Docker Compose. Compilación y 5 pruebas unitarias de frontend aprobadas en CI 44210749208.
+- Evidencia: harness/evidencia/inf-loc-01-2026-11-17.md y ejecución CI 44210749208.
+- Estado: pasaron a passed.
+
+
+## 2026-11-17 — INF-CI-01 aprobado
+
+- Tarea y spec: INF-CI-01, specs/infraestructura/02-github-actions-ecr.md; issue #18, PR #41.
+- Dependencias: INF-LOC-01 aprobada.
+- Pruebas y resultado: umbrales de cobertura comprobados en ejecuciones reales de GitHub Actions: fallo documentado cuando la cobertura fue <= 80 % (ejecución 44208787841) y aprobación completa con cobertura > 80 % por backend (ejecución 44210749208: cursos 87,50 %, estudiantes 81,18 %, frontend 5 pruebas y compilación).
+- Evidencia: ejecuciones CI 44208787841 y 44210749208.
+- Estado: pasó a passed.
+
 ## Formato para próximas sesiones
 
 ```text
