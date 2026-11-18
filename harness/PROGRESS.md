@@ -120,7 +120,7 @@
 
 ## 2026-11-17 — WEB-MAT-01 en progreso
 
-- Issue #16 y spec `specs/frontend/04-matriculas.md`: se prepararon selección de estudiantes y cursos, consulta de plazas, creación con clave estable, historial y cancelación. Las respuestas pendientes se muestran como tales.
+- Issue #16, PR #39 en borrador y spec `specs/frontend/04-matriculas.md`: se prepararon selección de estudiantes y cursos, consulta de plazas, creación con clave estable, historial y cancelación. Las respuestas pendientes se muestran como tales.
 - Se preparó un caso para respuesta 202 sin ejecutarlo por indicación del usuario. Faltan pruebas de creación confirmada, errores y cancelación, compilación, accesibilidad e integración; no se declaran criterios aprobados.
 - La rama parte de los PR previos de frontend y matrículas, aún en borrador.
 

@@ -25,7 +25,7 @@ Gestionar matrículas desde el frontend para la plataforma de gestión académic
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Interfaz, integración y accesibilidad.
 - Issue: [16](https://github.com/Jhostin283/plataforma-gestion-academica/issues/16).
-- Pull request: pendiente.
+- Pull request: [#39](https://github.com/Jhostin283/plataforma-gestion-academica/pull/39) (borrador).
 - Estado: en progreso; pantalla y casos preparados, validación pendiente.
 
 ## Pruebas relacionadas
