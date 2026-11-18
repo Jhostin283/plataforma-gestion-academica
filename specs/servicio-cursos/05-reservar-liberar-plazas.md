@@ -40,8 +40,8 @@ Reservar y liberar plazas para la plataforma de gestión académica.
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
 - Pruebas: PostgreSQL, concurrencia, contrato e idempotencia.
 - Issue: [5](https://github.com/Jhostin283/plataforma-gestion-academica/issues/5).
-- Pull request: pendiente.
-- Estado: pendiente.
+- Pull request: [#28](https://github.com/Jhostin283/plataforma-gestion-academica/pull/28) (borrador).
+- Estado: en progreso; implementación y casos unitarios preparados.
 
 ## Pruebas relacionadas
 
