@@ -25,5 +25,5 @@ Preparar contenedores y ejecución local para la plataforma de gestión académi
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Construcción, salud y persistencia.
 - Issue: [#17](https://github.com/Jhostin283/plataforma-gestion-academica/issues/17).
-- Pull request: pendiente.
-- Estado: pendiente.
+- Pull request: [#40](https://github.com/Jhostin283/plataforma-gestion-academica/pull/40) (borrador).
+- Estado: en progreso; contenedores preparados, integración y validación pendientes.
