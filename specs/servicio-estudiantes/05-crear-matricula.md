@@ -47,7 +47,7 @@ Crear matrícula para la plataforma de gestión académica.
 ## Trazabilidad
 - Requisito: EST-MAT-01
 - Contrato relacionado: CUR-PLZ-01; specs/comunicacion-entre-servicios.md
-- Pruebas: Integración, concurrencia, idempotencia y compensación.
+- Pruebas: unitarias de idempotencia, fallos y compensación con dependencias simuladas.
 - Issue: [10](https://github.com/Jhostin283/plataforma-gestion-academica/issues/10).
 - Pull request: [#33](https://github.com/Jhostin283/plataforma-gestion-academica/pull/33) (borrador, avance parcial).
 - Estado: en progreso; creación, compensación y reconciliación preparadas, validación pendiente.
