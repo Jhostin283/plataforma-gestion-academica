@@ -71,4 +71,6 @@ coverage/
 
 # Guías y notas locales
 infraestructura/GUIA-CLI-AWS-ECR.md
+infraestructura/GUIA-CLI-EKS-ARGOCD.md
+infraestructura/GUIA-ARGO-CD-EXPLICACION.md
 GUIA-*.md
