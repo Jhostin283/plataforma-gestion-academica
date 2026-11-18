@@ -11,6 +11,7 @@ import pe.academica.cursos.application.exception.CursoDuplicadoException;
 import pe.academica.cursos.application.exception.CursoNoEncontradoException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.dao.DataAccessException;
+import org.springframework.transaction.CannotCreateTransactionException;
 import pe.academica.cursos.application.exception.ParametrosConsultaInvalidosException;
 import pe.academica.cursos.application.exception.ConflictoReservaException;
 import pe.academica.cursos.application.exception.ReservaNoEncontradaException;
@@ -44,7 +45,7 @@ class ApiExceptionHandler {
     ResponseEntity<ErrorApi> reservaNoEncontrada() { return error(HttpStatus.NOT_FOUND, "RESERVA_NO_ENCONTRADA", "La reserva no existe", Map.of()); }
     @ExceptionHandler(MissingRequestHeaderException.class)
     ResponseEntity<ErrorApi> cabeceraAusente() { return error(HttpStatus.BAD_REQUEST, "CABECERA_REQUERIDA", "Falta una cabecera obligatoria", Map.of()); }
-    @ExceptionHandler(DataAccessException.class)
+    @ExceptionHandler({DataAccessException.class, CannotCreateTransactionException.class})
     ResponseEntity<ErrorApi> persistencia() {
         return error(HttpStatus.SERVICE_UNAVAILABLE, "PERSISTENCIA_NO_DISPONIBLE", "No se pudo guardar o consultar el curso", Map.of());
     }

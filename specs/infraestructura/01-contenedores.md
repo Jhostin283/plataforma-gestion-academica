@@ -26,4 +26,4 @@ Preparar contenedores y ejecución local para la plataforma de gestión académi
 - Pruebas: Construcción, salud y persistencia.
 - Issue: [#17](https://github.com/Jhostin283/plataforma-gestion-academica/issues/17).
 - Pull request: [#40](https://github.com/Jhostin283/plataforma-gestion-academica/pull/40) (borrador).
-- Estado: en progreso; contenedores preparados, integración y validación pendientes.
+- Estado: aprobado; construcción, arranque reproducible y persistencia tras reinicio verificados.

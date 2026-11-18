@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.dao.DataAccessResourceFailureException;
+import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -107,6 +108,16 @@ class CursoControllerErrorTest {
                 .thenThrow(new DataAccessResourceFailureException("detalle interno sensible"));
         mvc.perform(post("/api/v1/cursos").contentType(MediaType.APPLICATION_JSON)
                 .content("{\"codigo\":\"C1\",\"nombre\":\"Java\",\"descripcion\":\"Curso\",\"duracionHoras\":20,\"capacidad\":15}"))
+                .andExpect(status().isServiceUnavailable())
+                .andExpect(jsonPath("$.codigo").value("PERSISTENCIA_NO_DISPONIBLE"))
+                .andExpect(jsonPath("$.mensaje").value("No se pudo guardar o consultar el curso"))
+                .andExpect(jsonPath("$.correlationId").exists());
+    }
+
+    @Test void falloAlAbrirTransaccionProduce503SinExponerDetalles() throws Exception {
+        when(registrar.ejecutar(anyString(), anyString(), anyString(), anyInt(), anyInt()))
+                .thenThrow(new CannotCreateTransactionException("detalle interno sensible"));
+        mvc.perform(post("/api/v1/cursos").contentType(MediaType.APPLICATION_JSON).content(body))
                 .andExpect(status().isServiceUnavailable())
                 .andExpect(jsonPath("$.codigo").value("PERSISTENCIA_NO_DISPONIBLE"))
                 .andExpect(jsonPath("$.mensaje").value("No se pudo guardar o consultar el curso"))

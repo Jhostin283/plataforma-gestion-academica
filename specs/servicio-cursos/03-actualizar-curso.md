@@ -39,7 +39,7 @@ Actualizar curso para la plataforma de gestión académica.
 - Pruebas: API, persistencia y reglas de capacidad.
 - Issue: [3](https://github.com/Jhostin283/plataforma-gestion-academica/issues/3).
 - Pull request: [#26](https://github.com/Jhostin283/plataforma-gestion-academica/pull/26) (borrador).
-- Estado: en progreso; el control de capacidad con reservas depende de CUR-PLZ-01.
+- Estado: aprobado; actualización, validación de capacidad con reservas y cobertura CI (87,50 %) verificados.
 
 ## Pruebas relacionadas
 

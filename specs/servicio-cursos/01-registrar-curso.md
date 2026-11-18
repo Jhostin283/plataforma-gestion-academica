@@ -39,7 +39,7 @@ Registrar curso para la plataforma de gestión académica.
 - Pruebas: API, validación y persistencia PostgreSQL.
 - Issue: [1](https://github.com/Jhostin283/plataforma-gestion-academica/issues/1).
 - Pull request: [#24](https://github.com/Jhostin283/plataforma-gestion-academica/pull/24) (borrador).
-- Estado: en progreso; pruebas unitarias aprobadas, criterios de persistencia real pendientes.
+- Estado: aprobado; pruebas unitarias, concurrencia, validación y persistencia 503 verificadas.
 
 ## Pruebas relacionadas
 
