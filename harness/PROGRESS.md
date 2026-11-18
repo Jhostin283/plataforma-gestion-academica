@@ -144,7 +144,7 @@
 
 ## 2026-11-17 — INF-CD-01 bloqueado
 
-- Issue #20 y spec `specs/infraestructura/04-aws-argocd.md`: se prepararon una aplicación Argo CD de sincronización manual y una guía de prerrequisitos, validación, reversión y costos.
+- Issue #20, PR #43 en borrador y spec `specs/infraestructura/04-aws-argocd.md`: se prepararon una aplicación Argo CD de sincronización manual y una guía de prerrequisitos, validación, reversión y costos.
 - Bloqueo: no se ha proporcionado un entorno EKS/Argo CD autorizado; las imágenes y dependencias no están verificadas. No se han creado recursos, aplicado manifiestos, sincronizado ni probado el despliegue.
 - Siguiente paso: completar y validar las dependencias y preparar el entorno autorizado antes de verificar el despliegue.
 
