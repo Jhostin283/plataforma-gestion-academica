@@ -194,6 +194,11 @@
 - Issue #5: se prepararon pruebas aisladas para endpoints de reserva, reintentos, consulta, liberación y errores del repositorio.
 - No se ejecutaron estos nuevos casos por indicación del usuario; la cobertura posterior y los criterios reales de concurrencia y persistencia siguen pendientes. La última cobertura observada de cursos fue 67,50 %.
 
+## 2026-11-17 — EST-01: casos adicionales preparados
+
+- Issue #6: se prepararon pruebas aisladas del adaptador de registro, consulta y tratamiento de conflictos de integridad.
+- No se ejecutaron por indicación del usuario; no demuestran persistencia PostgreSQL real. La última cobertura observada del servicio fue 67,59 %.
+
 ## Formato para próximas sesiones
 
 ```text
