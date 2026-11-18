@@ -183,6 +183,11 @@
 - Bloqueo: no se ha proporcionado un entorno EKS/Argo CD autorizado; las imágenes y dependencias no están verificadas. No se han creado recursos, aplicado manifiestos, sincronizado ni probado el despliegue.
 - Siguiente paso: completar y validar las dependencias y preparar el entorno autorizado antes de verificar el despliegue.
 
+## 2026-11-17 — Validación de cobertura en CI
+
+- INF-CI-01, issue #18: se preparó la ejecución del workflow de aplicaciones en PR hacia `developer` para obtener resultados reales y reportes por servicio.
+- La ejecución y sus resultados están pendientes; la cobertura no demuestra por sí sola persistencia, concurrencia, accesibilidad ni despliegue. No se marca ninguna funcionalidad como aprobada.
+
 ## Formato para próximas sesiones
 
 ```text

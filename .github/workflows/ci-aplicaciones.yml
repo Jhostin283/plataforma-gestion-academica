@@ -1,5 +1,7 @@
 name: Validar aplicaciones
 on:
+  pull_request:
+    branches: [developer]
   workflow_dispatch:
   workflow_call:
 
