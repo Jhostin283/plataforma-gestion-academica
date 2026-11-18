@@ -1,0 +1,49 @@
+name: Publicar imágenes en ECR
+on:
+  workflow_dispatch:
+    inputs:
+      confirmar_publicacion:
+        description: 'Publicar imágenes tras verificar CI para este commit'
+        type: boolean
+        default: false
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    if: github.ref == 'refs/heads/developer' && inputs.confirmar_publicacion
+    uses: ./.github/workflows/ci-aplicaciones.yml
+  publicar:
+    needs: validar
+    if: github.ref == 'refs/heads/developer' && inputs.confirmar_publicacion
+    runs-on: ubuntu-latest
+    environment: aws-ecr
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ECR_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Construir y publicar imágenes asociadas al commit
+        env:
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+          TAG: ${{ github.sha }}
+          REPO_CURSOS: ${{ vars.ECR_REPO_CURSOS }}
+          REPO_ESTUDIANTES: ${{ vars.ECR_REPO_ESTUDIANTES }}
+          REPO_FRONTEND: ${{ vars.ECR_REPO_FRONTEND }}
+        run: |
+          set -eu
+          for repo in "$REPO_CURSOS" "$REPO_ESTUDIANTES" "$REPO_FRONTEND"; do test -n "$repo"; done
+          docker build -t "$REGISTRY/$REPO_CURSOS:$TAG" servicios/cursos
+          docker build -t "$REGISTRY/$REPO_ESTUDIANTES:$TAG" servicios/estudiantes
+          docker build -t "$REGISTRY/$REPO_FRONTEND:$TAG" frontend
+          docker push "$REGISTRY/$REPO_CURSOS:$TAG"
+          docker push "$REGISTRY/$REPO_ESTUDIANTES:$TAG"
+          docker push "$REGISTRY/$REPO_FRONTEND:$TAG"

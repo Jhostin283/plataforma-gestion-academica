@@ -26,4 +26,4 @@ Configurar CI y publicación en ECR para la plataforma de gestión académica.
 - Pruebas: Workflow, umbral, OIDC y publicación.
 - Issue: [#18](https://github.com/Jhostin283/plataforma-gestion-academica/issues/18).
 - Pull request: pendiente.
-- Estado: pendiente.
+- Estado: en progreso; workflows manuales preparados, validación y propuesta de imágenes pendientes.
