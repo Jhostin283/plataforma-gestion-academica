@@ -138,7 +138,7 @@
 
 ## 2026-11-17 — INF-K8S-01 en progreso
 
-- Issue #19 y spec `specs/infraestructura/03-kubernetes.md`: se prepararon manifiestos Kustomize para aplicaciones, servicios, Ingress y migración controlada, con secretos externos e imágenes de marcador no desplegables.
+- Issue #19, PR #42 en borrador y spec `specs/infraestructura/03-kubernetes.md`: se prepararon manifiestos Kustomize para aplicaciones, servicios, Ingress y migración controlada, con secretos externos e imágenes de marcador no desplegables.
 - No se aplicaron ni validaron manifiestos o recursos. Faltan imágenes reales, controlador y TLS, bases y secretos configurados, y verificar rutas, persistencia y salud. La sonda de estudiantes no verifica la disponibilidad de la base.
 - No se declaran criterios aprobados ni se han creado recursos AWS.
 
