@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from app.adapters.out.persistence.database import obtener_sesion
 from app.adapters.out.persistence.estudiante_repository import SqlAlchemyEstudianteRepository
 from app.application.usecase.consultar_estudiante import ConsultarEstudiante
+from app.application.usecase.actualizar_estudiante import ActualizarEstudiante
 from app.application.usecase.listar_estudiantes import ListarEstudiantes
 from app.application.usecase.registrar_estudiante import RegistrarEstudiante
 
@@ -65,3 +66,12 @@ def listar_estudiantes(buscar: str | None = Query(default=None, description="Bus
 @router.get("/{estudiante_id}", response_model=EstudianteRespuesta, responses={400: {"description": "UUID inválido"}, 404: {"description": "Estudiante no encontrado"}, 503: {"description": "Persistencia no disponible"}})
 def consultar(estudiante_id: UUID, repo=Depends(repository)):
     return ConsultarEstudiante(repo).ejecutar(estudiante_id)
+
+
+@router.put("/{estudiante_id}", response_model=EstudianteRespuesta,
+            responses={400: {"description": "JSON o UUID inválido"}, 404: {"description": "Estudiante no encontrado"},
+                       409: {"description": "Documento duplicado"}, 422: {"description": "Datos inválidos"},
+                       503: {"description": "Persistencia no disponible"}})
+def actualizar(estudiante_id: UUID, datos: CrearEstudiante, repo=Depends(repository)):
+    return ActualizarEstudiante(repo).ejecutar(estudiante_id, datos.documento, datos.nombres,
+                                              datos.apellidos, str(datos.correo))

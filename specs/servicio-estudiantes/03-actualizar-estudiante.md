@@ -36,8 +36,8 @@ Actualizar estudiante para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: API, unicidad y persistencia.
 - Issue: [8](https://github.com/Jhostin283/plataforma-gestion-academica/issues/8).
-- Pull request: pendiente.
-- Estado: pendiente.
+- Pull request: [#31](https://github.com/Jhostin283/plataforma-gestion-academica/pull/31) (borrador).
+- Estado: en progreso; implementación y casos unitarios preparados, validación pendiente.
 
 ## Pruebas relacionadas
 
