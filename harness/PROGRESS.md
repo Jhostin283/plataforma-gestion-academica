@@ -132,7 +132,7 @@
 
 ## 2026-11-17 — INF-CI-01 en progreso
 
-- Issue #18 y spec `specs/infraestructura/02-github-actions-ecr.md`: se prepararon workflows manuales para pruebas y cobertura por servicio, reportes y publicación en ECR mediante OIDC con imágenes etiquetadas por commit.
+- Issue #18, PR #41 en borrador y spec `specs/infraestructura/02-github-actions-ecr.md`: se prepararon workflows manuales para pruebas y cobertura por servicio, reportes y publicación en ECR mediante OIDC con imágenes etiquetadas por commit.
 - No se ejecutaron los workflows ni se crearon recursos AWS, por indicación del usuario y falta de configuración autorizada. La rama de cursos aún no está integrada.
 - Pendiente: validación final del workflow y umbrales, habilitar el disparador de PR cuando se acuerde y preparar el mecanismo que proponga cambios de imágenes en Git. No se declaran criterios aprobados.
 

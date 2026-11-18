@@ -25,5 +25,5 @@ Configurar CI y publicación en ECR para la plataforma de gestión académica.
 - Contrato relacionado: OpenAPI del servicio correspondiente, cuando aplique
 - Pruebas: Workflow, umbral, OIDC y publicación.
 - Issue: [#18](https://github.com/Jhostin283/plataforma-gestion-academica/issues/18).
-- Pull request: pendiente.
+- Pull request: [#41](https://github.com/Jhostin283/plataforma-gestion-academica/pull/41) (borrador).
 - Estado: en progreso; workflows manuales preparados, validación y propuesta de imágenes pendientes.
