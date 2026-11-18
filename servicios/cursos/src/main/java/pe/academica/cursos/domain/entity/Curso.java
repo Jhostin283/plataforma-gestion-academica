@@ -1,4 +1,4 @@
-package pe.academica.cursos.domain;
+package pe.academica.cursos.domain.entity;
 
 import java.util.UUID;
 

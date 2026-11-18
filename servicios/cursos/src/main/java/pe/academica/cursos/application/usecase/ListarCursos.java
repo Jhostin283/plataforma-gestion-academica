@@ -1,9 +1,10 @@
-package pe.academica.cursos.application;
+package pe.academica.cursos.application.usecase;
 
+import pe.academica.cursos.application.exception.ParametrosConsultaInvalidosException;
 import org.springframework.stereotype.Service;
 import pe.academica.cursos.application.port.in.ListarCursosUseCase;
 import pe.academica.cursos.application.port.out.CursoRepository;
-import pe.academica.cursos.domain.PaginaCursos;
+import pe.academica.cursos.application.model.PaginaCursos;
 
 @Service
 public class ListarCursos implements ListarCursosUseCase {

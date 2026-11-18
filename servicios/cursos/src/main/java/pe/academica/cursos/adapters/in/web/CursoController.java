@@ -12,8 +12,8 @@ import pe.academica.cursos.application.port.in.ConsultarCursoUseCase;
 import pe.academica.cursos.application.port.in.ListarCursosUseCase;
 import pe.academica.cursos.application.port.in.ActualizarCursoUseCase;
 import pe.academica.cursos.application.port.in.CambiarEstadoCursoUseCase;
-import pe.academica.cursos.domain.Curso;
-import pe.academica.cursos.domain.PaginaCursos;
+import pe.academica.cursos.domain.entity.Curso;
+import pe.academica.cursos.application.model.PaginaCursos;
 import java.util.UUID;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -34,6 +34,8 @@ class CursoController {
                       @NotBlank String descripcion, @NotNull @Positive Integer duracionHoras,
                       @NotNull @Positive Integer capacidad) { }
     record CambioEstado(@NotBlank @Pattern(regexp = "ACTIVO|INACTIVO") String estado) { }
+    record DetalleCurso(UUID id, String codigo, String nombre, String descripcion, int duracionHoras,
+                        int capacidad, String estado, long plazasDisponibles) { }
 
     @PostMapping
     @Operation(summary = "Registrar un curso", description = "El código distingue mayúsculas y minúsculas; se eliminan espacios al inicio y al final antes de guardarlo.", responses = {
@@ -53,8 +55,10 @@ class CursoController {
         @ApiResponse(responseCode="200", description="Curso encontrado"),
         @ApiResponse(responseCode="400", description="ID inválido"),
         @ApiResponse(responseCode="404", description="Curso no encontrado")})
-    ResponseEntity<Curso> obtener(@PathVariable UUID cursoId) {
-        return ResponseEntity.ok(consultar.ejecutar(cursoId));
+    ResponseEntity<DetalleCurso> obtener(@PathVariable UUID cursoId) {
+        Curso curso = consultar.ejecutar(cursoId);
+        return ResponseEntity.ok(new DetalleCurso(curso.id(), curso.codigo(), curso.nombre(), curso.descripcion(),
+                curso.duracionHoras(), curso.capacidad(), curso.estado(), consultar.plazasDisponibles(curso)));
     }
 
     @GetMapping

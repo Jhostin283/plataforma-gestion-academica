@@ -2,7 +2,7 @@ package pe.academica.cursos.adapters.out.persistence;
 
 import jakarta.persistence.*;
 import java.util.UUID;
-import pe.academica.cursos.domain.Curso;
+import pe.academica.cursos.domain.entity.Curso;
 
 @Entity
 @Table(name = "cursos", uniqueConstraints = @UniqueConstraint(name = "uq_cursos_codigo", columnNames = "codigo"))
