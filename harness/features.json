@@ -124,9 +124,9 @@
         "EST-01",
         "CUR-PLZ-01"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "issue": "https://github.com/Jhostin283/plataforma-gestion-academica/issues/10",
-      "pr": null,
+      "pr": "https://github.com/Jhostin283/plataforma-gestion-academica/pull/33",
       "evidence": [],
       "blocked_reason": null
     },
